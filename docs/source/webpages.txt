@@ -1,0 +1,13 @@
+# HRIBO Documentation
+https://bioconda.github.io/
+https://snakemake.readthedocs.io/en/stable/
+https://conda.io/projects/conda/en/latest/user-guide/install/index.html
+https://conda.io/miniconda.html
+https://github.com/Biochemistry1-FFM/uORF-Tools/archive/2.0.0.tar.gz
+https://www.gencodegenes.org/human/
+http://ensemblgenomes.org/
+http://www.ensembl.org/Homo_sapiens/Info/Index
+https://www.ncbi.nlm.nih.gov/sra
+https://trace.ncbi.nlm.nih.gov/Traces/sra/sra.cgi?view=toolkit_doc&f=std
+# error testing
+http://ensemblgenomes.org/notexisting
