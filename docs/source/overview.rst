@@ -48,7 +48,7 @@ Tool Parameters
 ===============
 
 **TODO**
-Special characters and versions used for the most important tools. Standard input/output parameters were omitted.
+The tools used in our workflow are listed below, with links to their respective webpage and a short description.
 
 +---------------------------+-------------+--------------------------------------------------------------------------------------------------------------------------------------------------+
 | Tool                      | Version     | Special parameters used                                                                                                                          |
