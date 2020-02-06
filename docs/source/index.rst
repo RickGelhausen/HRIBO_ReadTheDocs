@@ -10,3 +10,5 @@ HRIBO
    :caption: Examples
 
    example-workflow
+   workflow-configuration
+   analysis-results

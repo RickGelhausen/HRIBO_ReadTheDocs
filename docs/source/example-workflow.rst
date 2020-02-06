@@ -7,8 +7,8 @@ Example workflow
 The retrieval of input files and running the workflow locally and on a server cluster via a queuing system is demonstrated using an example with data available from `NCBI  <https://www.ncbi.nlm.nih.gov/>`_.
 This dataset is available under the accession number *PRJNA379630*.
 
-.. note:: This dataset, featuring *Pseudomonas aeruginosa PAO1*, was chosen for this tutorial as it contains both multiple conditions and replicates.
-.. note:: Ensure that you have **miniconda3** and **singularity** installed and a conda environment set-up. Please refer to the :ref:`overview <overview:Tools>` for details on the installation.
+.. note:: In this tutorial, we will show the basic functionalities of our workflow, for information about additional options please refer to: :ref:`workflow-configuration <workflow-configuration:workflow-configuration`.
+.. note:: Ensure that you have **miniconda3** installed and a conda environment set-up. Please refer to the :ref:`overview <overview:Tools>` for details on the installation.
 
 Setup
 =====
@@ -75,18 +75,12 @@ This will create a conda environment containing the sra-tools. Using these, we c
 
     conda activate sra-tools;
     fasterq-dump SRR5356908; pigz -p 2 SRR5356908.fastq; mv SRR5356908.fastq.gz RNA-PAO1-gly-1.fastq.gz;
-    fasterq-dump SRR5356906; pigz -p 2 SRR5356906.fastq; mv SRR5356906.fastq.gz RNA-PAO1-gly-2.fastq.gz;
     fasterq-dump SRR5356907; pigz -p 2 SRR5356907.fastq; mv SRR5356907.fastq.gz RIBO-PAO1-gly-1.fastq.gz;
-    fasterq-dump SRR5356905; pigz -p 2 SRR5356905.fastq; mv SRR5356905.fastq.gz RIBO-PAO1-gly-2.fastq.gz;
-    fasterq-dump SRR5356902; pigz -p 2 SRR5356902.fastq; mv SRR5356902.fastq.gz RNA-PAO1-nalk-1.fastq.gz;
-    fasterq-dump SRR5356900; pigz -p 2 SRR5356900.fastq; mv SRR5356900.fastq.gz RNA-PAO1-nalk-2.fastq.gz;
-    fasterq-dump SRR5356901; pigz -p 2 SRR5356901.fastq; mv SRR5356901.fastq.gz RIBO-PAO1-nalk-1.fastq.gz;
-    fasterq-dump SRR5356899; pigz -p 2 SRR5356899.fastq; mv SRR5356899.fastq.gz RIBO-PAO1-nalk-2.fastq.gz;
 
 
-.. note:: Due to the runtime of several tools, especially the mapping by segemehl. We only chose two conditions and two replicates from this dataset.
+.. note:: Due to the runtime of several tools, especially the mapping by segemehl, this tutorial only uses one condition and replicate. If available, it is advisable to use as many replicates as possible.
 
-.. note:: If you have a bad internet connection, this step might take up to several hours. You might want to consider downloading only one replicate per condition, or use your own data instead.
+.. note:: If you have a bad internet connection, this step might take some time. If you prefer, you can also use your own .fastq files. But ensure that you use the correct annotation and genome files.
 
 This will download compressed files for each of the required *.fastq* files. We will move them into a folder called *fastq*.
 
@@ -102,8 +96,7 @@ Finally, we will prepare the configuration file (*config.yaml*) and the sample s
 
 .. code-block:: bash
 
-    $ cp HRIBO/templates/bam-samples.tsv HRIBO/
-    $ mv HRIBO/bam-samples.tsv HRIBO/samples.tsv
+    $ cp HRIBO/templates/samples.tsv HRIBO/
 
 The sample file looks as follows:
 
@@ -130,8 +123,15 @@ The sample file looks as follows:
 .. note:: When using your own data, use any editor (vi(m), gedit, nano, atom, ...) to customize the sample sheet.
 .. warning:: **Please ensure not to replace any tabulator symbols with spaces while changing this file.**
 
-We will rewrite this file to fit to the previously downloaded *.fastq.gz* files.
+We will rewrite this file to fit the previously downloaded *.fastq.gz* files.
 
++-----------+-----------+-----------+--------------------------------+
+|   method  | condition | replicate | inputFile                      |
++===========+===========+===========+================================+
+| RIBO      |  GLY      | 1         | fastq/RIBO-PAO1-gly-1.fastq.gz |
++-----------+-----------+-----------+--------------------------------+
+| RNA       |  GLY      | 1         | fastq/RNA-PAO1-gly-1.fastq.gz  |
++-----------+-----------+-----------+--------------------------------+
 
 
 Next, we are going to set up the *config.yaml*.
@@ -139,46 +139,42 @@ Next, we are going to set up the *config.yaml*.
 .. code-block:: bash
 
     $ cp HRIBO/templates/config.yaml HRIBO/
-    $ vi HRIBO/config.yaml
 
 This file contains the following variables:
 
-• **taxonomy** Specify the taxonomic group of the used organism in order to ensure the correct removal of reads mapping to ribosomal genes (Eukarya, Bacteria, Archea). (Option for the preprocessing workflow)
-•	**adapter** Specify the adapter sequence to be used. If not set, *Trim galore* will try to determine it automatically. (Option for the preprocessing workflow)
-•	**samples** The location of the samples sheet created in the previous step.
-•	**genomeindexpath** If the STAR genome index was already precomputed, you can specify the path to the files here, in order to avoid recomputation. (Option for the preprocessing workflow)
-•	**uorfannotationpath** If a uORF-annotation file was already pre-computed, you can specify the path to the file here. Please make sure, that the file has the same format as the uORF_annotation_hg38.csv file provided in the git repo (i.e. same number of columns, same column names)
+•	**adapter** Specify the adapter sequence to be used. In our case this would be *AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC*
+•	**samples** The location of the sample sheet created in the previous step.
 • **alternativestartcodons** Specify a comma separated list of alternative start codons.
+
+In our example, this will lead to the following config file:
 
 .. code-block:: bash
 
-    #Taxonomy of the samples to be processed, possible are Eukarya, Bacteria, Archea
-    taxonomy: "Eukarya"
-    #Adapter sequence used
-    adapter: ""
+    adapter: "AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC"
     samples: "HRIBO/samples.tsv"
-    genomeindexpath: ""
-    uorfannotationpath: ""
-    alternativestartcodons: ""
+    alternativestartcodons: "GTG,TTG"
 
-For this tutorial, we can keep the default values for the *config.yaml*. The organism analyzed in this tutorial is *homo sapiens*, therefore we keep the taxonomy at *Eukarya*. The path to *samples.tsv* is set correctly.
 
 Running the workflow
 ====================
 
 Now that we have all the required files, we can start running the workflow, either locally or in a cluster environment.
 
+.. note:: In the example below
+
 Run the workflow locally
 ************************
 
-Use the following steps when you plan to execute the workflow on a single server or workstation. Please be aware that some steps
-of the workflow might require a lot of memory, specifically for eukaryotic species.
+Use the following steps when you plan to execute the workflow on a single server or workstation.
+.. warning::  Please be aware that some steps of the workflow require a lot of memory or time, depending on the size of your input data.
 
-Navigate to the project folder containing the bam/ folder, the annotation.gtf and the genome.fa files and the HRIBO folder. Start the workflow locally from this folder by running:
+Navigate to the project folder containing your annotation and genome files, as well as the HRIBO folder. Start the workflow locally from this folder by running:
 
 .. code-block:: bash
 
-    $ snakemake --use-conda -s HRIBO/Snakefile --configfile HRIBO/config.yaml --directory ${PWD} -j 20 --latency-wait 60
+    $ snakemake --use-conda -s HRIBO/Snakefile_nixtail --configfile HRIBO/config.yaml --directory ${PWD} -j 10 --latency-wait 60
+
+This command will tell snakemake that conda should be used to download the required dependencies. With *-j* the number of cores can be specified. *--latency-wait* ensures that snakemake waits for files that might not be available directly due to file-system latencies.
 
 Run Snakemake in a cluster environment
 **************************************
@@ -190,7 +186,9 @@ Navigate to the project folder on your cluster system. Start the workflow from t
 
 .. code-block:: bash
 
-    $ snakemake --use-conda -s HRIBO/Snakefile --configfile HRIBO/config.yaml --directory ${PWD} -j 20 --cluster-config HRIBO/templates/sge-cluster.yaml
+    $ snakemake --use-conda -s HRIBO/Snakefile_nixtail --configfile HRIBO/config.yaml --directory ${PWD} -j 20 --cluster-config HRIBO/templates/sge-cluster.yaml
+
+.. note:: Ensure that you use an appropriate *cluster.yaml* for your cluster system. We provide one for *SGE* and *TORQUE* based systems.
 
 Example: Run Snakemake in a cluster environment
 ***********************************************
@@ -219,7 +217,7 @@ We proceeded by writing the queuing script:
     #PBS -j oe
     cd <PATH/ProjectFolder>
     source activate HRIBO
-    snakemake --latency-wait 600 --use-conda -s HRIBO/Snakefile --configfile HRIBO/config.yaml --directory ${PWD} -j 20 --cluster-config HRIBO/templates/torque-cluster.yaml --cluster "qsub -N {cluster.jobname} -S /bin/bash -q {cluster.qname} -d <PATH/ProjectFolder> -l {cluster.resources} -o {cluster.logoutputdir} -j oe"
+    snakemake --latency-wait 600 --use-conda -s HRIBO/Snakefile_nixtail --configfile HRIBO/config.yaml --directory ${PWD} -j 20 --cluster-config HRIBO/templates/torque-cluster.yaml --cluster "qsub -N {cluster.jobname} -S /bin/bash -q {cluster.qname} -d <PATH/ProjectFolder> -l {cluster.resources} -o {cluster.logoutputdir} -j oe"
 
 We then simply submitted this job to the cluster:
 
@@ -227,16 +225,12 @@ We then simply submitted this job to the cluster:
 
     $ qsub torque.sh
 
-Using any of the presented methods, this will run the workflow on our dataset and create the desired output files.
+Using any of the presented methods, this will run the workflow on the tutorial dataset and create the desired output files.
 
-Report
-******
+Results
+*******
 
-Once the workflow has finished, we can request an automatically generated *report.html* file using the following command:
-
-.. code-block:: bash
-
-    $ snakemake --use-conda -s HRIBO/Snakefile --configfile HRIBO/config.yaml --report report.html
+A detailed explanation of the result files can be found in the :ref:`result section <analysis-results:test>`.
 
 References
 ==========
