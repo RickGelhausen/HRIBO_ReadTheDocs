@@ -7,7 +7,7 @@ Example workflow
 The retrieval of input files and running the workflow locally and on a server cluster via a queuing system is demonstrated using an example with data available from `NCBI  <https://www.ncbi.nlm.nih.gov/>`_.
 This dataset is available under the accession number *PRJNA379630*.
 
-.. note:: In this tutorial, we will show the basic functionalities of our workflow, for information about additional options please refer to: :ref:`workflow-configuration <workflow-configuration:workflow-configuration`.
+.. note:: In this tutorial, we will show the basic functionalities of our workflow, for information about additional options please refer to: :ref:`workflow-configuration <workflow-configuration:workflow-configuration>`.
 .. note:: Ensure that you have **miniconda3** installed and a conda environment set-up. Please refer to the :ref:`overview <overview:Tools>` for details on the installation.
 
 Setup
@@ -17,15 +17,15 @@ First of all, we start by creating the project directory and changing to it.
 
 .. code-block:: bash
 
-    $ mkdir project
-    $ cd project
+    mkdir project
+    cd project
 
 We then download the latest version of HRIBO into the newly created project folder and unpack it.
 
 .. code-block:: bash
 
-   $ wget https://github.com/RickGelhausen/HRIBO/archive/1.2.0.tar.gz
-   $ tar -xzf 1.2.0.tar.gz; mv HRIBO-1.2.0 HRIBO; rm 1.2.0.tar.gz;
+   wget https://github.com/RickGelhausen/HRIBO/archive/1.2.0.tar.gz
+   tar -xzf 1.2.0.tar.gz; mv HRIBO-1.2.0 HRIBO; rm 1.2.0.tar.gz;
 
 Retrieve and prepare input files
 ================================
@@ -96,7 +96,7 @@ Finally, we will prepare the configuration file (*config.yaml*) and the sample s
 
 .. code-block:: bash
 
-    $ cp HRIBO/templates/samples.tsv HRIBO/
+    cp HRIBO/templates/samples.tsv HRIBO/
 
 The sample file looks as follows:
 
@@ -138,7 +138,7 @@ Next, we are going to set up the *config.yaml*.
 
 .. code-block:: bash
 
-    $ cp HRIBO/templates/config.yaml HRIBO/
+    cp HRIBO/templates/config.yaml HRIBO/
 
 This file contains the following variables:
 
@@ -153,7 +153,10 @@ In our example, this will lead to the following config file:
     adapter: "AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC"
     samples: "HRIBO/samples.tsv"
     alternativestartcodons: "GTG,TTG"
-
+    # Differential expression: on / off
+    differentialexpression: "off"
+    # Deepribo predictions: on / off
+    deepribo: "off"
 
 Running the workflow
 ====================
@@ -172,9 +175,9 @@ Navigate to the project folder containing your annotation and genome files, as w
 
 .. code-block:: bash
 
-    $ snakemake --use-conda -s HRIBO/Snakefile_nixtail --configfile HRIBO/config.yaml --directory ${PWD} -j 10 --latency-wait 60
+    snakemake --use-conda -s HRIBO/Snakefile --configfile HRIBO/config.yaml --directory ${PWD} -j 10 --latency-wait 60
 
-This command will tell snakemake that conda should be used to download the required dependencies. With *-j* the number of cores can be specified. *--latency-wait* ensures that snakemake waits for files that might not be available directly due to file-system latencies.
+This command will tell snakemake that conda should be used to download the required dependencies. *-j* sets the maximum number of cores snakemake is allowed to use. *--latency-wait* ensures that snakemake waits for files that might not be available directly due to file-system latencies.
 
 Run Snakemake in a cluster environment
 **************************************
@@ -186,7 +189,7 @@ Navigate to the project folder on your cluster system. Start the workflow from t
 
 .. code-block:: bash
 
-    $ snakemake --use-conda -s HRIBO/Snakefile_nixtail --configfile HRIBO/config.yaml --directory ${PWD} -j 20 --cluster-config HRIBO/templates/sge-cluster.yaml
+    snakemake --use-conda -s HRIBO/Snakefile --configfile HRIBO/config.yaml --directory ${PWD} -j 20 --cluster-config HRIBO/templates/sge-cluster.yaml
 
 .. note:: Ensure that you use an appropriate *cluster.yaml* for your cluster system. We provide one for *SGE* and *TORQUE* based systems.
 
@@ -200,9 +203,10 @@ Therefore, we created a bash script *torque.sh* in our project folder.
 
 .. code-block:: bash
 
-    $ vi torque.sh
+    vi torque.sh
 
 .. note:: Please note that all arguments enclosed in <> have to be customized. This script will only work if your cluster uses the TORQUE queuing system.
+
 We proceeded by writing the queuing script:
 
 .. code-block:: bash
@@ -217,20 +221,20 @@ We proceeded by writing the queuing script:
     #PBS -j oe
     cd <PATH/ProjectFolder>
     source activate HRIBO
-    snakemake --latency-wait 600 --use-conda -s HRIBO/Snakefile_nixtail --configfile HRIBO/config.yaml --directory ${PWD} -j 20 --cluster-config HRIBO/templates/torque-cluster.yaml --cluster "qsub -N {cluster.jobname} -S /bin/bash -q {cluster.qname} -d <PATH/ProjectFolder> -l {cluster.resources} -o {cluster.logoutputdir} -j oe"
+    snakemake --latency-wait 600 --use-conda -s HRIBO/Snakefile --configfile HRIBO/config.yaml --directory ${PWD} -j 20 --cluster-config HRIBO/templates/torque-cluster.yaml --cluster "qsub -N {cluster.jobname} -S /bin/bash -q {cluster.qname} -d <PATH/ProjectFolder> -l {cluster.resources} -o {cluster.logoutputdir} -j oe"
 
 We then simply submitted this job to the cluster:
 
 .. code-block:: bash
 
-    $ qsub torque.sh
+    qsub torque.sh
 
 Using any of the presented methods, this will run the workflow on the tutorial dataset and create the desired output files.
 
 Results
 *******
 
-A detailed explanation of the result files can be found in the :ref:`result section <analysis-results:test>`.
+A detailed explanation of the result files can be found in the :ref:`result section <analysis-results:ORF Predictions>`.
 
 References
 ==========

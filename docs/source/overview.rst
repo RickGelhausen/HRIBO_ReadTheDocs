@@ -87,21 +87,32 @@ Single file Output
 +-------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------+
 
 
-**TODO Differential expression files**
-
 Multi file Output
 *****************
 +-------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------+
 | File name                                 | Description                                                                                                                           |
 +===========================================+=======================================================================================================================================+
-| samples.xlsx                              | Excel version of the input samples file.                                                                                              |
+| riborex/<contrast>_sorted.csv             | Differential expression results by Riborex, sorted by pvalue.                                                                         |
 +-------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------+
-| manual.pdf                                | A PDF file describing the analysis.                                                                                                   |
+| riborex/<contrast>_significant.csv        | Differential expression results by Riborex, only significant results. (pvalue < 0.05)                                                 |
++-------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------+
+| xtail/<contrast>_sorted.csv               | Differential expression results by xtail, sorted by pvalue.                                                                           |
++-------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------+
+| xtail/<contrast>_significant.csv          | Differential expression results by xtail, only significant results. (pvalue < 0.05)                                                   |
++-------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------+
+| xtail/r_<contrast>.pdf                    | Differential expression results by xtail, plot with RPF-to-mRNA ratios.                                                               |
++-------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------+
+| xtail/fc_<contrast>.pdf                   | Differential expression results by xtail, plot with log2 fold change of both mRNA and RPF.                                            |
++-------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------+
+| <method>-<condition>-<replicate>.X.Y.Z.bw | BigWig file for genome browser visualization, containing a single nucleotide mapping around certain regions.                          |
++-------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------+
+| <accession>_Z.Y_profiling.xlsx/tsv        | Excel and tsv files containing raw data of the metagene analysis.                                                                     |
++-------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------+
+| <accession>_Z.Y_profiling.pdf             | visualization of the metagene analysis.                                                                                               |
 +-------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------+
 
-Some of the output files are generated for each sample given different conditions (row/ normalized etc...).
-
-
+.. note:: <contrast> represents a pair of conditions that are being compared.
+.. note:: The BigWig files are available for different normalization methods, strands and regions, X=(min/mil) Y=(forward/reverse) Z=(fiveprime, threeprime, global, centered).
 
 
 Tool Parameters
@@ -262,8 +273,7 @@ Customize the **config.yaml** using your preferred editor. It contains the follo
 •	**adapter** Specify the adapter sequence to be used.
 •	**samples** The location of the samples sheet created in the previous step.
 • **alternativestartcodons** Specify a comma separated list of alternative start codons.
-• **annotation** Specify path to your annotation file (gtf/gff format)
-• **genome** Specify path to your genome file (fasta format)
+
 
 Edit the sample sheet corresponding to your project. It contains the following variables:
 
@@ -272,7 +282,7 @@ Edit the sample sheet corresponding to your project. It contains the following v
 • **replicate** ID used to distinguish between the different replicates (e.g. 1,2, ...)
 • **inputFile** Indicates the according fastq file for a given sample.
 
-..note:: If you have paired end data, please ensure that you use the *samples_pairedend.tsv* file
+.. note:: If you have paired end data, please ensure that you use the *samples_pairedend.tsv* file
 
 As seen in the *samples.tsv* template:
 
