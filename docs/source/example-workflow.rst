@@ -24,8 +24,8 @@ We then download the latest version of HRIBO into the newly created project fold
 
 .. code-block:: bash
 
-   wget https://github.com/RickGelhausen/HRIBO/archive/1.2.0.tar.gz
-   tar -xzf 1.2.0.tar.gz; mv HRIBO-1.2.0 HRIBO; rm 1.2.0.tar.gz;
+   wget https://github.com/RickGelhausen/HRIBO/archive/1.3.0.tar.gz
+   tar -xzf 1.3.0.tar.gz; mv HRIBO-1.3.0 HRIBO; rm 1.3.0.tar.gz;
 
 Retrieve and prepare input files
 ================================
@@ -59,9 +59,9 @@ Then, we unpack and rename both files.
 .fastq files
 ************
 
-Next, we want to acquire the fastq files. The fastq files are available under the accession number *PRJNA379630* on `NCBI  <https://www.ncbi.nlm.nih.gov/bioproject/PRJNA379630>`.
-The files have to be downloaded using `The Sequence Read Archive (SRA)  <https://www.ncbi.nlm.nih.gov/sra/docs/>`.
-There are multiple ways of downloading files from SRA as explained `here  <https://www.ncbi.nlm.nih.gov/sra/docs/sradownload/>`.
+Next, we want to acquire the fastq files. The fastq files are available under the accession number *PRJNA379630* on `NCBI  <https://www.ncbi.nlm.nih.gov/bioproject/PRJNA379630>`_.
+The files have to be downloaded using the `Sequence Read Archive (SRA)  <https://www.ncbi.nlm.nih.gov/sra/docs/>`_.
+There are multiple ways of downloading files from SRA as explained `here  <https://www.ncbi.nlm.nih.gov/sra/docs/sradownload/>`_.
 
 As we already have conda installed, the easiest way is to install the *sra-tools*:
 
@@ -101,7 +101,7 @@ Finally, we will prepare the configuration file (*config.yaml*) and the sample s
 The sample file looks as follows:
 
 +-----------+-----------+-----------+-------------------------+
-|   method  | condition | replicate | inputFile               |
+|   method  | condition | replicate | fastqFile               |
 +===========+===========+===========+=========================+
 | RIBO      |  A        | 1         | fastq/RIBO-A-1.fastq.gz |
 +-----------+-----------+-----------+-------------------------+
@@ -126,7 +126,7 @@ The sample file looks as follows:
 We will rewrite this file to fit the previously downloaded *.fastq.gz* files.
 
 +-----------+-----------+-----------+--------------------------------+
-|   method  | condition | replicate | inputFile                      |
+|   method  | condition | replicate | fastqFile                      |
 +===========+===========+===========+================================+
 | RIBO      |  GLY      | 1         | fastq/RIBO-PAO1-gly-1.fastq.gz |
 +-----------+-----------+-----------+--------------------------------+

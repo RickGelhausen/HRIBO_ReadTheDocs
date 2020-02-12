@@ -217,8 +217,8 @@ Now, download and unpack the latest version of **HRIBO** by entering the followi
 
 .. code-block:: bash
 
-   $ wget https://github.com/RickGelhausen/HRIBO/archive/1.2.0.tar.gz
-   $ tar -xzf 1.2.0.tar.gz; mv HRIBO-1.2.0 HRIBO; rm 1.2.0.tar.gz;
+   $ wget https://github.com/RickGelhausen/HRIBO/archive/1.3.0.tar.gz
+   $ tar -xzf 1.3.0.tar.gz; mv HRIBO-1.3.0 HRIBO; rm 1.3.0.tar.gz;
 
 **HRIBO** is now in a subdirectory of your project directory.
 
@@ -287,7 +287,7 @@ Edit the sample sheet corresponding to your project. It contains the following v
 As seen in the *samples.tsv* template:
 
 +-----------+-----------+-----------+-------------------------+
-|   method  | condition | replicate | inputFile               |
+|   method  | condition | replicate | fastqFile               |
 +===========+===========+===========+=========================+
 | RIBO      |  A        | 1         | fastq/RIBO-A-1.fastq.gz |
 +-----------+-----------+-----------+-------------------------+

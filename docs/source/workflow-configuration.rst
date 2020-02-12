@@ -23,7 +23,7 @@ Additionally, we activated differential expression by default. Differential expr
 A possible *sample.tsv* would look as follows:
 
 +-----------+-----------+-----------+-------------------------+
-|   method  | condition | replicate | inputFile               |
+|   method  | condition | replicate | fastqFile               |
 +===========+===========+===========+=========================+
 | RIBO      |  A        | 1         | fastq/RIBO-A-1.fastq.gz |
 +-----------+-----------+-----------+-------------------------+
@@ -63,7 +63,7 @@ To deactivate differential expression, you have to edit the *config.yaml* file.
 This will allow you the use of a sample.tsv like:
 
 +-----------+-----------+-----------+-------------------------+
-|   method  | condition | replicate | inputFile               |
+|   method  | condition | replicate | fastqFile               |
 +===========+===========+===========+=========================+
 | RIBO      |  A        | 1         | fastq/RIBO-A-1.fastq.gz |
 +-----------+-----------+-----------+-------------------------+
@@ -163,3 +163,34 @@ Then add the jobscript to the snakemake call:
 This will specify to snakemake that it will execute *module load devel/singularity/3.4.2* when submitting each job.
 
 .. note:: This is a specific example for our TORQUE cluster system. The specific way of loading modules, as well as the available modules, can differ on each system.
+
+
+Paired-end support
+==================
+
+We allow paired-end data in our workflow.
+Unfortunately, many of the downstream tools, like the prediction tools, cannot use paired-end data.
+Therefore, we use the tool *flash2* **TODO cite/link** to convert paired-end data to single-end data.
+
+In order to use paired-end data, simply replace the *Snakefile* with the *Snakefile_pairedend*.
+This will now require a special *samples_pairedend.tsv*, which is also available in the HRIBO templates folder.
+
++-----------+-----------+-----------+----------------------------+----------------------------+
+|   method  | condition | replicate | fastqFile1                 | fastqFile2                 |
++===========+===========+===========+============================+============================+
+| RIBO      |  A        | 1         | fastq/RIBO-A-1_R1.fastq.gz | fastq/RIBO-A-1_R2.fastq.gz |
++-----------+-----------+-----------+----------------------------+----------------------------+
+| RIBO      |  A        | 2         | fastq/RIBO-A-2_R1.fastq.gz | fastq/RIBO-A-2_R2.fastq.gz |
++-----------+-----------+-----------+----------------------------+----------------------------+
+| RIBO      |  B        | 1         | fastq/RIBO-B-1_R1.fastq.gz | fastq/RIBO-B-1_R2.fastq.gz |
++-----------+-----------+-----------+----------------------------+----------------------------+
+| RIBO      |  B        | 2         | fastq/RIBO-B-2_R1.fastq.gz | fastq/RIBO-B-2_R2.fastq.gz |
++-----------+-----------+-----------+----------------------------+----------------------------+
+| RNA       |  A        | 1         | fastq/RNA-A-1_R1.fastq.gz  | fastq/RNA-A-1_R2.fastq.gz  |
++-----------+-----------+-----------+----------------------------+----------------------------+
+| RNA       |  A        | 2         | fastq/RNA-A-2_R1.fastq.gz  | fastq/RNA-A-2_R2.fastq.gz  |
++-----------+-----------+-----------+----------------------------+----------------------------+
+| RNA       |  B        | 1         | fastq/RNA-B-1_R1.fastq.gz  | fastq/RNA-A-1_R2.fastq.gz  |
++-----------+-----------+-----------+----------------------------+----------------------------+
+| RNA       |  B        | 2         | fastq/RNA-B-2_R1.fastq.gz  | fastq/RNA-A-1_R2.fastq.gz  |
++-----------+-----------+-----------+----------------------------+----------------------------+

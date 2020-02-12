@@ -40,7 +40,7 @@ release = '1.0.0'
 # ones.
 extensions = [
     'sphinx.ext.autodoc',
-    'sphinxcontrib.bibtex',
+    'sphinxcontrib-bibtex',
     'sphinx.ext.autosectionlabel',
 ]
 
