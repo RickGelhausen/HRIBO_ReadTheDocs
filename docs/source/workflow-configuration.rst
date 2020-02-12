@@ -7,8 +7,8 @@ Workflow configuration
 This workflow allows different customization to be able to handle different types of input data.
 On this page we explain the different options that can be set to easily customize the workflow.
 
-Default workflow:
-=================
+Default workflow
+================
 
 In order to explain what customizations are possible, we will first have a look at the default workflow.
 
@@ -44,8 +44,8 @@ A possible *sample.tsv* would look as follows:
 
 By default only reparation predictions are used. The reason for this is that DeepRibo has dependencies that are harder to meet.
 
-No differential expression:
-===========================
+No differential expression
+==========================
 
 If you do not have multiple conditions and differential expression is activated, you will receive an error message.
 To deactivate differential expression, you have to edit the *config.yaml* file.
@@ -74,8 +74,8 @@ This will allow you the use of a sample.tsv like:
 | RNA       |  A        | 2         | fastq/RNA-A-2.fastq.gz  |
 +-----------+-----------+-----------+-------------------------+
 
-Activating Deepribo:
-====================
+Activating Deepribo
+===================
 
 Activating DeepRibo predictions will give you a different file with ORF predictions.
 By experience, the top DeepRibo results tend to be slightly better than those of reparation.
@@ -100,8 +100,8 @@ When calling snakemake, you will now require additional commandline arguments:
 • **--use-singularity:** specify that snakemake can now download and use docker container via singularity.
 • **--singularity-args " -c ": specify the *--contain* option to ensure that only the docker containers file system will be used.
 
-If you run deepribo locally:
-****************************
+If you run deepribo locally
+***************************
 
 When running the workflow with DeepRibo locally it might be advised to additionally use the *--greediness 0* option, if you do not have a lot of cores available locally.
 This will cause the workflow to submit fewer jobs at the same time. This especially important for DeepRibo as we observed that a single DeepRibo job can finish in less than an hour if it does not have to fight for cores with another DeepRibo job. Otherwise, it can run for several hours at a time.
@@ -110,8 +110,8 @@ This will cause the workflow to submit fewer jobs at the same time. This especia
 
     snakemake --use-conda --use-singularity --singularity-args " -c " -s HRIBO/Snakefile --configfile HRIBO/config.yaml --directory ${PWD} -j 10 --latency-wait 60
 
-If you run deepribo on a cluster system:
-****************************************
+If you run deepribo on a cluster system
+***************************************
 
 When running the workflow with DeepRibo on a cluster system. You have to add the above commandline arguments to your submission script.
 

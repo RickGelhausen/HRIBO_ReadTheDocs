@@ -7,8 +7,12 @@ HRIBO
    overview
 
 .. toctree::
-   :caption: Examples
+   :caption: Additional information
 
-   example-workflow
    workflow-configuration
    analysis-results
+
+.. toctree::
+   :caption: Example
+
+   example-workflow
