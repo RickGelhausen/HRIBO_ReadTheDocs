@@ -14,7 +14,7 @@ Program flowchart
 
 The following flowchart describes the processing steps of the workflow and how they are connected:
 
-.. image:: images/todo.png
+.. image:: images/workflow.png
     :scale: 25%
     :align: center
 
