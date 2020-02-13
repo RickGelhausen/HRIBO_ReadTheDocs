@@ -15,7 +15,7 @@ The output files containing information about predicted Open Reading Frames, the
 predictions_reparation.xlsx
 ***************************
 
-This file contains all *reparation* ORF predictions.
+This file contains all ``reparation`` ORF predictions.
 
 +-------------------------------------------+-----------------------------------------------------------------------------+
 | Column name                               | Description                                                                 |
@@ -342,6 +342,7 @@ This figure shows the RPF-to-mRNA ratios in two conditions, where the position
 of each gene is determined by its RPF-to-mRNA ratio (log2R) in two conditions,
 represented on the x-axis and y-axis respectively. The points will be color-coded with
 the pvalue final obtained with xtail (more significant p values having darker color)
+
 • **blue:** for genes with log2R larger in first condition than second condition.
 • **red:** for genes with log2R larger in second condition than the first condition.
 • **green:** for genes with log2R changing homodirectionally in two condition.
@@ -356,6 +357,7 @@ of transcriptional level (mRNA log2FC), represented on the x-axis, and the log2F
 of translational level (RPF log2FC), represented on the y-axis. The points will be
 color-coded with the pvalue final obtained with xtail (more significant p values having
 darker color)
+
 • **blue:** for genes whos mRNA log2FC larger than 1 (transcriptional level).
 • **red:** for genes whos RPF log2FC larger than 1 (translational level).
 • **green:** for genes changing homodirectionally at both level.

@@ -87,8 +87,8 @@ Now, download and unpack the latest version of **HRIBO** by entering the followi
 
 .. code-block:: bash
 
-   $ wget https://github.com/RickGelhausen/HRIBO/archive/1.3.1.tar.gz
-   $ tar -xzf 1.3.1.tar.gz; mv HRIBO-1.3.1 HRIBO; rm 1.3.1.tar.gz;
+    wget https://github.com/RickGelhausen/HRIBO/archive/1.3.1.tar.gz
+    tar -xzf 1.3.1.tar.gz; mv HRIBO-1.3.1 HRIBO; rm 1.3.1.tar.gz;
 
 **HRIBO** is now in a subdirectory of your project directory.
 
@@ -152,8 +152,8 @@ Copy the templates of the sample sheet and the configuration file into the **HRI
 
 .. code-block:: bash
 
-    $ cp HRIBO/templates/samples.tsv HRIBO/
-    $ cp HRIBO/templates/config.yaml HRIBO/
+    cp HRIBO/templates/samples.tsv HRIBO/
+    cp HRIBO/templates/config.yaml HRIBO/
 
 Customize the ``config.yaml`` using your preferred editor. It contains the following variables:
 
