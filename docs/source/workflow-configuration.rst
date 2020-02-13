@@ -18,9 +18,9 @@ Default:
 • Differential expression analysis: on
 • DeepRibo predictions: off
 
-For the default workflow, we expect the fastq files to be in single-end format.
+For the default workflow, we expect the ``.fastq`` files to be in single-end format.
 Additionally, we activated differential expression by default. Differential expression requires multiple conditions and RIBO and RNA samples.
-A possible *sample.tsv* would look as follows:
+A possible ``sample.tsv`` would look as follows:
 
 +-----------+-----------+-----------+-------------------------+
 |   method  | condition | replicate | fastqFile               |
@@ -42,13 +42,13 @@ A possible *sample.tsv* would look as follows:
 | RNA       |  B        | 2         | fastq/RNA-B-2.fastq.gz  |
 +-----------+-----------+-----------+-------------------------+
 
-By default only reparation predictions are used. The reason for this is that DeepRibo has dependencies that are harder to meet.
+.. note:: By default only reparation predictions are used. The reason for this is that DeepRibo is not available on conda as of now and therfore requires additional tweaks to run it. The process is explained :ref:`below <workflow-configuration:Activating deepribo>`.
 
 No differential expression
 ==========================
 
 If you do not have multiple conditions and differential expression is activated, you will receive an error message.
-To deactivate differential expression, you have to edit the *config.yaml* file.
+To deactivate differential expression, you have to edit the ``config.yaml`` file.
 
 .. code-block:: bash
 
@@ -78,12 +78,12 @@ Activating Deepribo
 ===================
 
 Activating DeepRibo predictions will give you a different file with ORF predictions.
-By experience, the top DeepRibo results tend to be slightly better than those of reparation.
-For archea, where reparation performs very poorly, DeepRibo is a valid option.
+By experience, the top DeepRibo results tend to be better than those of reparation.
+For archea, where reparation performs very poorly, DeepRibo is the preferred option.
 
-.. note:: In order to use DeepRibo, the tool *singularity* is required. Please refer to the :ref:`overview <overview:Tools>` for details on the installation.
+.. note:: In order to use DeepRibo, the tool ``singularity`` is required. Please refer to the :ref:`overview <overview:Tools>` for details on the installation.
 
-Once you have installed *singularity* turn on DeepRibo in the *config.yaml*:
+Once you have installed ``singularity`` turn on DeepRibo in the ``config.yaml``:
 
 .. code-block:: bash
 
@@ -98,12 +98,12 @@ Once you have installed *singularity* turn on DeepRibo in the *config.yaml*:
 When calling snakemake, you will now require additional commandline arguments:
 
 • **--use-singularity:** specify that snakemake can now download and use docker container via singularity.
-• **--singularity-args " -c ": specify the *--contain* option to ensure that only the docker containers file system will be used.
+• **--singularity-args " -c ": specify the ``--contain`` option to ensure that only the docker containers file system will be used.
 
 If you run deepribo locally
 ***************************
 
-When running the workflow with DeepRibo locally it might be advised to additionally use the *--greediness 0* option, if you do not have a lot of cores available locally.
+When running the workflow with DeepRibo locally it might be advised to additionally use the ``--greediness 0`` option, if you do not have a lot of cores available locally.
 This will cause the workflow to submit fewer jobs at the same time. This especially important for DeepRibo as we observed that a single DeepRibo job can finish in less than an hour if it does not have to fight for cores with another DeepRibo job. Otherwise, it can run for several hours at a time.
 
 .. code-block:: bash
@@ -130,12 +130,12 @@ When running the workflow with DeepRibo on a cluster system. You have to add the
     snakemake --latency-wait 600 --use-conda --use-singularity --singularity-args " -c " -s HRIBO/Snakefile --configfile HRIBO/config.yaml --directory ${PWD} -j 20 --cluster-config HRIBO/templates/torque-cluster.yaml --cluster "qsub -N {cluster.jobname} -S /bin/bash -q {cluster.qname} -d <PATH/ProjectFolder> -l {cluster.resources} -o {cluster.logoutputdir} -j oe"
 
 
-.. note:: If you cannot install *singularity* on your cluster, check whether there are modules available for you cluster system.
+.. note:: If you cannot install ``singularity`` on your cluster, check whether there are modules available for you cluster system.
 
 You can then create an additional submission script that will tell snakemake to activate the module before running jobs.
 An example of this would look as follows:
 
-jobscript.sh
+``jobscript.sh``
 
 .. code-block:: bash
 
@@ -160,9 +160,9 @@ Then add the jobscript to the snakemake call:
     source activate HRIBO
     snakemake --latency-wait 600 --use-conda --use-singularity --singularity-args " -c " --jobscript jobscript.sh -s HRIBO/Snakefile --configfile HRIBO/config.yaml --directory ${PWD} -j 20 --cluster-config HRIBO/templates/torque-cluster.yaml --cluster "qsub -N {cluster.jobname} -S /bin/bash -q {cluster.qname} -d <PATH/ProjectFolder> -l {cluster.resources} -o {cluster.logoutputdir} -j oe"
 
-This will specify to snakemake that it will execute *module load devel/singularity/3.4.2* when submitting each job.
+This will specify to snakemake that it will execute ``module load devel/singularity/3.4.2`` when submitting each job.
 
-.. note:: This is a specific example for our TORQUE cluster system. The specific way of loading modules, as well as the available modules, can differ on each system.
+.. warning:: This is a specific example for our TORQUE cluster system. The specific way of loading modules, as well as the available modules, can differ on each system.
 
 
 Paired-end support
@@ -170,10 +170,10 @@ Paired-end support
 
 We allow paired-end data in our workflow.
 Unfortunately, many of the downstream tools, like the prediction tools, cannot use paired-end data.
-Therefore, we use the tool *flash2* **TODO cite/link** to convert paired-end data to single-end data.
+Therefore, we use the tool ``flash2`` to convert paired-end data to single-end data.
 
-In order to use paired-end data, simply replace the *Snakefile* with the *Snakefile_pairedend*.
-This will now require a special *samples_pairedend.tsv*, which is also available in the HRIBO templates folder.
+In order to use paired-end data, simply replace the ``Snakefile`` with the ``Snakefile_pairedend``.
+This will now require a special ``samples_pairedend.tsv``, which is also available in the HRIBO templates folder.
 
 +-----------+-----------+-----------+----------------------------+----------------------------+
 |   method  | condition | replicate | fastqFile1                 | fastqFile2                 |

@@ -62,14 +62,15 @@ This file contains all *reparation* ORF predictions.
 predictions_reparation.gff
 **************************
 
-An annotation file in .gff3 format containing all predictions of *reparation* for visualization in a genome browser.
+An annotation file in ``.gff3`` format containing all predictions of ``reparation`` for visualization in a genome browser.
 
 
 predictions_deepribo.xlsx
 *************************
-.. note:: These files are only available when activating DeepRibo predictions in the *config.yaml*. (see :ref:`workflow-configuration <workflow-configuration:workflow-configuration`>)
 
-This file contains all *DeepRibo* ORF predictions.
+.. note:: These files are only available when activating DeepRibo predictions in the ``config.yaml``. (see :ref:`workflow-configuration <workflow-configuration:workflow-configuration`>)
+
+This file contains all ``DeepRibo`` ORF predictions.
 
 +-------------------------------------------+---------------------------------------------------------------------------------+
 | Column name                               | Description                                                                     |
@@ -121,9 +122,10 @@ This file contains all *DeepRibo* ORF predictions.
 
 predictions_deepribo.gff
 ************************
-.. note:: These files are only available when activating DeepRibo predictions in the *config.yaml*. (see :ref:`workflow-configuration <workflow-configuration:workflow-configuration`>)
 
-An annotation file in .gff3 format containing all predictions of *DeepRibo* for visualization in a genome browser.
+.. note:: These files are only available when activating DeepRibo predictions in the ``config.yaml``. (see :ref:`workflow-configuration <workflow-configuration:workflow-configuration`>)
+
+An annotation file in ``.gff3`` format containing all predictions of *DeepRibo* for visualization in a genome browser.
 
 
 Quality control
@@ -134,7 +136,7 @@ This comprises all files that can help to perform quality control on all input s
 multiqc_report.html
 *******************
 
-The multiQC report collects information from different tools, including *fastQC* and *subread featurecounts*.
+The multiQC report collects information from different tools, including ``fastQC`` and ``subread featurecounts``.
 The general statistics give an overview over:
 
 •	the number of duplicates

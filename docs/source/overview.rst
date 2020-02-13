@@ -61,14 +61,14 @@ and deactivated using:
 singularity
 ***********
 
-.. warning:: This dependency is only required if you intend to use the prediction tool *deepribo*. The rest of the workflow does not require *singularity*. *deepribo* is deactivated by default. For more details on activating *deepribo*, please refer to :ref:`Activating Deepribo <workflow-configuration:Activating Deepribo>`.
+.. warning:: This dependency is only required if you intend to use the prediction tool *deepribo*. The rest of the workflow does not require ``singularity``. ``deepribo`` is deactivated by default. For more details on activating ``deepribo``, please refer to :ref:`Activating Deepribo <workflow-configuration:Activating Deepribo>`.
 
 In order to support `docker container <https://www.docker.com/>`_, snakemake requires `singularity <https://sylabs.io/docs/>`_.
 This is used to retrieve tools that are not available on conda as of now.
 
 An in-depth installation tutorial for singularity can be found on the `singularity webpage <https://sylabs.io/guides/3.0/user-guide/installation.html>`_.
 
-.. note:: we strongly suggest to install the newest version of singularity and replace "with_suid=1" to "with_suid=0" in the mconfig file of singularity prior to the installation. This could avoid potential errors like: "ERROR  : Failed to set effective UID to 0".
+.. note:: we strongly suggest to install the newest version of singularity and replace ``with_suid=1`` to ``with_suid=0`` in the mconfig file of singularity prior to the installation. This could avoid potential errors like: ``ERROR  : Failed to set effective UID to 0``.
 
 HRIBO
 *****
@@ -87,8 +87,8 @@ Now, download and unpack the latest version of **HRIBO** by entering the followi
 
 .. code-block:: bash
 
-   $ wget https://github.com/RickGelhausen/HRIBO/archive/1.3.0.tar.gz
-   $ tar -xzf 1.3.0.tar.gz; mv HRIBO-1.3.0 HRIBO; rm 1.3.0.tar.gz;
+   $ wget https://github.com/RickGelhausen/HRIBO/archive/1.3.1.tar.gz
+   $ tar -xzf 1.3.1.tar.gz; mv HRIBO-1.3.1 HRIBO; rm 1.3.1.tar.gz;
 
 **HRIBO** is now in a subdirectory of your project directory.
 
@@ -96,7 +96,7 @@ Now, download and unpack the latest version of **HRIBO** by entering the followi
 Input files
 ===========
 
-Several input files are required in order to run the workflow, a genome file (.fa), an annotation file (.gff/.gtf) and fastq files (.fastq).
+Several input files are required in order to run the workflow, a genome file (``.fa``), an annotation file (``.gff/.gtf``) and compressed fastq files (``.fastq.gz``).
 
 +-------------------------------------------+----------------------------------------------------------------------------------------------+
 | File name                                 | Description                                                                                  |
@@ -129,10 +129,10 @@ input .fastq files
 These are the input files provided by the user.
 Both single end and paired end data is supported.
 
-.. note:: As most downstream tools do not support paired end data, we combine the paired end data into single end data using flash2 **TODO checkname/link/cite**. For more information about how to use paired-end data please refer to the :ref:`workflow-configuration <workflow-configuration:Paired-end support>`.
-.. note:: Please ensure that you compress your files in *.gz* format.
+.. note:: As most downstream tools do not support paired end data, we combine the paired end data into single end data using `flash2 <https://github.com/dstreett/FLASH2>`_ . For more information about how to use paired-end data please refer to the :ref:`workflow-configuration <workflow-configuration:Paired-end support>`.
+.. note:: Please ensure that you compress your files in ``.gz`` format.
 
-Please ensure that you move all input *.fastq.gz* files into a folder called **fastq** (Located in your project folder):
+Please ensure that you move all input ``.fastq.gz`` files into a folder called **fastq** (Located in your project folder):
 
 .. code-block:: bash
 
@@ -146,7 +146,7 @@ Sample sheet and configuration file
 In order to run **HRIBO**, you have to provide a sample sheet and a configuration file.
 There are templates for both files available in the **HRIBO** folder, in the subfolder **templates**.
 The configuration file is used to allow the user to easily customize certain settings, like the adapter sequence.
-The sample sheet is used to specify the relation of the input .fastq files (condition / replicate etc...)
+The sample sheet is used to specify the relation of the input ``.fastq`` files (condition / replicate etc...)
 
 Copy the templates of the sample sheet and the configuration file into the **HRIBO** folder:
 
@@ -155,24 +155,24 @@ Copy the templates of the sample sheet and the configuration file into the **HRI
     $ cp HRIBO/templates/samples.tsv HRIBO/
     $ cp HRIBO/templates/config.yaml HRIBO/
 
-Customize the **config.yaml** using your preferred editor. It contains the following variables:
+Customize the ``config.yaml`` using your preferred editor. It contains the following variables:
 
-•	**adapter** Specify the adapter sequence to be used.
-•	**samples** The location of the samples sheet created in the previous step.
-• **alternativestartcodons** Specify a comma separated list of alternative start codons.
-• **differentialexpression** Specify whether you want to activate differential expresssion analysis. ("yes/no")
-• **reepribo** Specify whether you want to activate deepribo ORF prediction. ("yes/no")
+•	**adapter:** specify the adapter sequence to be used.
+•	**samples:** the location of the samples sheet created in the previous step.
+• **alternativestartcodons:** specify a comma separated list of alternative start codons.
+• **differentialexpression:** specify whether you want to activate differential expresssion analysis. ("yes/no")
+• **deepribo:** specify whether you want to activate deepribo ORF prediction. ("yes/no")
 
 Edit the sample sheet corresponding to your project. It contains the following variables:
 
-• **method** Indicates the method used for this project, here RIBO for ribosome profiling and RNA for RNA-seq.
-• **condition** Indicates the applied condition (e.g. A, B, ...).
-• **replicate** ID used to distinguish between the different replicates (e.g. 1,2, ...)
-• **inputFile** Indicates the according fastq file for a given sample.
+• **method:** indicates the method used for this project, here RIBO for ribosome profiling and RNA for RNA-seq.
+• **condition:** indicates the applied condition (e.g. A, B, ...).
+• **replicate:** ID used to distinguish between the different replicates (e.g. 1,2, ...)
+• **inputFile:** indicates the according fastq file for a given sample.
 
 .. note:: If you have paired end data, please ensure that you use the *samples_pairedend.tsv* file.
 
-As seen in the *samples.tsv* template:
+As seen in the ``samples.tsv`` template:
 
 +-----------+-----------+-----------+-------------------------+
 |   method  | condition | replicate | fastqFile               |
@@ -194,7 +194,7 @@ As seen in the *samples.tsv* template:
 | RNA       |  B        | 2         | fastq/RNA-B-2.fastq.gz  |
 +-----------+-----------+-----------+-------------------------+
 
-..note:: This is just an example, please refer to our :ref:`example-workflow <example-workflow:Example workflow>` for another example.
+.. note:: This is just an example, please refer to our :ref:`example-workflow <example-workflow:Example workflow>` for another example.
 
 cluster.yaml
 ************
@@ -210,7 +210,7 @@ Output files
 
 In the following tables all important output files of the workflow are listed.
 
-.. note:: Files create as intermediate steps of the workflow are omitted from this list. (e.g. *.bam* files)
+.. note:: Files create as intermediate steps of the workflow are omitted from this list. (e.g. ``.bam`` files)
 .. note:: For more details about the output files, please refer to the :ref:`analysis results <analysis-results:Analysis result files>`.
 
 Single-file Output
@@ -307,6 +307,17 @@ The tools used in our workflow are listed below, with links to their respective 
 +-------------------------------------------------------------------------+-------------+---------------------------------------------------------------------+
 | `xtail <https://github.com/xryanglab/xtail>`_                           | 1.1.5       | Differential expression analysis                                    |
 +-------------------------------------------------------------------------+-------------+---------------------------------------------------------------------+
+
+Report
+======
+
+In order to aggregate the final results into a single folder structure and receive a date-tagged ``.zip`` file, you can use the ``makereport.sh`` script.
+
+.. code-block:: bash
+
+    bash HRIBO/scripts/makereport.sh <reportname>
+
+.. note:: Examples of how this output can look are available here **TODO ADD LINK**.
 
 Example-workflow
 ================

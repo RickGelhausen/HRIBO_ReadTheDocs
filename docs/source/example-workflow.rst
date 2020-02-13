@@ -5,9 +5,9 @@ Example workflow
 ################
 
 The retrieval of input files and running the workflow locally and on a server cluster via a queuing system is demonstrated using an example with data available from `NCBI  <https://www.ncbi.nlm.nih.gov/>`_.
-This dataset is available under the accession number *PRJNA379630*.
+This dataset is available under the accession number ``PRJNA379630``.
 
-.. note:: In this tutorial, we will show the basic functionalities of our workflow, for information about additional options please refer to: :ref:`workflow-configuration <workflow-configuration:workflow-configuration>`.
+.. note:: In this tutorial, we will show the basic functionalities of our workflow, for information about additional options please refer to: :ref:`workflow-configuration <workflow-configuration:Default workflow>`.
 .. note:: Ensure that you have **miniconda3** installed and a conda environment set-up. Please refer to the :ref:`overview <overview:Tools>` for details on the installation.
 
 Setup
@@ -24,8 +24,8 @@ We then download the latest version of HRIBO into the newly created project fold
 
 .. code-block:: bash
 
-   wget https://github.com/RickGelhausen/HRIBO/archive/1.3.0.tar.gz
-   tar -xzf 1.3.0.tar.gz; mv HRIBO-1.3.0 HRIBO; rm 1.3.0.tar.gz;
+   wget https://github.com/RickGelhausen/HRIBO/archive/1.3.1.tar.gz
+   tar -xzf 1.3.1.tar.gz; mv HRIBO-1.3.1 HRIBO; rm 1.3.1.tar.gz;
 
 Retrieve and prepare input files
 ================================
@@ -34,9 +34,9 @@ Before starting the workflow, we have to acquire and prepare several input files
 
 Annotation and genome files
 ***************************
-First, we want to retrieve the annotation file and the genome file. In this case, we can find both on `NCBI  <https://www.ncbi.nlm.nih.gov/genome/187?genome_assembly_id=299953>`_ using the accession number *NC_002516.2*.
+First, we want to retrieve the annotation file and the genome file. In this case, we can find both on `NCBI  <https://www.ncbi.nlm.nih.gov/genome/187?genome_assembly_id=299953>`_ using the accession number ``NC_002516.2``.
 
-.. image:: images/todo.png
+.. image:: images/NCBI-1.png
     :scale: 50%
     :align: center
 
@@ -54,12 +54,11 @@ Then, we unpack and rename both files.
     gunzip GCF_000006765.1_ASM676v1_genomic.gff.gz && mv GCF_000006765.1_ASM676v1_genomic.gff annotation.gff
     gunzip GCF_000006765.1_ASM676v1_genomic.fna.gz && mv GCF_000006765.1_ASM676v1_genomic.fna genome.fa
 
-.. note:: We chose the default names for both annotation and genome file. You can also specify another path to the annotation or genome file in the config.yaml **TODO link**.
 
 .fastq files
 ************
 
-Next, we want to acquire the fastq files. The fastq files are available under the accession number *PRJNA379630* on `NCBI  <https://www.ncbi.nlm.nih.gov/bioproject/PRJNA379630>`_.
+Next, we want to acquire the fastq files. The fastq files are available under the accession number ``PRJNA379630`` on `NCBI  <https://www.ncbi.nlm.nih.gov/bioproject/PRJNA379630>`_.
 The files have to be downloaded using the `Sequence Read Archive (SRA)  <https://www.ncbi.nlm.nih.gov/sra/docs/>`_.
 There are multiple ways of downloading files from SRA as explained `here  <https://www.ncbi.nlm.nih.gov/sra/docs/sradownload/>`_.
 
@@ -78,11 +77,11 @@ This will create a conda environment containing the sra-tools. Using these, we c
     fasterq-dump SRR5356907; pigz -p 2 SRR5356907.fastq; mv SRR5356907.fastq.gz RIBO-PAO1-gly-1.fastq.gz;
 
 
-.. note:: Due to the runtime of several tools, especially the mapping by segemehl, this tutorial only uses one condition and replicate. If available, it is advisable to use as many replicates as possible.
+.. note:: Due to the runtime of several tools, especially the mapping by ``segemehl``, this tutorial only uses one condition and replicate. If available, it is advisable to use as many replicates as possible.
 
-.. note:: If you have a bad internet connection, this step might take some time. If you prefer, you can also use your own .fastq files. But ensure that you use the correct annotation and genome files.
+.. warning:: If you have a bad internet connection, this step might take some time. If you prefer, you can also use your own ``.fastq`` files. But ensure that you use the correct annotation and genome files and that you compress them in ``.gz`` format (using gzip, pigz, etc ...)
 
-This will download compressed files for each of the required *.fastq* files. We will move them into a folder called *fastq*.
+This will download compressed files for each of the required ``.fastq`` files. We will move them into a folder called ``fastq``.
 
 .. code-block:: bash
 
@@ -92,7 +91,7 @@ This will download compressed files for each of the required *.fastq* files. We 
 Sample sheet and configuration file
 ***********************************
 
-Finally, we will prepare the configuration file (*config.yaml*) and the sample sheet (*samples.tsv*). We start by copying templates for both files from the *HRIBO/templates/* into the *HRIBO/* folder.
+Finally, we will prepare the configuration file (``config.yaml``) and the sample sheet (``samples.tsv``). We start by copying templates for both files from the ``HRIBO/templates/`` into the ``HRIBO/`` folder.
 
 .. code-block:: bash
 
@@ -134,7 +133,7 @@ We will rewrite this file to fit the previously downloaded *.fastq.gz* files.
 +-----------+-----------+-----------+--------------------------------+
 
 
-Next, we are going to set up the *config.yaml*.
+Next, we are going to set up the ``config.yaml``.
 
 .. code-block:: bash
 
@@ -142,11 +141,13 @@ Next, we are going to set up the *config.yaml*.
 
 This file contains the following variables:
 
-•	**adapter** Specify the adapter sequence to be used. In our case this would be *AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC*
-•	**samples** The location of the sample sheet created in the previous step.
-• **alternativestartcodons** Specify a comma separated list of alternative start codons.
+•	**adapter:** Specify the adapter sequence to be used. In our case this would be *AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC*
+•	**samples:** The location of the sample sheet created in the previous step.
+• **alternativestartcodons:** Specify a comma separated list of alternative start codons.
+• **differentialexpression:** Specify whether you want to activate differential expresssion analysis. ("yes/no")
+• **deepribo:** Specify whether you want to activate deepribo ORF prediction. ("yes/no")
 
-In our example, this will lead to the following config file:
+In our example, this will lead to the following ``config.yaml`` file:
 
 .. code-block:: bash
 
@@ -161,15 +162,14 @@ In our example, this will lead to the following config file:
 Running the workflow
 ====================
 
-Now that we have all the required files, we can start running the workflow, either locally or in a cluster environment.
-
-.. note:: In the example below
+Now that all the required files are prepared, we can start running the workflow, either locally or in a cluster environment.
 
 Run the workflow locally
 ************************
 
-Use the following steps when you plan to execute the workflow on a single server or workstation.
-.. warning::  Please be aware that some steps of the workflow require a lot of memory or time, depending on the size of your input data.
+Use the following steps when you plan to execute the workflow on a single server, cloud instance or workstation.
+
+.. warning:: Please be aware that some steps of the workflow require a lot of memory or time, depending on the size of your input data. To get a better idea about the memory consumption, you can have a look at the provided ``sge.yaml`` or ``torque.yaml`` files.
 
 Navigate to the project folder containing your annotation and genome files, as well as the HRIBO folder. Start the workflow locally from this folder by running:
 
@@ -177,21 +177,28 @@ Navigate to the project folder containing your annotation and genome files, as w
 
     snakemake --use-conda -s HRIBO/Snakefile --configfile HRIBO/config.yaml --directory ${PWD} -j 10 --latency-wait 60
 
-This command will tell snakemake that conda should be used to download the required dependencies. *-j* sets the maximum number of cores snakemake is allowed to use. *--latency-wait* ensures that snakemake waits for files that might not be available directly due to file-system latencies.
+This will start the workflow locally.
+
+•	``--use-conda``: instruct snakemake to download tool dependencies from conda.
+•	``-s``: specifies the Snakefile to be used.
+•	``--configfile``: specifies the config file to be used.
+•	``--directory``: specifies your current path.
+•	``-j``: specifies the maximum number of cores snakemake is allowed to use.
+•	``--latency-wait``: specifies how long (in seconds) snakemake will wait for filesystem latencies until declaring a file to be missing.
 
 Run Snakemake in a cluster environment
 **************************************
 
-Use the following steps if you are executing the workflow via a queuing system. Edit the configuration file *cluster.yaml*
+Use the following steps if you are executing the workflow via a queuing system. Edit the configuration file ``<cluster>.yaml``
 according to your queuing system setup and cluster hardware.
 
 Navigate to the project folder on your cluster system. Start the workflow from this folder by running (The following system call shows the usage with Grid Engine.):
 
 .. code-block:: bash
 
-    snakemake --use-conda -s HRIBO/Snakefile --configfile HRIBO/config.yaml --directory ${PWD} -j 20 --cluster-config HRIBO/templates/sge-cluster.yaml
+    snakemake --use-conda -s HRIBO/Snakefile --configfile HRIBO/config.yaml --directory ${PWD} -j 20 --cluster-config HRIBO/sge.yaml
 
-.. note:: Ensure that you use an appropriate *cluster.yaml* for your cluster system. We provide one for *SGE* and *TORQUE* based systems.
+.. note:: Ensure that you use an appropriate ``<cluster>.yaml`` for your cluster system. We provide one for ``SGE`` and ``TORQUE`` based systems.
 
 Example: Run Snakemake in a cluster environment
 ***********************************************
@@ -199,7 +206,7 @@ Example: Run Snakemake in a cluster environment
 .. warning:: **Be advised that this is a specific example, the required options may change depending on your system.**
 
 We ran the tutorial workflow in a cluster environment, specifically a TORQUE cluster environment.
-Therefore, we created a bash script *torque.sh* in our project folder.
+Therefore, we created a bash script ``torque.sh`` in our project folder.
 
 .. code-block:: bash
 
@@ -221,7 +228,7 @@ We proceeded by writing the queuing script:
     #PBS -j oe
     cd <PATH/ProjectFolder>
     source activate HRIBO
-    snakemake --latency-wait 600 --use-conda -s HRIBO/Snakefile --configfile HRIBO/config.yaml --directory ${PWD} -j 20 --cluster-config HRIBO/templates/torque-cluster.yaml --cluster "qsub -N {cluster.jobname} -S /bin/bash -q {cluster.qname} -d <PATH/ProjectFolder> -l {cluster.resources} -o {cluster.logoutputdir} -j oe"
+    snakemake --latency-wait 600 --use-conda -s HRIBO/Snakefile --configfile HRIBO/config.yaml --directory ${PWD} -j 20 --cluster-config HRIBO/torque.yaml --cluster "qsub -N {cluster.jobname} -S /bin/bash -q {cluster.qname} -d <PATH/ProjectFolder> -l {cluster.resources} -o {cluster.logoutputdir} -j oe"
 
 We then simply submitted this job to the cluster:
 
@@ -234,7 +241,18 @@ Using any of the presented methods, this will run the workflow on the tutorial d
 Results
 *******
 
-A detailed explanation of the result files can be found in the :ref:`result section <analysis-results:ORF Predictions>`.
+The last step will be to aggregate all the results once the workflow has finished running.
+In order to do this, we provided a script in the scripts folder of HRIBO called ``makereport.sh``.
+
+.. code-block:: bash
+
+    bash HRIBO/scripts/makereport.sh <reportname>
+
+Running this will create a folder where all the results are collected from the workflows final output, it will additionally create compressed file in ``.zip`` format.
+
+.. note:: A detailed explanation of the result files can be found in the :ref:`result section <analysis-results:ORF Predictions>`.
+
+.. note:: The final result of this example workflow, as well as another example output, can be found here **TODO ADD LINK**.
 
 References
 ==========

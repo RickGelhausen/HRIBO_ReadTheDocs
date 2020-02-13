@@ -16,3 +16,8 @@ HRIBO
    :caption: Example
 
    example-workflow
+
+.. toctree::
+   :caption: FAQ
+
+   faq
