@@ -98,7 +98,7 @@ Once you have installed ``singularity`` turn on DeepRibo in the ``config.yaml``:
 When calling snakemake, you will now require additional commandline arguments:
 
 • **--use-singularity:** specify that snakemake can now download and use docker container via singularity.
-• **--singularity-args " -c ": specify the ``--contain`` option to ensure that only the docker containers file system will be used.
+• **--singularity-args " -c "**: specify the ``--contain`` option to ensure that only the docker containers file system will be used.
 
 If you run deepribo locally
 ***************************
