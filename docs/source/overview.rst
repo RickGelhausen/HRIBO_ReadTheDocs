@@ -5,7 +5,7 @@ HRIBO
 Introduction
 ============
 
-HRIBO is a workflow for the analysis of prokaryotic Ribo-Seq data. HRIBO is available on `github <https://github.com/RickGelhausen/HRIBO>`_. It includes among others, prediction of novel open reading frames (**ORFs**), metagene profiling, quality control and differential expression analysis. The workflow is based on the workflow management system **snakemake** and handles installation of all dependencies via `bioconda <https://bioconda.github.io/>`_ :cite:`GRU:KOE:2018` and docker**TODO: LINK +CITE**, as well as all processings steps. The source code of HRIBO is open source and available under the License **GNU General Public License 3**. Installation and basic usage is described below.
+HRIBO is a workflow for the analysis of prokaryotic Ribo-Seq data. HRIBO is available on `github <https://github.com/RickGelhausen/HRIBO>`_. It includes among others, prediction of novel open reading frames (**ORFs**), metagene profiling, quality control and differential expression analysis. The workflow is based on the workflow management system **snakemake** and handles installation of all dependencies via `bioconda <https://bioconda.github.io/>`_ :cite:`GRU:KOE:2018` and `docker <https://www.docker.com/>`_, as well as all processings steps. The source code of HRIBO is open source and available under the License **GNU General Public License 3**. Installation and basic usage is described below.
 
 .. note:: For a detailed step by step tutorial on how to use this workflow on a sample dataset, please refer to our :ref:`example-workflow <example-workflow:Example workflow>`.
 
@@ -15,18 +15,8 @@ Program flowchart
 The following flowchart describes the processing steps of the workflow and how they are connected:
 
 .. image:: images/workflow.png
-    :scale: 15%
+    :scale: 20%
     :align: center
-
-Directory table
-===============
-
-The output is written to a directory structure that corresponds to the workflow steps.
-
-.. image:: images/todo.png
-    :scale: 35%
-    :align: center
-
 
 Requirements
 ============
@@ -223,7 +213,7 @@ In the following tables all important output files of the workflow are listed.
 .. note:: Files create as intermediate steps of the workflow are omitted from this list. (e.g. *.bam* files)
 .. note:: For more details about the output files, please refer to the :ref:`analysis results <analysis-results:Analysis result files>`.
 
-Single file Output
+Single-file Output
 ******************
 
 +-------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------+
@@ -259,7 +249,7 @@ Single file Output
 +-------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------+
 
 
-Multi file Output
+Multi-file Output
 *****************
 +-------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------+
 | File name                                 | Description                                                                                                                           |
