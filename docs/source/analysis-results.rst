@@ -366,8 +366,21 @@ darker color)
 Metagene Analysis
 =================
 
+Meta gene profiling analyses the distribution of mapped reads around the start codon.
+Moreover for Ribo-seq it is expected that the ribosome protects a specific range of
+read lengths, often typical for the investigated group of organisms, from digestion
+by nuclease. These reads should show a typical peak around the start codon which corresponds
+to the high frequency that ribosomes are bound there. We output and plot the meta gene profiling for
+each individual fragment length as a quality control for the Ribo-seq protocol. If the distribution
+for all read lengths is untypical, arresting the ribosomes failed.
+
 <accession>_Z.Y_profiling.xlsx/tsv
 **********************************
+The table shows for a range of specific read lengths, how many reads on average over all start codons
+in the genome have been mapped per nucleotide. The nucleotides range from 100 nucleotides upstream 
+of the start codon to 399 nucleotides downstream. The read counts are either raw or normalized by average read count per nucleotide, for the range around the start codon. Moreover different single nucleotide mapping variants are considered,
+where only the 5', 3' or centered region of the read is counted.
+
 
 <accession>_Z.Y_profiling.pdf
 *****************************
