@@ -376,8 +376,9 @@ for all read lengths is untypical, arresting the ribosomes failed.
 
 <accession>_Z.Y_profiling.xlsx/tsv
 **********************************
+
 The table shows for a range of specific read lengths, how many reads on average over all start codons
-in the genome have been mapped per nucleotide. The nucleotides range from 100 nucleotides upstream 
+in the genome have been mapped per nucleotide. The nucleotides range from 100 nucleotides upstream
 of the start codon to 399 nucleotides downstream. The read counts are either raw or normalized by average read count per nucleotide, for the range around the start codon. Moreover different single nucleotide mapping variants are considered,
 where only the 5', 3' or centered region of the read is counted.
 
