@@ -299,7 +299,7 @@ BigWig files
 We offer many different single nucleotide mapping bigwig files for genome browser visualization.
 These files are available for different regions and performed with different methods.
 
-• **global:**
+• **global:** full read is mapped
 • **centered:** region around the center.
 • **threeprime:** region around the three prime end.
 • **fiveprime:** region around the five prime end.
@@ -307,8 +307,8 @@ These files are available for different regions and performed with different met
 These are all available with the following processing methods:
 
 • **raw:** raw, unprocessed files
-• **min:**
-• **mil:**
+• **min:** normalized with by number of minimal total reads per sample (factor = min. number of reads / number of reads)
+• **mil:** normalized with by 1000000 (factor = 1000000 / number of reads)
 
 Differential Expression
 =======================
