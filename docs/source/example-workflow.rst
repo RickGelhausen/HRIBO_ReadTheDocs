@@ -247,7 +247,7 @@ We then simply submitted this job to the cluster:
 Using any of the presented methods, this will run the workflow on the tutorial dataset and create the desired output files.
 
 Results
-*******
+=======
 
 The last step will be to aggregate all the results once the workflow has finished running.
 In order to do this, we provided a script in the scripts folder of HRIBO called ``makereport.sh``.
