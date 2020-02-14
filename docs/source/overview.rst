@@ -317,7 +317,7 @@ In order to aggregate the final results into a single folder structure and recei
 
     bash HRIBO/scripts/makereport.sh <reportname>
 
-.. note:: Examples of how this output can look are available here **TODO ADD LINK**.
+.. note:: Examples of how this output can look are available `here <ftp://biftp.informatik.uni-freiburg.de/pub/HRIBO/examplereport_HRIBO1.3.2_14-02-20.zip>`_ .
 
 Example-workflow
 ================

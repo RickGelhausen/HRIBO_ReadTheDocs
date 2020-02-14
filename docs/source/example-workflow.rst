@@ -171,7 +171,7 @@ Now that all the required files are prepared, we can start running the workflow,
 .. code-block:: bash
 
     conda activate snakemake
-    
+
 Run the workflow locally
 ************************
 
@@ -260,7 +260,7 @@ Running this will create a folder where all the results are collected from the w
 
 .. note:: A detailed explanation of the result files can be found in the :ref:`result section <analysis-results:ORF Predictions>`.
 
-.. note:: The final result of this example workflow, as well as another example output, can be found here **TODO ADD LINK**.
+.. note:: The final result of this example workflow, can be found `here <ftp://biftp.informatik.uni-freiburg.de/pub/HRIBO/examplereport_HRIBO1.3.2_14-02-20.zip>`_ .
 
 References
 ==========
