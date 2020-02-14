@@ -67,7 +67,7 @@ As we already have conda installed, the easiest way is to install the *sra-tools
 
 .. code-block:: bash
 
-    conda create -n sra-tools -c bioconda -c conda-forge sra-tools
+    conda create -n sra-tools -c bioconda -c conda-forge sra-tools pigz
 
 This will create a conda environment containing the sra-tools. Using these, we can simply pass the SRA identifiers and download the data:
 
@@ -76,7 +76,7 @@ This will create a conda environment containing the sra-tools. Using these, we c
     conda activate sra-tools;
     fasterq-dump SRR5356908; pigz -p 2 SRR5356908.fastq; mv SRR5356908.fastq.gz RNA-PAO1-gly-1.fastq.gz;
     fasterq-dump SRR5356907; pigz -p 2 SRR5356907.fastq; mv SRR5356907.fastq.gz RIBO-PAO1-gly-1.fastq.gz;
-
+    conda deactivate;
 
 .. note:: Due to the runtime of several tools, especially the mapping by ``segemehl``, this tutorial only uses one condition and replicate. If available, it is advisable to use as many replicates as possible.
 
@@ -86,7 +86,8 @@ This will download compressed files for each of the required ``.fastq`` files. W
 
 .. code-block:: bash
 
-    mv *.fastq.gz fastq
+    mkdir fastq;
+    mv *.fastq.gz fastq;
 
 
 Sample sheet and configuration file
@@ -165,6 +166,12 @@ Running the workflow
 
 Now that all the required files are prepared, we can start running the workflow, either locally or in a cluster environment.
 
+.. warning:: before you start using ``snakemake`` remember to activate the environment first.
+
+.. code-block:: bash
+
+    conda activate snakemake
+    
 Run the workflow locally
 ************************
 
