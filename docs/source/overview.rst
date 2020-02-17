@@ -31,9 +31,9 @@ miniconda3
 
 As this workflow is based on the workflow management system  `snakemake <https://snakemake.readthedocs.io/en/stable/>`_ :cite:`KOE:RAH:2018Snakemake`, **Snakemake** will download all necessary dependencies via `conda <https://conda.io/projects/conda/en/latest/user-guide/install/index.html>`_.
 
-We strongly recommend installing `miniconda3 <https://conda.io/miniconda.html>`_ with **python3.7**.
+We strongly recommend installing `miniconda3 <https://conda.io/miniconda.html>`_ with ``python3.7``.
 
-After downloading the **miniconda3** version suiting your linux system, execute the downloaded bash file and follow the instructions given.
+After downloading the ``miniconda3`` version suiting your linux system, execute the downloaded bash file and follow the instructions given.
 
 snakemake
 *********
@@ -46,7 +46,7 @@ The newest version of snakemake can be downloaded via conda using the following 
 
     conda create -c conda-forge -c bioconda -n snakemake snakemake
 
-This creates a new conda environment called **snakemake** and installs **snakemake** into the environment. The environment can be activated using:
+This creates a new conda environment called ``snakemake`` and installs ``snakemake`` into the environment. The environment can be activated using:
 
 .. code-block:: bash
 
@@ -61,7 +61,7 @@ and deactivated using:
 singularity
 ***********
 
-.. warning:: This dependency is only required if you intend to use the prediction tool *deepribo*. The rest of the workflow does not require ``singularity``. ``deepribo`` is deactivated by default. For more details on activating ``deepribo``, please refer to :ref:`Activating Deepribo <workflow-configuration:Activating Deepribo>`.
+.. warning:: This dependency is only required if you intend to use the prediction tool *deepribo*. The rest of the workflow does not require ``singularity``. ``deepribo`` is deactivated by default. For more details on activating ``deepribo``, please refer to :ref:`Activating DeepRibo <workflow-configuration:Activating DeepRibo>`.
 
 In order to support `docker container <https://www.docker.com/>`_, snakemake requires `singularity <https://sylabs.io/docs/>`_.
 This is used to retrieve tools that are not available on conda as of now.
@@ -73,9 +73,9 @@ An in-depth installation tutorial for singularity can be found on the `singulari
 HRIBO
 *****
 
-Using the workflow requires **HRIBO**. The latest version is available on our GitHub page.
+Using the workflow requires ``HRIBO``. The latest version is available on our GitHub page.
 
-In order to run the workflow, we suggest that you download the **HRIBO** into your project directory.
+In order to run the workflow, we suggest that you download the ``HRIBO`` into your project directory.
 The following command creates an example directory and changes into it:
 
 .. code-block:: bash
@@ -83,14 +83,14 @@ The following command creates an example directory and changes into it:
     mkdir project
     cd project
 
-Now, download and unpack the latest version of **HRIBO** by entering the following commands:
+Now, download and unpack the latest version of ``HRIBO`` by entering the following commands:
 
 .. code-block:: bash
 
     wget https://github.com/RickGelhausen/HRIBO/archive/1.3.1.tar.gz
     tar -xzf 1.3.1.tar.gz; mv HRIBO-1.3.1 HRIBO; rm 1.3.1.tar.gz;
 
-**HRIBO** is now in a subdirectory of your project directory.
+``HRIBO`` is now in a subdirectory of your project directory.
 
 
 Input files
@@ -143,12 +143,12 @@ Please ensure that you move all input ``.fastq.gz`` files into a folder called *
 Sample sheet and configuration file
 ***********************************
 
-In order to run **HRIBO**, you have to provide a sample sheet and a configuration file.
-There are templates for both files available in the **HRIBO** folder, in the subfolder **templates**.
+In order to run ``HRIBO``, you have to provide a sample sheet and a configuration file.
+There are templates for both files available in the ``HRIBO`` folder, in the subfolder ``templates``.
 The configuration file is used to allow the user to easily customize certain settings, like the adapter sequence.
 The sample sheet is used to specify the relation of the input ``.fastq`` files (condition / replicate etc...)
 
-Copy the templates of the sample sheet and the configuration file into the **HRIBO** folder:
+Copy the templates of the sample sheet and the configuration file into the ``HRIBO`` folder:
 
 .. code-block:: bash
 
@@ -199,7 +199,7 @@ As seen in the ``samples.tsv`` template:
 cluster.yaml
 ************
 
-In the **HRIBO** folder, we provide two cluster.yaml files needed by snakemake in order to run on a cluster system:
+In the ``HRIBO`` folder, we provide two ``<cluster>.yaml`` files needed by snakemake in order to run on a cluster system:
 
 • **sge.yaml** - for grid based queuing systems
 • **torque.yaml** - for torque based queuing systems

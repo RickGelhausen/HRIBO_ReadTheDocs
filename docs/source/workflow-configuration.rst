@@ -74,7 +74,7 @@ This will allow you the use of a sample.tsv like:
 | RNA       |  A        | 2         | fastq/RNA-A-2.fastq.gz  |
 +-----------+-----------+-----------+-------------------------+
 
-Activating Deepribo
+Activating DeepRibo
 ===================
 
 Activating DeepRibo predictions will give you a different file with ORF predictions.

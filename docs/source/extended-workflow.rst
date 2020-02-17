@@ -187,6 +187,8 @@ Running the workflow
 
 Now that all the required files are prepared, we can start running the workflow, either locally or in a cluster environment.
 
+.. warning:: if you have problems running ``deepribo``, please refer to :ref:`Activating DeepRibo <workflow-configuration:Activating DeepRibo>`.
+
 .. warning:: before you start using ``snakemake`` remember to activate the environment first.
 
 .. code-block:: bash
