@@ -1,19 +1,20 @@
-.. _example-workflow:
+.. _extended-workflow:
 
-################
-Example workflow
-################
+#################
+Extended workflow
+#################
 
-The retrieval of input files and running the workflow locally and on a server cluster via a queuing system is demonstrated using an example with data available from `NCBI  <https://www.ncbi.nlm.nih.gov/>`_.
-This dataset is available under the accession number ``PRJNA379630``.
+.. warning:: This tutorial shows a full run of the workflow with all options activated. For testing, we ran this example on a TORQUE cluster system and locally on a large cloud instance. The data is likely too large for running locally on an average laptop.
 
-.. note:: In this tutorial, we will show the basic functionalities of our workflow, for information about additional options please refer to: :ref:`workflow-configuration <workflow-configuration:Default workflow>`.
-.. note:: Ensure that you have ``miniconda3`` installed and a ``snakemake environment`` set-up. Please refer to the :ref:`overview <overview:Tools>` for details on the installation.
+We show a run of the full workflow, including deepribo predictions and differential expression analysis, on data available from `NCBI  <https://www.ncbi.nlm.nih.gov/>`_.
+For this purpose, we use a ``salmonella enterica`` dataset available under the accession number ``PRJNA421559`` :cite:`salmonellaenterica`.
+
+.. warning:: Ensure that you have ``miniconda3`` and ``singularity`` installed and a ``snakemake environment`` set-up. Please refer to the :ref:`overview <overview:Tools>` for details on the installation.
 
 Setup
 =====
 
-First of all, we start by creating the project directory and changing to it.
+First of all, we start by creating the project directory and changing to it. (you can choose any directory name)
 
 .. code-block:: bash
 
@@ -35,52 +36,60 @@ Before starting the workflow, we have to acquire and prepare several input files
 Annotation and genome files
 ***************************
 
-First, we want to retrieve the annotation file and the genome file. In this case, we can find both on `NCBI  <https://www.ncbi.nlm.nih.gov/genome/187?genome_assembly_id=299953>`_ using the accession number ``NC_002516.2``.
+First, we want to retrieve the annotation file and the genome file. In this case, we can find both on `NCBI  <https://www.ncbi.nlm.nih.gov/genome/152?genome_assembly_id=154366>`_ using the accession number ``NC_016856.1``.
 
-.. image:: images/NCBI-1.png
+.. image:: images/NCBI-2.png
     :scale: 50%
     :align: center
+
+.. note:: Ensure that you download the annotation for the correct strain ``str. 14028S``.
 
 On this page, we can directly retrieve both files by clicking on the according download links next to the file descriptions. Alternatively, you can directly download them using the following commands:
 
 .. code-block:: bash
 
-    wget ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/006/765/GCF_000006765.1_ASM676v1/GCF_000006765.1_ASM676v1_genomic.gff.gz
-    wget ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/006/765/GCF_000006765.1_ASM676v1/GCF_000006765.1_ASM676v1_genomic.fna.gz
+    wget ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/022/165/GCF_000022165.1_ASM2216v1/GCF_000022165.1_ASM2216v1_genomic.gff.gz
+    wget ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/022/165/GCF_000022165.1_ASM2216v1/GCF_000022165.1_ASM2216v1_genomic.fna.gz
 
 Then, we unpack and rename both files.
 
 .. code-block:: bash
 
-    gunzip GCF_000006765.1_ASM676v1_genomic.gff.gz && mv GCF_000006765.1_ASM676v1_genomic.gff annotation.gff
-    gunzip GCF_000006765.1_ASM676v1_genomic.fna.gz && mv GCF_000006765.1_ASM676v1_genomic.fna genome.fa
+    gunzip GCF_000022165.1_ASM2216v1_genomic.gff.gz && mv GCF_000022165.1_ASM2216v1_genomic.gff annotation.gff
+    gunzip GCF_000022165.1_ASM2216v1_genomic.fna.gz && mv GCF_000022165.1_ASM2216v1_genomic.fna genome.fa
 
 
 .fastq files
 ************
 
-Next, we want to acquire the fastq files. The fastq files are available under the accession number ``PRJNA379630`` on `NCBI  <https://www.ncbi.nlm.nih.gov/bioproject/PRJNA379630>`_.
+Next, we want to acquire the fastq files. The fastq files are available under the accession number ``PRJNA421559`` on `NCBI  <https://www.ncbi.nlm.nih.gov/bioproject/PRJNA421559>`_.
 The files have to be downloaded using the `Sequence Read Archive (SRA)  <https://www.ncbi.nlm.nih.gov/sra/docs/>`_.
 There are multiple ways of downloading files from SRA as explained `here  <https://www.ncbi.nlm.nih.gov/sra/docs/sradownload/>`_.
 
-As we already have conda installed, the easiest way is to install the *sra-tools*:
+As we already have ``conda`` installed, the easiest way is to install the ``sra-tools``:
 
 .. code-block:: bash
 
     conda create -n sra-tools -c bioconda -c conda-forge sra-tools pigz
 
-This will create a conda environment containing the sra-tools. Using these, we can simply pass the SRA identifiers and download the data:
+This will create a conda environment containing the ``sra-tools`` and ``pigz``. Using these, we can simply pass the SRA identifiers and download the data:
 
 .. code-block:: bash
 
     conda activate sra-tools;
-    fasterq-dump SRR5356908; pigz -p 2 SRR5356908.fastq; mv SRR5356908.fastq.gz RNA-PAO1-gly-1.fastq.gz;
-    fasterq-dump SRR5356907; pigz -p 2 SRR5356907.fastq; mv SRR5356907.fastq.gz RIBO-PAO1-gly-1.fastq.gz;
+    fasterq-dump SRR6359966; pigz -p 2 SRR6359966.fastq; mv SRR6359966.fastq.gz RIBO-WT-1.fastq.gz
+    fasterq-dump SRR6359967; pigz -p 2 SRR6359967.fastq; mv SRR6359967.fastq.gz RIBO-WT-2.fastq.gz
+    fasterq-dump SRR6359974; pigz -p 2 SRR6359974.fastq; mv SRR6359974.fastq.gz RNA-WT-1.fastq.gz
+    fasterq-dump SRR6359975; pigz -p 2 SRR6359975.fastq; mv SRR6359975.fastq.gz RNA-WT-2.fastq.gz
+    fasterq-dump SRR6359970; pigz -p 2 SRR6359970.fastq; mv SRR6359970.fastq.gz RIBO-csrA-1.fastq.gz
+    fasterq-dump SRR6359971; pigz -p 2 SRR6359971.fastq; mv SRR6359971.fastq.gz RIBO-csrA-2.fastq.gz
+    fasterq-dump SRR6359978; pigz -p 2 SRR6359978.fastq; mv SRR6359978.fastq.gz RNA-csrA-1.fastq.gz
+    fasterq-dump SRR6359979; pigz -p 2 SRR6359979.fastq; mv SRR6359979.fastq.gz RNA-csrA-2.fastq.gz
     conda deactivate;
 
-.. note:: Due to the runtime of several tools, especially the mapping by ``segemehl``, this tutorial only uses one condition and replicate. If available, it is advisable to use as many replicates as possible.
+.. note:: we will use two conditions and two replicates for each condition. There are 4 replicates available for each condition, we run it with two as this is just an example. If you run an analysis always try to use as many replicates as possible.
 
-.. warning:: If you have a bad internet connection, this step might take some time. If you prefer, you can also use your own ``.fastq`` files. But ensure that you use the correct annotation and genome files and that you compress them in ``.gz`` format (using gzip, pigz, etc ...)
+.. warning:: If you have a bad internet connection, this step might take some time. It is advised to run this workflow on a cluster or cloud instance.
 
 This will download compressed files for each of the required ``.fastq`` files. We will move them into a folder called ``fastq``.
 
@@ -129,9 +138,21 @@ We will rewrite this file to fit the previously downloaded *.fastq.gz* files.
 +-----------+-----------+-----------+--------------------------------+
 |   method  | condition | replicate | fastqFile                      |
 +===========+===========+===========+================================+
-| RIBO      |  GLY      | 1         | fastq/RIBO-PAO1-gly-1.fastq.gz |
+| RIBO      |  WT       | 1         | fastq/RIBO-WT-1.fastq.gz       |
 +-----------+-----------+-----------+--------------------------------+
-| RNA       |  GLY      | 1         | fastq/RNA-PAO1-gly-1.fastq.gz  |
+| RIBO      |  WT       | 2         | fastq/RIBO-WT-2.fastq.gz       |
++-----------+-----------+-----------+--------------------------------+
+| RIBO      |  csrA     | 1         | fastq/RIBO-csrA-1.fastq.gz     |
++-----------+-----------+-----------+--------------------------------+
+| RIBO      |  csrA     | 2         | fastq/RIBO-csrA-2.fastq.gz     |
++-----------+-----------+-----------+--------------------------------+
+| RNA       |  WT       | 1         | fastq/RNA-WT-1.fastq.gz        |
++-----------+-----------+-----------+--------------------------------+
+| RNA       |  WT       | 2         | fastq/RNA-WT-2.fastq.gz        |
++-----------+-----------+-----------+--------------------------------+
+| RNA       |  csrA     | 1         | fastq/RNA-csrA-1.fastq.gz      |
++-----------+-----------+-----------+--------------------------------+
+| RNA       |  csrA     | 2         | fastq/RNA-csrA-1.fastq.gz      |
 +-----------+-----------+-----------+--------------------------------+
 
 
@@ -143,7 +164,7 @@ Next, we are going to set up the ``config.yaml``.
 
 This file contains the following variables:
 
-•	**adapter:** Specify the adapter sequence to be used. In our case this would be *AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC*
+•	**adapter:** Specify the adapter sequence to be used. In our case this would be *CTGTAGGCACCATCAAT*
 •	**samples:** The location of the sample sheet created in the previous step.
 • **alternativestartcodons:** Specify a comma separated list of alternative start codons.
 • **differentialexpression:** Specify whether you want to activate differential expresssion analysis. ("yes/no")
@@ -153,13 +174,13 @@ In our example, this will lead to the following ``config.yaml`` file:
 
 .. code-block:: bash
 
-    adapter: "AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC"
+    adapter: "CTGTAGGCACCATCAAT"
     samples: "HRIBO/samples.tsv"
     alternativestartcodons: "GTG,TTG"
     # Differential expression: on / off
-    differentialexpression: "off"
+    differentialexpression: "on"
     # Deepribo predictions: on / off
-    deepribo: "off"
+    deepribo: "on"
 
 Running the workflow
 ====================
@@ -183,7 +204,7 @@ Navigate to the project folder containing your annotation and genome files, as w
 
 .. code-block:: bash
 
-    snakemake --use-conda -s HRIBO/Snakefile --configfile HRIBO/config.yaml --directory ${PWD} -j 10 --latency-wait 60
+    snakemake --use-conda --use-singularity --singularity-args " -c " --greediness 0 -s HRIBO/Snakefile --configfile HRIBO/config.yaml --directory ${PWD} -j 10 --latency-wait 60
 
 This will start the workflow locally.
 
@@ -200,11 +221,11 @@ Run Snakemake in a cluster environment
 Use the following steps if you are executing the workflow via a queuing system. Edit the configuration file ``<cluster>.yaml``
 according to your queuing system setup and cluster hardware.
 
-Navigate to the project folder on your cluster system. Start the workflow from this folder by running (The following system call shows the usage with Grid Engine.):
+Navigate to the project folder on your cluster system. Start the workflow from this folder by running (The following system call shows the usage with Grid Engine):
 
 .. code-block:: bash
 
-    snakemake --use-conda -s HRIBO/Snakefile --configfile HRIBO/config.yaml --directory ${PWD} -j 20 --cluster-config HRIBO/sge.yaml
+    snakemake --use-conda --use-singularity --singularity-args " -c " -s HRIBO/Snakefile --configfile HRIBO/config.yaml --directory ${PWD} -j 20 --cluster-config HRIBO/sge.yaml
 
 .. note:: Ensure that you use an appropriate ``<cluster>.yaml`` for your cluster system. We provide one for ``SGE`` and ``TORQUE`` based systems.
 
@@ -236,7 +257,7 @@ We proceeded by writing the queuing script:
     #PBS -j oe
     cd <PATH/ProjectFolder>
     source activate HRIBO
-    snakemake --latency-wait 600 --use-conda -s HRIBO/Snakefile --configfile HRIBO/config.yaml --directory ${PWD} -j 20 --cluster-config HRIBO/torque.yaml --cluster "qsub -N {cluster.jobname} -S /bin/bash -q {cluster.qname} -d <PATH/ProjectFolder> -l {cluster.resources} -o {cluster.logoutputdir} -j oe"
+    snakemake --latency-wait 600 --use-conda --use-singularity --singularity-args " -c " -s HRIBO/Snakefile --configfile HRIBO/config.yaml --directory ${PWD} -j 20 --cluster-config HRIBO/torque.yaml --cluster "qsub -N {cluster.jobname} -S /bin/bash -q {cluster.qname} -d <PATH/ProjectFolder> -l {cluster.resources} -o {cluster.logoutputdir} -j oe"
 
 We then simply submitted this job to the cluster:
 
@@ -257,10 +278,11 @@ In order to do this, we provided a script in the scripts folder of HRIBO called 
     bash HRIBO/scripts/makereport.sh <reportname>
 
 Running this will create a folder where all the results are collected from the workflows final output, it will additionally create compressed file in ``.zip`` format.
+The ``<reportname>`` will be extended by ``report_dd-mm-yy_HRIBOX.X.X``.
 
 .. note:: A detailed explanation of the result files can be found in the :ref:`result section <analysis-results:ORF Predictions>`.
 
-.. note:: The final result of this example workflow, can be found `here <ftp://biftp.informatik.uni-freiburg.de/pub/HRIBO/examplereport_HRIBO1.3.2_14-02-20.zip>`_ .
+.. note:: The final result of this example workflow, can be found `here <ftp://biftp.informatik.uni-freiburg.de/pub/HRIBO/salmonella_report_HRIBO1.3.2_15-02-20.zip>`_ .
 
 References
 ==========

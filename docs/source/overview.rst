@@ -96,7 +96,7 @@ Now, download and unpack the latest version of **HRIBO** by entering the followi
 Input files
 ===========
 
-Several input files are required in order to run the workflow, a genome file (``.fa``), an annotation file (``.gff/.gtf``) and compressed fastq files (``.fastq.gz``).
+Several input files are required in order to run the workflow, a genome file (``.fa``), an annotation file (``.gff/.gtf``) and compressed sequencing files (``.fastq.gz``).
 
 +-------------------------------------------+----------------------------------------------------------------------------------------------+
 | File name                                 | Description                                                                                  |
@@ -170,7 +170,7 @@ Edit the sample sheet corresponding to your project. It contains the following v
 • **replicate:** ID used to distinguish between the different replicates (e.g. 1,2, ...)
 • **inputFile:** indicates the according fastq file for a given sample.
 
-.. note:: If you have paired end data, please ensure that you use the *samples_pairedend.tsv* file.
+.. note:: If you have paired end data, please ensure that you use the ``samples_pairedend.tsv`` file.
 
 As seen in the ``samples.tsv`` template:
 
