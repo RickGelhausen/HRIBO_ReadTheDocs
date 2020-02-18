@@ -15,7 +15,7 @@ Program flowchart
 The following flowchart describes the processing steps of the workflow and how they are connected:
 
 .. image:: images/workflow.png
-    :scale: 20%
+    :scale: 60%
     :align: center
 
 Requirements
