@@ -61,7 +61,7 @@ and deactivated using:
 singularity
 ***********
 
-.. warning:: This dependency is only required if you intend to use the prediction tool *deepribo*. The rest of the workflow does not require ``singularity``. ``deepribo`` is deactivated by default. For more details on activating ``deepribo``, please refer to :ref:`Activating DeepRibo <workflow-configuration:Activating DeepRibo>`.
+.. warning:: This dependency is only required if you intend to use the prediction tool ``deepribo``. The rest of the workflow does not require ``singularity``. ``deepribo`` is deactivated by default. For more details on activating ``deepribo``, please refer to :ref:`Activating DeepRibo <workflow-configuration:Activating DeepRibo>`.
 
 In order to support `docker container <https://www.docker.com/>`_, snakemake requires `singularity <https://sylabs.io/docs/>`_.
 This is used to retrieve tools that are not available on conda as of now.
@@ -301,7 +301,7 @@ The tools used in our workflow are listed below, with links to their respective 
 +-------------------------------------------------------------------------+-------------+---------------------------------------------------------------------+
 | `reparation_blast <https://github.com/RickGelhausen/REPARATION_blast>`_ | 1.0.9       | Prediction of novel Open Reading frames                             |
 +-------------------------------------------------------------------------+-------------+---------------------------------------------------------------------+
-| `deepribo <https://github.com/Biobix/DeepRibo>`_                        | 0.0.1       | Prediction of novel Open Reading frames                             |
+| `deepribo <https://github.com/Biobix/DeepRibo>`_                        | 1.1         | Prediction of novel Open Reading frames                             |
 +-------------------------------------------------------------------------+-------------+---------------------------------------------------------------------+
 | `riborex <https://github.com/smithlabcode/riborex>`_                    | 2.4.0       | Differential expression analysis                                    |
 +-------------------------------------------------------------------------+-------------+---------------------------------------------------------------------+
