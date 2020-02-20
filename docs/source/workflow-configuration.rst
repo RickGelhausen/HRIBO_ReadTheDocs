@@ -100,6 +100,7 @@ When calling snakemake, you will now require additional commandline arguments:
 • **--use-singularity:** specify that snakemake can now download and use docker container via singularity.
 • **--singularity-args " -c "**: specify the ``--contain`` option to ensure that only the docker containers file system will be used.
 
+.. warning:: DeepRibo cannot cope with genomes containing special ``IUPAC symbols``, ensure that your genome file contains only ``A``, ``G``, ``C``, ``T``, ``N`` symbols.
 If you run deepribo locally
 ***************************
 
