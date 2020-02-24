@@ -280,7 +280,7 @@ In order to do this, we provided a script in the scripts folder of HRIBO called 
     bash HRIBO/scripts/makereport.sh <reportname>
 
 Running this will create a folder where all the results are collected from the workflows final output, it will additionally create compressed file in ``.zip`` format.
-The ``<reportname>`` will be extended by ``report_dd-mm-yy_HRIBOX.X.X``.
+The ``<reportname>`` will be extended by ``report_HRIBOX.X.X_dd-mm-yy``.
 
 .. note:: A detailed explanation of the result files can be found in the :ref:`result section <analysis-results:ORF Predictions>`.
 
