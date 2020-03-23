@@ -268,10 +268,15 @@ unique_read_counts.xlsx
 This file shows the overall read-counts for each feature annotated in the user-provided annotation, after mapping and after removal of multi-mapping reads.
 
 
-Visualization
-=============
+genome-browser
+==============
 
 The files that can be used for visualization in a genome browser.
+
+updated_annotation.gff
+**********************
+
+A gff track containing both the original annotation together with the new predictions by reparation.
 
 potentialStartCodons.gff
 ************************
@@ -293,11 +298,11 @@ potentialAlternativeStartCodons.gff
 
 A genome browser track with alternative start codons.
 
-BigWig files
-************
+BigWig coverage files
+*********************
 
 We offer many different single nucleotide mapping bigwig files for genome browser visualization.
-These files are available for different regions and performed with different methods.
+These files are available for different regions and performed with different methods. 
 
 • **global:** full read is mapped
 • **centered:** region around the center.
@@ -315,23 +320,23 @@ Differential Expression
 
 Files related to the differential expression analysis.
 
-riborex/<contrast>_sorted.csv
-*****************************
+riborex/<contrast>_sorted.xlsx
+******************************
 
 Table containing all differential expression results from *riborex*.
 
-riborex/<contrast>_significant.csv
-**********************************
+riborex/<contrast>_significant.xlsx
+***********************************
 
 Table containing significant differential expression results from *riborex* (pvalue < 0.05).
 
-xtail/<contrast>_sorted.csv
-***************************
+xtail/<contrast>_sorted.xlsx
+****************************
 
 Table containing all differential expression results from *xtail*.
 
-xtail/<contrast>_significant.csv
-********************************
+xtail/<contrast>_significant.xlsx
+*********************************
 
 Table containing significant differential expression results from *xtail* (pvalue < 0.05).
 
