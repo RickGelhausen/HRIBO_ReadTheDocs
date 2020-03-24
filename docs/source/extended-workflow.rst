@@ -284,7 +284,7 @@ The ``<reportname>`` will be extended by ``report_HRIBOX.X.X_dd-mm-yy``.
 
 .. note:: A detailed explanation of the result files can be found in the :ref:`result section <analysis-results:ORF Predictions>`.
 
-.. note:: The final result of this example workflow, can be found `here <ftp://biftp.informatik.uni-freiburg.de/pub/HRIBO/salmonella_report_HRIBO1.3.2_15-02-20.zip>`_ .
+.. note:: The final result of this example workflow, can be found `here <ftp://biftp.informatik.uni-freiburg.de/pub/HRIBO/salmonella_report_HRIBO1.3.2_23-03-20.zip>`_ .
 
 References
 ==========
