@@ -438,11 +438,11 @@ The overview table for the default workflow will contain reparation and differen
 +-------------------------------------------+-----------------------------------------------------------------------------+
 | Stop_codon                                | The stop codon of the annotated feature.                                    |
 +-------------------------------------------+-----------------------------------------------------------------------------+
-| Evidence                                  | The tool and sample this ORF was predicted in (only for predicted ORFs)     |
-+-------------------------------------------+-----------------------------------------------------------------------------+
 | Nucleotide_seq                            | The nucleotide sequence of the annotated feature.                           |
 +-------------------------------------------+-----------------------------------------------------------------------------+
 | Aminoacid_seq                             | The amino acid sequence of the annotated feature.                           |
++-------------------------------------------+-----------------------------------------------------------------------------+
+| Evidence                                  | The tool and sample this ORF was predicted in (only for predicted ORFs)     |
 +-------------------------------------------+-----------------------------------------------------------------------------+
 | Reparation_probability                    | The probability of this ORF. (only available for reparation predictions)    |
 +-------------------------------------------+-----------------------------------------------------------------------------+
