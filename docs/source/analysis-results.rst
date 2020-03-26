@@ -6,7 +6,6 @@ Analysis result files
 
 The important files in this workflow are listed and explained below.
 
-
 ORF Predictions
 ===============
 
@@ -302,7 +301,7 @@ BigWig coverage files
 *********************
 
 We offer many different single nucleotide mapping bigwig files for genome browser visualization.
-These files are available for different regions and performed with different methods. 
+These files are available for different regions and performed with different methods.
 
 • **global:** full read is mapped
 • **centered:** region around the center.
@@ -404,3 +403,64 @@ manual.pdf
 **********
 
 A PDF format file giving some explanations about the output files, contained in the final result report.
+
+overview_table.xlsx
+*******************
+
+An overview table containing all information gathered from the prediction tools and differential expression analysis.
+The contents of this table change depending on which :ref:`options <workflow-configuration:Workflow configuration>` are set.
+The overview table for the default workflow will contain reparation and differential expression output.
+
++-------------------------------------------+-----------------------------------------------------------------------------+
+| Column name                               | Description                                                                 |
++===========================================+=============================================================================+
+| Genome                                    | The genome accession identifier.                                            |
++-------------------------------------------+-----------------------------------------------------------------------------+
+| Start                                     | The start position of the ORF.                                              |
++-------------------------------------------+-----------------------------------------------------------------------------+
+| Stop                                      | The stop position of the ORF.                                               |
++-------------------------------------------+-----------------------------------------------------------------------------+
+| Strand                                    | The strand of the ORF. (+/-)                                                |
++-------------------------------------------+-----------------------------------------------------------------------------+
+| Locus_tag                                 | The locus tag of ORF. (if not novel)                                        |
++-------------------------------------------+-----------------------------------------------------------------------------+
+| Name                                      | The name of the ORF. (if not novel)                                         |
++-------------------------------------------+-----------------------------------------------------------------------------+
+| Length                                    | The length of the ORF.                                                      |
++-------------------------------------------+-----------------------------------------------------------------------------+
+| Codon_count                               | The number of codons in the ORF. (length / 3)                               |
++-------------------------------------------+-----------------------------------------------------------------------------+
+| <method>-<condition>-<replicate>_TE       | The translational efficiency for the given sample.                          |
++-------------------------------------------+-----------------------------------------------------------------------------+
+| <method>-<condition>-<replicate>_rpkm     | The RPKM for the given sample. (ReadsPerKilobaseMillion)                    |
++-------------------------------------------+-----------------------------------------------------------------------------+
+| Start_codon                               | The start codon of the annotated feature.                                   |
++-------------------------------------------+-----------------------------------------------------------------------------+
+| Stop_codon                                | The stop codon of the annotated feature.                                    |
++-------------------------------------------+-----------------------------------------------------------------------------+
+| Evidence_reparation                       | The sample this ORF was predicted in (only available for predicted ORFs)    |
++-------------------------------------------+-----------------------------------------------------------------------------+
+| Evidence_deepribo                         | The sample this ORF was predicted in (only available for predicted ORFs)    |
++-------------------------------------------+-----------------------------------------------------------------------------+
+| Nucleotide_seq                            | The nucleotide sequence of the annotated feature.                           |
++-------------------------------------------+-----------------------------------------------------------------------------+
+| Aminoacid_seq                             | The amino acid sequence of the annotated feature.                           |
++-------------------------------------------+-----------------------------------------------------------------------------+
+| Reparation_probability                    | The probability of this ORF. (only available for reparation predictions)    |
++-------------------------------------------+-----------------------------------------------------------------------------+
+| Deepribo_rank                             | The deepribo rank for this ORF. (only available for deepribo predictions)   |
++-------------------------------------------+-----------------------------------------------------------------------------+
+| Deepribo_score                            | The score the deepribo rank is based on.                                    |
++-------------------------------------------+-----------------------------------------------------------------------------+
+| riborex_pvalue                            | The pvalue (if detected as differentially expressed by riborex)             |
++-------------------------------------------+-----------------------------------------------------------------------------+
+| riborex_pvalue_adjusted                   | The adjusted pvalue (if detected as differentially expressed by riborex)    |
++-------------------------------------------+-----------------------------------------------------------------------------+
+| riborex_log2FC                            | The log2FC (if detected as differentially expressed by riborex)             |
++-------------------------------------------+-----------------------------------------------------------------------------+
+| xtail_pvalue                              | The pvalue (if detected as differentially expressed by xtail)               |
++-------------------------------------------+-----------------------------------------------------------------------------+
+| xtail_pvalue_adjusted                     | The adjusted pvalue (if detected as differentially expressed by xtail)      |
++-------------------------------------------+-----------------------------------------------------------------------------+
+| xtail_log2FC                              | The log2FC (if detected as differentially expressed by xtail)               |
++-------------------------------------------+-----------------------------------------------------------------------------+

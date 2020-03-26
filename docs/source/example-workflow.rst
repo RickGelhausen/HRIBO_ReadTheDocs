@@ -24,8 +24,8 @@ We then download the latest version of HRIBO into the newly created project fold
 
 .. code-block:: bash
 
-   wget https://github.com/RickGelhausen/HRIBO/archive/1.3.1.tar.gz
-   tar -xzf 1.3.1.tar.gz; mv HRIBO-1.3.1 HRIBO; rm 1.3.1.tar.gz;
+   wget https://github.com/RickGelhausen/HRIBO/archive/1.4.0.tar.gz
+   tar -xzf 1.4.0.tar.gz; mv HRIBO-1.4.0 HRIBO; rm 1.4.0.tar.gz;
 
 Retrieve and prepare input files
 ================================
