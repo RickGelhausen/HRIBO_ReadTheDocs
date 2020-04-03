@@ -38,13 +38,13 @@ After downloading the ``miniconda3`` version suiting your linux system, execute 
 snakemake
 *********
 
-.. note:: HRIBO requires snakemake (version>=5.5.1)
+.. note:: HRIBO requires ``snakemake (version>=5.5.1)``
 
-The newest version of snakemake can be downloaded via conda using the following command:
+The newest version of ``snakemake`` as well as the ``squashfs-tools`` required for ``singularity`` can be downloaded via conda using the following command:
 
 .. code-block:: bash
 
-    conda create -c conda-forge -c bioconda -n snakemake snakemake
+    conda create -c conda-forge -c bioconda -n snakemake snakemake squashfs-tools
 
 This creates a new conda environment called ``snakemake`` and installs ``snakemake`` into the environment. The environment can be activated using:
 
@@ -68,7 +68,7 @@ This is used to retrieve tools that are not available on conda as of now.
 
 An in-depth installation tutorial for singularity can be found on the `singularity webpage <https://sylabs.io/guides/3.0/user-guide/installation.html>`_.
 
-.. note:: we strongly suggest to install the newest version of singularity and replace ``with_suid=1`` to ``with_suid=0`` in the mconfig file of singularity prior to the installation. This could avoid potential errors like: ``ERROR  : Failed to set effective UID to 0``.
+.. note:: we strongly suggest to install the newest version of singularity. We tested our worklow on ``singularity v3.4.2``.
 
 HRIBO
 *****
