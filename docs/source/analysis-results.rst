@@ -452,7 +452,7 @@ The overview table for the default workflow will contain annotation. reparation,
 +-------------------------------------------+-----------------------------------------------------------------------------+
 | Deepribo_score                            | The score the deepribo rank is based on.                                    |
 +-------------------------------------------+-----------------------------------------------------------------------------+
-| contrasts                                 | The contrasts in which these results have been detected.                    |
+| Contrasts                                 | The contrasts for which these results have been detected.                   |
 +-------------------------------------------+-----------------------------------------------------------------------------+
 | riborex_pvalue                            | The pvalue (if detected as differentially expressed by riborex)             |
 +-------------------------------------------+-----------------------------------------------------------------------------+
