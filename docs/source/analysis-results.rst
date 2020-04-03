@@ -454,15 +454,15 @@ The overview table for the default workflow will contain annotation. reparation,
 +-------------------------------------------+-----------------------------------------------------------------------------+
 | Contrasts                                 | The contrasts for which these results have been detected.                   |
 +-------------------------------------------+-----------------------------------------------------------------------------+
-| riborex_pvalue                            | The pvalue (if detected as differentially expressed by riborex)             |
+| riborex_pvalue                            | The pvalue (determined by riborex)                                          |
 +-------------------------------------------+-----------------------------------------------------------------------------+
-| riborex_pvalue_adjusted                   | The adjusted pvalue (if detected as differentially expressed by riborex)    |
+| riborex_pvalue_adjusted                   | The adjusted pvalue (determined by riborex)                                 |
 +-------------------------------------------+-----------------------------------------------------------------------------+
-| riborex_log2FC                            | The log2FC (if detected as differentially expressed by riborex)             |
+| riborex_log2FC                            | The log2FC (determined by riborex)                                          |
 +-------------------------------------------+-----------------------------------------------------------------------------+
-| xtail_pvalue                              | The pvalue (if detected as differentially expressed by xtail)               |
+| xtail_pvalue                              | The pvalue (determined by xtail)                                            |
 +-------------------------------------------+-----------------------------------------------------------------------------+
-| xtail_pvalue_adjusted                     | The adjusted pvalue (if detected as differentially expressed by xtail)      |
+| xtail_pvalue_adjusted                     | The adjusted pvalue (determined by xtail)                                   |
 +-------------------------------------------+-----------------------------------------------------------------------------+
-| xtail_log2FC                              | The log2FC (if detected as differentially expressed by xtail)               |
+| xtail_log2FC                              | The log2FC (determined by xtail)                                            |
 +-------------------------------------------+-----------------------------------------------------------------------------+
