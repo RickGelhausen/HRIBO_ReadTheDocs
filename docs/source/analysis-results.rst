@@ -404,8 +404,8 @@ manual.pdf
 
 A PDF format file giving some explanations about the output files, contained in the final result report.
 
-overview_table.xlsx
-*******************
+overview.xlsx
+*************
 
 An overview table containing all information gathered from the prediction tools and differential expression analysis.
 The contents of this table change depending on which :ref:`options <workflow-configuration:Workflow configuration>` are set.
@@ -451,8 +451,6 @@ The overview table for the default workflow will contain annotation. reparation,
 | Deepribo_rank                             | The deepribo rank for this ORF. (only available for deepribo predictions)   |
 +-------------------------------------------+-----------------------------------------------------------------------------+
 | Deepribo_score                            | The score the deepribo rank is based on.                                    |
-+-------------------------------------------+-----------------------------------------------------------------------------+
-| Contrasts                                 | The contrasts for which these results have been detected.                   |
 +-------------------------------------------+-----------------------------------------------------------------------------+
 | riborex_pvalue                            | The pvalue (determined by riborex)                                          |
 +-------------------------------------------+-----------------------------------------------------------------------------+
