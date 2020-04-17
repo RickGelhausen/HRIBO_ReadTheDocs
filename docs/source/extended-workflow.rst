@@ -39,7 +39,7 @@ Annotation and genome files
 First, we want to retrieve the annotation file and the genome file. In this case, we can find both on `NCBI  <https://www.ncbi.nlm.nih.gov/genome/152?genome_assembly_id=154366>`_ using the accession number ``NC_016856.1``.
 
 .. image:: images/HRIBO-2.png
-    :scale: 20%
+    :scale: 15%
     :align: center
 
 .. note:: Ensure that you download the annotation for the correct strain ``str. 14028S``.
