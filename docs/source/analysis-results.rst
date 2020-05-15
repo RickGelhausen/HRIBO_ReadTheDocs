@@ -19,6 +19,8 @@ This file contains all ``reparation`` ORF predictions.
 +-------------------------------------------+-----------------------------------------------------------------------------+
 | Column name                               | Description                                                                 |
 +===========================================+=============================================================================+
+| Identifier                                | Unique identifier describing the entry.                                     |
++-------------------------------------------+-----------------------------------------------------------------------------+
 | Genome                                    | The genome accession identifier.                                            |
 +-------------------------------------------+-----------------------------------------------------------------------------+
 | Source                                    | The source of the ORF. (here reparation)                                    |
@@ -30,6 +32,8 @@ This file contains all ``reparation`` ORF predictions.
 | Stop                                      | The stop position of the ORF.                                               |
 +-------------------------------------------+-----------------------------------------------------------------------------+
 | Strand                                    | The strand of the ORF. (+/-)                                                |
++-------------------------------------------+-----------------------------------------------------------------------------+
+| Pred_probability                          | The probability of this ORF (0.5-1, 1 being the best value)                 |
 +-------------------------------------------+-----------------------------------------------------------------------------+
 | Locus_tag                                 | If the detected ORF is already in the annotation, this gives its locus tag. |
 +-------------------------------------------+-----------------------------------------------------------------------------+
@@ -53,10 +57,6 @@ This file contains all ``reparation`` ORF predictions.
 +-------------------------------------------+-----------------------------------------------------------------------------+
 | Aminoacid_seq                             | The amino acid sequence of the ORF.                                         |
 +-------------------------------------------+-----------------------------------------------------------------------------+
-| Product                                   | only available in annotation_X.xlsx (X=total/unique)                        |
-+-------------------------------------------+-----------------------------------------------------------------------------+
-| Note                                      | only available in annotation_X.xlsx (X=total/unique)                        |
-+-------------------------------------------+-----------------------------------------------------------------------------+
 
 predictions_reparation.gff
 **************************
@@ -74,6 +74,8 @@ This file contains all ``DeepRibo`` ORF predictions.
 +-------------------------------------------+---------------------------------------------------------------------------------+
 | Column name                               | Description                                                                     |
 +===========================================+=================================================================================+
+| Identifier                                | Unique identifier describing the entry.                                         |
++-------------------------------------------+---------------------------------------------------------------------------------+
 | Genome                                    | The genome accession identifier.                                                |
 +-------------------------------------------+---------------------------------------------------------------------------------+
 | Source                                    | The source of the ORF. (here reparation)                                        |
@@ -113,10 +115,6 @@ This file contains all ``DeepRibo`` ORF predictions.
 | Nucleotide_seq                            | The nucleotide sequence of the ORF.                                             |
 +-------------------------------------------+---------------------------------------------------------------------------------+
 | Aminoacid_seq                             | The amino acid sequence of the ORF.                                             |
-+-------------------------------------------+---------------------------------------------------------------------------------+
-| Product                                   | only available in annotation_X.xlsx (X=total/unique)                            |
-+-------------------------------------------+---------------------------------------------------------------------------------+
-| Note                                      | only available in annotation_X.xlsx (X=total/unique)                            |
 +-------------------------------------------+---------------------------------------------------------------------------------+
 
 predictions_deepribo.gff
@@ -170,6 +168,8 @@ This file contains detailed measures for every feature in the input annotation u
 +-------------------------------------------+-----------------------------------------------------------------------------+
 | Column name                               | Description                                                                 |
 +===========================================+=============================================================================+
+| Identifier                                | Unique identifier describing the entry.                                     |
++-------------------------------------------+-----------------------------------------------------------------------------+
 | Genome                                    | The genome accession identifier.                                            |
 +-------------------------------------------+-----------------------------------------------------------------------------+
 | Source                                    | The source of the annotated feature.                                        |
@@ -193,8 +193,6 @@ This file contains detailed measures for every feature in the input annotation u
 | <method>-<condition>-<replicate>_TE       | The translational efficiency for the given sample.                          |
 +-------------------------------------------+-----------------------------------------------------------------------------+
 | <method>-<condition>-<replicate>_rpkm     | The RPKM for the given sample. (ReadsPerKilobaseMillion)                    |
-+-------------------------------------------+-----------------------------------------------------------------------------+
-| Evidence                                  | only available for predicted ORFs                                           |
 +-------------------------------------------+-----------------------------------------------------------------------------+
 | Start_codon                               | The start codon of the annotated feature.                                   |
 +-------------------------------------------+-----------------------------------------------------------------------------+
@@ -222,6 +220,8 @@ This file contains detailed measures for every feature in the input annotation u
 +-------------------------------------------+-----------------------------------------------------------------------------+
 | Column name                               | Description                                                                 |
 +===========================================+=============================================================================+
+| Identifier                                | Unique identifier describing the entry.                                     |
++-------------------------------------------+-----------------------------------------------------------------------------+
 | Genome                                    | The genome accession identifier.                                            |
 +-------------------------------------------+-----------------------------------------------------------------------------+
 | Source                                    | The source of the annotated feature.                                        |
@@ -245,8 +245,6 @@ This file contains detailed measures for every feature in the input annotation u
 | <method>-<condition>-<replicate>_TE       | The translational efficiency for the given sample.                          |
 +-------------------------------------------+-----------------------------------------------------------------------------+
 | <method>-<condition>-<replicate>_rpkm     | The RPKM for the given sample. (ReadsPerKilobaseMillion)                    |
-+-------------------------------------------+-----------------------------------------------------------------------------+
-| Evidence                                  | only available for predicted ORFs                                           |
 +-------------------------------------------+-----------------------------------------------------------------------------+
 | Start_codon                               | The start codon of the annotated feature.                                   |
 +-------------------------------------------+-----------------------------------------------------------------------------+
@@ -414,6 +412,8 @@ The overview table for the default workflow will contain annotation. reparation,
 +-------------------------------------------+-----------------------------------------------------------------------------+
 | Column name                               | Description                                                                 |
 +===========================================+=============================================================================+
+| Identifier                                | Unique identifier describing the entry.                                     |
++-------------------------------------------+-----------------------------------------------------------------------------+
 | Genome                                    | The genome accession identifier.                                            |
 +-------------------------------------------+-----------------------------------------------------------------------------+
 | Start                                     | The start position of the ORF.                                              |
@@ -444,11 +444,13 @@ The overview table for the default workflow will contain annotation. reparation,
 +-------------------------------------------+-----------------------------------------------------------------------------+
 | Aminoacid_seq                             | The amino acid sequence of the annotated feature.                           |
 +-------------------------------------------+-----------------------------------------------------------------------------+
-| Evidence                                  | The tool and sample this ORF was predicted in (only for predicted ORFs)     |
+| Evidence_reparation                       | The sample this ORF was predicted in (for reparation)                       |
 +-------------------------------------------+-----------------------------------------------------------------------------+
-| Reparation_probability                    | The probability of this ORF. (only available for reparation predictions)    |
+| Reparation_probability                    | The probability of this ORF (0.5-1, 1 being the best value)                 |
 +-------------------------------------------+-----------------------------------------------------------------------------+
-| Deepribo_rank                             | The deepribo rank for this ORF. (only available for deepribo predictions)   |
+| Evidence_deepribo                         | The sample this ORF was predicted in (for deepribo)                         |
++-------------------------------------------+-----------------------------------------------------------------------------+
+| Deepribo_rank                             | The deepribo rank for this ORF. (1 being the best value, 999999 undefined)  |
 +-------------------------------------------+-----------------------------------------------------------------------------+
 | Deepribo_score                            | The score the deepribo rank is based on.                                    |
 +-------------------------------------------+-----------------------------------------------------------------------------+
