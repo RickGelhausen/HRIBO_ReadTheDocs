@@ -87,8 +87,8 @@ Now, download and unpack the latest version of ``HRIBO`` by entering the followi
 
 .. code-block:: bash
 
-    wget https://github.com/RickGelhausen/HRIBO/archive/1.4.0.tar.gz
-    tar -xzf 1.4.0.tar.gz; mv HRIBO-1.4.0 HRIBO; rm 1.4.0.tar.gz;
+    wget https://github.com/RickGelhausen/HRIBO/archive/1.4.3.tar.gz
+    tar -xzf 1.4.3.tar.gz; mv HRIBO-1.4.3 HRIBO; rm 1.4.3.tar.gz;
 
 ``HRIBO`` is now in a subdirectory of your project directory.
 
