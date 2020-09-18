@@ -294,6 +294,8 @@ The total runtime of the extended workflow, using 12 cores of an AMD EPYC Proces
 The runtime contains the automatic download and installation time of all dependencies by conda and singularity.
 This step is mainly dependent on the available network bandwidth. In this case it took about 12 minutes.
 
+The runtime difference compared to the example workflow is explained by the additional libraries and tools used.
+
 References
 ==========
 
