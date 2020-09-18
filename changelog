@@ -1,4 +1,7 @@
 -*-change-log-*-
 
+1.4.4 Rick Gelhausen <gelhausr@informatik.uni-freiburg.de> 18. September 2020
+        * added runtime and updated to HRIBO 1.4.4 
+
 1.0.0 Rick Gelhausen <gelhausr@informatik.uni-freiburg.de> 3. February 2020
 	* Initial version

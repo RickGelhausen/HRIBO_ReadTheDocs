@@ -25,8 +25,8 @@ We then download the latest version of HRIBO into the newly created project fold
 
 .. code-block:: bash
 
-   wget https://github.com/RickGelhausen/HRIBO/archive/1.4.3.tar.gz
-   tar -xzf 1.4.3.tar.gz; mv HRIBO-1.4.3 HRIBO; rm 1.4.3.tar.gz;
+   wget https://github.com/RickGelhausen/HRIBO/archive/1.4.4.tar.gz
+   tar -xzf 1.4.4.tar.gz; mv HRIBO-1.4.4 HRIBO; rm 1.4.4.tar.gz;
 
 Retrieve and prepare input files
 ================================
@@ -284,7 +284,15 @@ The ``<reportname>`` will be extended by ``report_HRIBOX.X.X_dd-mm-yy``.
 
 .. note:: A detailed explanation of the result files can be found in the :ref:`result section <analysis-results:ORF Predictions>`.
 
-.. note:: The final result of this example workflow, can be found `here <ftp://biftp.informatik.uni-freiburg.de/pub/HRIBO/extended_report_HRIBO1.4.3_15-05-20.zip>`_ .
+.. note:: The final result of this example workflow, can be found `here <ftp://biftp.informatik.uni-freiburg.de/pub/HRIBO/extended_report_HRIBO1.4.4_18-09-20.zip>`_ .
+
+Runtime
+=======
+
+The total runtime of the extended workflow, using 12 cores of an AMD EPYC Processor (with IBPB), 1996 MHz CPUs and 64 GB RAM, was 5h51m14s.
+
+The runtime contains the automatic download and installation time of all dependencies by conda and singularity.
+This step is mainly dependent on the available network bandwidth. In this case it took about 12 minutes.
 
 References
 ==========
