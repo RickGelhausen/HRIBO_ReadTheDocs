@@ -37,6 +37,8 @@ This file contains all ``reparation`` ORF predictions.
 +-------------------------------------------+-----------------------------------------------------------------------------+
 | Locus_tag                                 | If the detected ORF is already in the annotation, this gives its locus tag. |
 +-------------------------------------------+-----------------------------------------------------------------------------+
+| Old_locus_tag                             | The old locus tag of a gene (if available in the annotation)                |
++-------------------------------------------+-----------------------------------------------------------------------------+
 | Name                                      | If the detected ORF is already in the annotation, this gives its name.      |
 +-------------------------------------------+-----------------------------------------------------------------------------+
 | Length                                    | The length of the ORF.                                                      |
@@ -52,6 +54,8 @@ This file contains all ``reparation`` ORF predictions.
 | Start_codon                               | The start codon of the ORF.                                                 |
 +-------------------------------------------+-----------------------------------------------------------------------------+
 | Stop_codon                                | The stop codon of the ORF.                                                  |
++-------------------------------------------+-----------------------------------------------------------------------------+
+| 15nt_upstream                             | The 15nt upstream of the start codon                                        |
 +-------------------------------------------+-----------------------------------------------------------------------------+
 | Nucleotide_seq                            | The nucleotide sequence of the ORF.                                         |
 +-------------------------------------------+-----------------------------------------------------------------------------+
@@ -96,6 +100,8 @@ This file contains all ``DeepRibo`` ORF predictions.
 +-------------------------------------------+---------------------------------------------------------------------------------+
 | Locus_tag                                 | If the detected ORF is already in the annotation, this gives its locus tag.     |
 +-------------------------------------------+---------------------------------------------------------------------------------+
+| Old_locus_tag                             | The old locus tag of a gene (if available in the annotation)                    |
++-------------------------------------------+---------------------------------------------------------------------------------+
 | Name                                      | If the detected ORF is already in the annotation, this gives its name.          |
 +-------------------------------------------+---------------------------------------------------------------------------------+
 | Length                                    | The length of the ORF.                                                          |
@@ -111,6 +117,8 @@ This file contains all ``DeepRibo`` ORF predictions.
 | Start_codon                               | The start codon of the ORF.                                                     |
 +-------------------------------------------+---------------------------------------------------------------------------------+
 | Stop_codon                                | The stop codon of the ORF.                                                      |
++-------------------------------------------+---------------------------------------------------------------------------------+
+| 15nt_upstream                             | The 15nt upstream of the start codon                                            |
 +-------------------------------------------+---------------------------------------------------------------------------------+
 | Nucleotide_seq                            | The nucleotide sequence of the ORF.                                             |
 +-------------------------------------------+---------------------------------------------------------------------------------+
@@ -184,6 +192,8 @@ This file contains detailed measures for every feature in the input annotation u
 +-------------------------------------------+-----------------------------------------------------------------------------+
 | Locus_tag                                 | The locus tag of the annotated feature. (if available)                      |
 +-------------------------------------------+-----------------------------------------------------------------------------+
+| Old_locus_tag                             | The old locus tag of a gene (if available in the annotation)                |
++-------------------------------------------+-----------------------------------------------------------------------------+
 | Name                                      | The name of the annotated feature. (if available)                           |
 +-------------------------------------------+-----------------------------------------------------------------------------+
 | Length                                    | The length of the annotated feature.                                        |
@@ -197,6 +207,8 @@ This file contains detailed measures for every feature in the input annotation u
 | Start_codon                               | The start codon of the annotated feature.                                   |
 +-------------------------------------------+-----------------------------------------------------------------------------+
 | Stop_codon                                | The stop codon of the annotated feature.                                    |
++-------------------------------------------+-----------------------------------------------------------------------------+
+| 15nt_upstream                             | The 15nt upstream of the start codon                                        |
 +-------------------------------------------+-----------------------------------------------------------------------------+
 | Nucleotide_seq                            | The nucleotide sequence of the annotated feature.                           |
 +-------------------------------------------+-----------------------------------------------------------------------------+
@@ -236,6 +248,8 @@ This file contains detailed measures for every feature in the input annotation u
 +-------------------------------------------+-----------------------------------------------------------------------------+
 | Locus_tag                                 | The locus tag of the annotated feature. (if available)                      |
 +-------------------------------------------+-----------------------------------------------------------------------------+
+| Old_locus_tag                             | The old locus tag of a gene (if available in the annotation)                |
++-------------------------------------------+-----------------------------------------------------------------------------+
 | Name                                      | The name of the annotated feature. (if available)                           |
 +-------------------------------------------+-----------------------------------------------------------------------------+
 | Length                                    | The length of the annotated feature.                                        |
@@ -249,6 +263,8 @@ This file contains detailed measures for every feature in the input annotation u
 | Start_codon                               | The start codon of the annotated feature.                                   |
 +-------------------------------------------+-----------------------------------------------------------------------------+
 | Stop_codon                                | The stop codon of the annotated feature.                                    |
++-------------------------------------------+-----------------------------------------------------------------------------+
+| 15nt_upstream                             | The 15nt upstream of the start codon                                        |
 +-------------------------------------------+-----------------------------------------------------------------------------+
 | Nucleotide_seq                            | The nucleotide sequence of the annotated feature.                           |
 +-------------------------------------------+-----------------------------------------------------------------------------+
@@ -424,6 +440,10 @@ The overview table for the default workflow will contain annotation. reparation,
 +-------------------------------------------+-----------------------------------------------------------------------------+
 | Locus_tag                                 | The locus tag of ORF. (if not novel)                                        |
 +-------------------------------------------+-----------------------------------------------------------------------------+
+| Overlapping_genes                         | Genes that overlap with the predicted ORF                                   |
++-------------------------------------------+-----------------------------------------------------------------------------+
+| Old_locus_tag                             | The old locus tag of a gene (if available in the annotation)                |
++-------------------------------------------+-----------------------------------------------------------------------------+
 | Name                                      | The name of the ORF. (if not novel)                                         |
 +-------------------------------------------+-----------------------------------------------------------------------------+
 | Gene_name                                 | The name of the ORFs associated gene feature. (if not novel)                |
@@ -439,6 +459,8 @@ The overview table for the default workflow will contain annotation. reparation,
 | Start_codon                               | The start codon of the annotated feature.                                   |
 +-------------------------------------------+-----------------------------------------------------------------------------+
 | Stop_codon                                | The stop codon of the annotated feature.                                    |
++-------------------------------------------+-----------------------------------------------------------------------------+
+| 15nt_upstream                             | The 15nt upstream of the start codon                                        |
 +-------------------------------------------+-----------------------------------------------------------------------------+
 | Nucleotide_seq                            | The nucleotide sequence of the annotated feature.                           |
 +-------------------------------------------+-----------------------------------------------------------------------------+
