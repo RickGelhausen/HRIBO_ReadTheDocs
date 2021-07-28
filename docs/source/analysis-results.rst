@@ -322,11 +322,11 @@ These files are available for different regions and performed with different met
 • **threeprime:** region around the three prime end.
 • **fiveprime:** region around the five prime end.
 
-These are all available with the following processing methods:
+These are all available with the following normalization methods:
 
-• **raw:** raw, unprocessed files
-• **min:** normalized with by number of minimal total reads per sample (factor = min. number of reads / number of reads)
-• **mil:** normalized with by 1000000 (factor = 1000000 / number of reads)
+• **raw:** raw, unprocessed files. This should only be used to check the coverage of a single file. It should not be used to compare to other files.
+• **min:** normalized by number of minimal total reads per sample (factor = min. number of reads / number of reads). This is the recommended normalization when comparing different samples from the same experiment.
+• **mil:** normalized by 1000000 (factor = 1000000 / number of reads). This is the recommended normalization when comparing different samples from the different experiments.
 
 Differential Expression
 =======================
@@ -452,10 +452,6 @@ The overview table for the default workflow will contain annotation. reparation,
 +-------------------------------------------+-----------------------------------------------------------------------------+
 | Codon_count                               | The number of codons in the ORF. (length / 3)                               |
 +-------------------------------------------+-----------------------------------------------------------------------------+
-| <method>-<condition>-<replicate>_TE       | The translational efficiency for the given sample.                          |
-+-------------------------------------------+-----------------------------------------------------------------------------+
-| <method>-<condition>-<replicate>_rpkm     | The RPKM for the given sample. (ReadsPerKilobaseMillion)                    |
-+-------------------------------------------+-----------------------------------------------------------------------------+
 | Start_codon                               | The start codon of the annotated feature.                                   |
 +-------------------------------------------+-----------------------------------------------------------------------------+
 | Stop_codon                                | The stop codon of the annotated feature.                                    |
@@ -465,6 +461,10 @@ The overview table for the default workflow will contain annotation. reparation,
 | Nucleotide_seq                            | The nucleotide sequence of the annotated feature.                           |
 +-------------------------------------------+-----------------------------------------------------------------------------+
 | Aminoacid_seq                             | The amino acid sequence of the annotated feature.                           |
++-------------------------------------------+-----------------------------------------------------------------------------+
+| <method>-<condition>-<replicate>_TE       | The translational efficiency for the given sample.                          |
++-------------------------------------------+-----------------------------------------------------------------------------+
+| <method>-<condition>-<replicate>_rpkm     | The RPKM for the given sample. (ReadsPerKilobaseMillion)                    |
 +-------------------------------------------+-----------------------------------------------------------------------------+
 | Evidence_reparation                       | The sample this ORF was predicted in (for reparation)                       |
 +-------------------------------------------+-----------------------------------------------------------------------------+

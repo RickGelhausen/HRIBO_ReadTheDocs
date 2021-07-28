@@ -25,8 +25,8 @@ We then download the latest version of HRIBO into the newly created project fold
 
 .. code-block:: bash
 
-   wget https://github.com/RickGelhausen/HRIBO/archive/1.4.4.tar.gz
-   tar -xzf 1.4.4.tar.gz; mv HRIBO-1.4.4 HRIBO; rm 1.4.4.tar.gz;
+   wget https://github.com/RickGelhausen/HRIBO/archive/1.5.1.tar.gz
+   tar -xzf 1.5.1.tar.gz; mv HRIBO-1.5.1 HRIBO; rm 1.5.1.tar.gz;
 
 Retrieve and prepare input files
 ================================
@@ -284,7 +284,8 @@ The ``<reportname>`` will be extended by ``report_HRIBOX.X.X_dd-mm-yy``.
 
 .. note:: A detailed explanation of the result files can be found in the :ref:`result section <analysis-results:ORF Predictions>`.
 
-.. note:: The final result of this example workflow, can be found `here <ftp://biftp.informatik.uni-freiburg.de/pub/HRIBO/extended_report_HRIBO1.4.4_18-09-20.zip>`_ .
+.. note:: The final result of this example workflow, can be found `here <ftp://biftp.informatik.uni-freiburg.de/pub/HRIBO/extended_report_HRIBO1.5.1_28-07-21.zip>`_ .
+.. warning:: As many browsers stopped the support for viewing ftp files, you might have to use a ftp viewer instead.
 
 Runtime
 =======

@@ -24,8 +24,8 @@ We then download the latest version of HRIBO into the newly created project fold
 
 .. code-block:: bash
 
-   wget https://github.com/RickGelhausen/HRIBO/archive/1.4.4.tar.gz
-   tar -xzf 1.4.4.tar.gz; mv HRIBO-1.4.4 HRIBO; rm 1.4.4.tar.gz;
+   wget https://github.com/RickGelhausen/HRIBO/archive/1.5.1.tar.gz
+   tar -xzf 1.5.1.tar.gz; mv HRIBO-1.5.1 HRIBO; rm 1.5.1.tar.gz;
 
 Retrieve and prepare input files
 ================================
@@ -74,8 +74,8 @@ This will create a conda environment containing the sra-tools. Using these, we c
 .. code-block:: bash
 
     conda activate sra-tools;
-    fasterq-dump SRR5356908; pigz -p 2 SRR5356908.fastq; mv SRR5356908.fastq.gz RNA-PAO1-gly-1.fastq.gz;
     fasterq-dump SRR5356907; pigz -p 2 SRR5356907.fastq; mv SRR5356907.fastq.gz RIBO-PAO1-gly-1.fastq.gz;
+    fasterq-dump SRR5356908; pigz -p 2 SRR5356908.fastq; mv SRR5356908.fastq.gz RNA-PAO1-gly-1.fastq.gz;
     conda deactivate;
 
 .. note:: Due to the runtime of several tools, especially the mapping by ``segemehl``, this tutorial only uses one condition and replicate. If available, it is advisable to use as many replicates as possible.
@@ -143,8 +143,8 @@ Next, we are going to set up the ``config.yaml``.
 
 This file contains the following variables:
 
-•	**adapter:** Specify the adapter sequence to be used. In our case this would be *AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC*
-•	**samples:** The location of the sample sheet created in the previous step.
+• **adapter:** Specify the adapter sequence to be used. In our case this would be *AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC*
+• **samples:** The location of the sample sheet created in the previous step.
 • **alternativestartcodons:** Specify a comma separated list of alternative start codons.
 • **differentialexpression:** Specify whether you want to activate differential expresssion analysis. ("yes/no")
 • **deepribo:** Specify whether you want to activate deepribo ORF prediction. ("yes/no")
@@ -260,7 +260,8 @@ Running this will create a folder where all the results are collected from the w
 
 .. note:: A detailed explanation of the result files can be found in the :ref:`result section <analysis-results:ORF Predictions>`.
 
-.. note:: The final result of this example workflow, can be found `here <ftp://biftp.informatik.uni-freiburg.de/pub/HRIBO/example_report_HRIBO1.4.4_18-09-20.zip>`_ .
+.. note:: The final result of this example workflow, can be found `here <ftp://biftp.informatik.uni-freiburg.de/pub/HRIBO/example_report_HRIBO1.5.1_28-07-21.zip>`_ .
+.. warning:: As many browsers stopped the support for viewing ftp files, you might have to use a ftp viewer instead.
 
 Runtime
 =======
