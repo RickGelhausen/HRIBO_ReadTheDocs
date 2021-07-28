@@ -43,6 +43,7 @@ extensions = [
     'sphinxcontrib.bibtex',
     'sphinx.ext.autosectionlabel',
 ]
+bibtex_bibfiles = ["references.bib"]
 
 # Prefix section labels with file name (resolve ambiguity)
 autosectionlabel_prefix_document = True
