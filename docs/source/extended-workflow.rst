@@ -164,8 +164,8 @@ Next, we are going to set up the ``config.yaml``.
 
 This file contains the following variables:
 
-•	**adapter:** Specify the adapter sequence to be used. In our case this would be *CTGTAGGCACCATCAAT*
-•	**samples:** The location of the sample sheet created in the previous step.
+• **adapter:** Specify the adapter sequence to be used. In our case this would be *CTGTAGGCACCATCAAT*
+• **samples:** The location of the sample sheet created in the previous step.
 • **alternativestartcodons:** Specify a comma separated list of alternative start codons.
 • **differentialexpression:** Specify whether you want to activate differential expresssion analysis. ("yes/no")
 • **deepribo:** Specify whether you want to activate deepribo ORF prediction. ("yes/no")

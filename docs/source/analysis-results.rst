@@ -381,16 +381,10 @@ darker color)
 • **green:** for genes changing homodirectionally at both level.
 • **yellow:** for genes changing antidirectionally at two levels.
 
-Metagene Analysis
-=================
+Metagene Profiling Analysis
+===========================
 
-Meta gene profiling analyses the distribution of mapped reads around the start codon.
-Moreover for Ribo-seq it is expected that the ribosome protects a specific range of
-read lengths, often typical for the investigated group of organisms, from digestion
-by nuclease. These reads should show a typical peak around the start codon which corresponds
-to the high frequency that ribosomes are bound there. We output and plot the meta gene profiling for
-each individual fragment length as a quality control for the Ribo-seq protocol. If the distribution
-for all read lengths is untypical, arresting the ribosomes failed.
+Please refer to the :ref:`metagene profiling <metagene-profiling:Metagene profiling>` page for further details.
 
 <accession>_Z.Y_profiling.xlsx/tsv
 **********************************
