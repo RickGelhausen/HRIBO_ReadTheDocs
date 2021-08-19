@@ -11,6 +11,7 @@ HRIBO
 
    workflow-configuration
    analysis-results
+   metagene-profiling
 
 .. toctree::
    :caption: Example

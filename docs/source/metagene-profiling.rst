@@ -35,10 +35,10 @@ The normalized version takes into account the total value for each position, as 
 
 The metagene profiling is done for each sample and each coverage mapping method.
 
-• **global:** full read is mapped
-• **centered:** region around the center is mapped 
-• **threeprime:** region around the three prime end is mapped
-• **fiveprime:** region around the five prime end is mapped
+* **global:** full read is mapped
+* **centered:** region around the center is mapped 
+* **threeprime:** region around the three prime end is mapped
+* **fiveprime:** region around the five prime end is mapped
 
 For each of these sample/mapping combinations, result tables in ``.xlsx`` and ``.tsv`` format are provided, as well as a plot.
 Moreover, all files are split into forward, reverse and combined, to show the behaviour around start codons on each strand.
@@ -138,6 +138,6 @@ The metagene analysis is very dependant on the analysed data. We have observed c
 This shows a case with a strong peak at around -15nt, while there are multiple smaller peaks at -22, +112, +219, and +291.
 These kinds of peaks can have multiple reasons. Reasons we observed so far were:
 
-• tRNA or rRNA that was not filtered out correctly
-• singular genes that have an insane amount of reads falling onto them (due to a biological reason or a faulty sequencing)
+* tRNA or rRNA that was not filtered out correctly
+* singular genes that have an insane amount of reads falling onto them (due to a biological reason or a faulty sequencing)
 

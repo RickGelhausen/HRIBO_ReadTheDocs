@@ -164,11 +164,11 @@ Next, we are going to set up the ``config.yaml``.
 
 This file contains the following variables:
 
-• **adapter:** Specify the adapter sequence to be used. In our case this would be *CTGTAGGCACCATCAAT*
-• **samples:** The location of the sample sheet created in the previous step.
-• **alternativestartcodons:** Specify a comma separated list of alternative start codons.
-• **differentialexpression:** Specify whether you want to activate differential expresssion analysis. ("yes/no")
-• **deepribo:** Specify whether you want to activate deepribo ORF prediction. ("yes/no")
+* **adapter:** Specify the adapter sequence to be used. In our case this would be *CTGTAGGCACCATCAAT*
+* **samples:** The location of the sample sheet created in the previous step.
+* **alternativestartcodons:** Specify a comma separated list of alternative start codons.
+* **differentialexpression:** Specify whether you want to activate differential expresssion analysis. ("yes/no")
+* **deepribo:** Specify whether you want to activate deepribo ORF prediction. ("yes/no")
 
 In our example, this will lead to the following ``config.yaml`` file:
 
@@ -210,12 +210,12 @@ Navigate to the project folder containing your annotation and genome files, as w
 
 This will start the workflow locally.
 
-•	``--use-conda``: instruct snakemake to download tool dependencies from conda.
-•	``-s``: specifies the Snakefile to be used.
-•	``--configfile``: specifies the config file to be used.
-•	``--directory``: specifies your current path.
-•	``-j``: specifies the maximum number of cores snakemake is allowed to use.
-•	``--latency-wait``: specifies how long (in seconds) snakemake will wait for filesystem latencies until declaring a file to be missing.
+*	``--use-conda``: instruct snakemake to download tool dependencies from conda.
+*	``-s``: specifies the Snakefile to be used.
+*	``--configfile``: specifies the config file to be used.
+*	``--directory``: specifies your current path.
+*	``-j``: specifies the maximum number of cores snakemake is allowed to use.
+*	``--latency-wait``: specifies how long (in seconds) snakemake will wait for filesystem latencies until declaring a file to be missing.
 
 Run Snakemake in a cluster environment
 **************************************

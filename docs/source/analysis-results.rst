@@ -144,18 +144,18 @@ multiqc_report.html
 The multiQC report collects information from different tools, including ``fastQC`` and ``subread featurecounts``.
 The general statistics give an overview over:
 
-•	the number of duplicates
-•	the GC content
-•	the average read lengths
-•	the number of reads (in millions)
+*	the number of duplicates
+*	the GC content
+*	the average read lengths
+*	the number of reads (in millions)
 
 These statistics are collected after each processing step of our pipeline.
 
-•	**raw:** the unprocessed data
-•	**trimmed:** the data after trimming the adapter sequences
-•	**mapped:** the data after mapping with Segemehl
-•	**unique:** the data after removing multi-mapping reads
-•	**norRNA:** the data after filtering out the rRNA
+*	**raw:** the unprocessed data
+*	**trimmed:** the data after trimming the adapter sequences
+*	**mapped:** the data after mapping with Segemehl
+*	**unique:** the data after removing multi-mapping reads
+*	**norRNA:** the data after filtering out the rRNA
 
 Further, feature counts are provided for different features from the annotation file. (i.e. how many reads map to each feature)
 This includes, all(featurecount), rRNA, norRNA(after filtering), tRNA and ncRNA.
@@ -317,16 +317,16 @@ BigWig coverage files
 We offer many different single nucleotide mapping bigwig files for genome browser visualization.
 These files are available for different regions and performed with different methods.
 
-• **global:** full read is mapped
-• **centered:** region around the center.
-• **threeprime:** region around the three prime end.
-• **fiveprime:** region around the five prime end.
+* **global:** full read is mapped
+* **centered:** region around the center.
+* **threeprime:** region around the three prime end.
+* **fiveprime:** region around the five prime end.
 
 These are all available with the following normalization methods:
 
-• **raw:** raw, unprocessed files. This should only be used to check the coverage of a single file. It should not be used to compare to other files.
-• **min:** normalized by number of minimal total reads per sample (factor = min. number of reads / number of reads). This is the recommended normalization when comparing different samples from the same experiment.
-• **mil:** normalized by 1000000 (factor = 1000000 / number of reads). This is the recommended normalization when comparing different samples from the different experiments.
+* **raw:** raw, unprocessed files. This should only be used to check the coverage of a single file. It should not be used to compare to other files.
+* **min:** normalized by number of minimal total reads per sample (factor = min. number of reads / number of reads). This is the recommended normalization when comparing different samples from the same experiment.
+* **mil:** normalized by 1000000 (factor = 1000000 / number of reads). This is the recommended normalization when comparing different samples from the different experiments.
 
 Differential Expression
 =======================
@@ -361,10 +361,10 @@ of each gene is determined by its RPF-to-mRNA ratio (log2R) in two conditions,
 represented on the x-axis and y-axis respectively. The points will be color-coded with
 the pvalue final obtained with xtail (more significant p values having darker color)
 
-• **blue:** for genes with log2R larger in first condition than second condition.
-• **red:** for genes with log2R larger in second condition than the first condition.
-• **green:** for genes with log2R changing homodirectionally in two condition.
-• **yellow:** for genes with log2R changing antidirectionally in two condition.
+* **blue:** for genes with log2R larger in first condition than second condition.
+* **red:** for genes with log2R larger in second condition than the first condition.
+* **green:** for genes with log2R changing homodirectionally in two condition.
+* **yellow:** for genes with log2R changing antidirectionally in two condition.
 
 xtail/fc_<contrast>.pdf
 ***********************
@@ -376,10 +376,10 @@ of translational level (RPF log2FC), represented on the y-axis. The points will 
 color-coded with the pvalue final obtained with xtail (more significant p values having
 darker color)
 
-• **blue:** for genes whos mRNA log2FC larger than 1 (transcriptional level).
-• **red:** for genes whos RPF log2FC larger than 1 (translational level).
-• **green:** for genes changing homodirectionally at both level.
-• **yellow:** for genes changing antidirectionally at two levels.
+* **blue:** for genes whos mRNA log2FC larger than 1 (transcriptional level).
+* **red:** for genes whos RPF log2FC larger than 1 (translational level).
+* **green:** for genes changing homodirectionally at both level.
+* **yellow:** for genes changing antidirectionally at two levels.
 
 Metagene Profiling Analysis
 ===========================

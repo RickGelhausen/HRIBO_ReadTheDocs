@@ -14,9 +14,9 @@ In order to explain what customizations are possible, we will first have a look 
 
 Default:
 
-• Single-end fastq files
-• Differential expression analysis: on
-• DeepRibo predictions: off
+* Single-end fastq files
+* Differential expression analysis: on
+* DeepRibo predictions: off
 
 For the default workflow, we expect the ``.fastq`` files to be in single-end format.
 Additionally, we activated differential expression by default. Differential expression requires multiple conditions and RIBO and RNA samples.
