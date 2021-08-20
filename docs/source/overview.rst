@@ -7,7 +7,7 @@ Introduction
 
 HRIBO is a workflow for the analysis of prokaryotic Ribo-Seq data. HRIBO is available on `github <https://github.com/RickGelhausen/HRIBO>`_. It includes among others, prediction of novel open reading frames (**ORFs**), metagene profiling, quality control and differential expression analysis. The workflow is based on the workflow management system **snakemake** and handles installation of all dependencies via `bioconda <https://bioconda.github.io/>`_ :cite:`GRU:KOE:2018` and `docker <https://www.docker.com/>`_, as well as all processings steps. The source code of HRIBO is open source and available under the License **GNU General Public License 3**. Installation and basic usage is described below.
 
-.. note:: For a detailed step by step tutorial on how to use this workflow on a sample dataset, please refer to our :ref:`example-workflow <example-workflow:Example workflow>`.
+.. note:: For a detailed step by step tutorial on how to use this workflow on a sample dataset, please refer to our :ref:`example-workflow <source/example-workflow:Example workflow>`.
 
 Program flowchart
 =================
@@ -61,7 +61,7 @@ and deactivated using:
 singularity
 ***********
 
-.. warning:: This dependency is only required if you intend to use the prediction tool ``deepribo``. The rest of the workflow does not require ``singularity``. ``deepribo`` is deactivated by default. For more details on activating ``deepribo``, please refer to :ref:`Activating DeepRibo <workflow-configuration:Activating DeepRibo>`.
+.. warning:: This dependency is only required if you intend to use the prediction tool ``deepribo``. The rest of the workflow does not require ``singularity``. ``deepribo`` is deactivated by default. For more details on activating ``deepribo``, please refer to :ref:`Activating DeepRibo <source/workflow-configuration:Activating DeepRibo>`.
 
 In order to support `docker container <https://www.docker.com/>`_, snakemake requires `singularity <https://sylabs.io/docs/>`_.
 This is used to retrieve tools that are not available on conda as of now.
@@ -120,7 +120,7 @@ We recommend retrieving both the genome and the annotation files for your organi
 
 .. warning:: if you use custom annotation files, ensure that you adhere to the gtf/gff standard. Wrongly formatted files are likely to cause problems with downstream tools.
 
-.. note:: For detailed information about downloading and unpacking these files, please refer to our :ref:`example-workflow <example-workflow:Example workflow>`.
+.. note:: For detailed information about downloading and unpacking these files, please refer to our :ref:`example-workflow <source/example-workflow:Example workflow>`.
 
 
 input .fastq files
@@ -129,7 +129,7 @@ input .fastq files
 These are the input files provided by the user.
 Both single end and paired end data is supported.
 
-.. note:: As most downstream tools do not support paired end data, we combine the paired end data into single end data using `flash2 <https://github.com/dstreett/FLASH2>`_ . For more information about how to use paired-end data please refer to the :ref:`workflow-configuration <workflow-configuration:Paired-end support>`.
+.. note:: As most downstream tools do not support paired end data, we combine the paired end data into single end data using `flash2 <https://github.com/dstreett/FLASH2>`_ . For more information about how to use paired-end data please refer to the :ref:`workflow-configuration <source/workflow-configuration:Paired-end support>`.
 .. note:: Please ensure that you compress your files in ``.gz`` format.
 
 Please ensure that you move all input ``.fastq.gz`` files into a folder called **fastq** (Located in your project folder):
@@ -194,7 +194,7 @@ As seen in the ``samples.tsv`` template:
 | RNA       |  B        | 2         | fastq/RNA-B-2.fastq.gz  |
 +-----------+-----------+-----------+-------------------------+
 
-.. note:: This is just an example, please refer to our :ref:`example-workflow <example-workflow:Example workflow>` for another example.
+.. note:: This is just an example, please refer to our :ref:`example-workflow <source/example-workflow:Example workflow>` for another example.
 
 cluster.yaml
 ************
@@ -211,7 +211,7 @@ Output files
 In the following tables all important output files of the workflow are listed.
 
 .. note:: Files create as intermediate steps of the workflow are omitted from this list. (e.g. ``.bam`` files)
-.. note:: For more details about the output files, please refer to the :ref:`analysis results <analysis-results:Analysis result files>`.
+.. note:: For more details about the output files, please refer to the :ref:`analysis results <source/analysis-results:Analysis result files>`.
 
 Single-file Output
 ******************
@@ -322,7 +322,7 @@ In order to aggregate the final results into a single folder structure and recei
 Example-workflow
 ================
 
-A detailed step by step tutorial is available at: :ref:`example-workflow <example-workflow:Example workflow>`.
+A detailed step by step tutorial is available at: :ref:`example-workflow <source/example-workflow:Example workflow>`.
 
 References
 ==========

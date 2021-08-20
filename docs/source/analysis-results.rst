@@ -71,7 +71,7 @@ An annotation file in ``.gff3`` format containing all predictions of ``reparatio
 predictions_deepribo.xlsx
 *************************
 
-.. note:: These files are only available when activating DeepRibo predictions in the ``config.yaml``. (see :ref:`workflow-configuration <source/workflow-configuration:workflow-configuration`>)
+.. note:: These files are only available when activating DeepRibo predictions in the ``config.yaml``. (see :ref:`workflow-configuration <source/workflow-configuration:Default workflow`>)
 
 This file contains all ``DeepRibo`` ORF predictions.
 
@@ -128,7 +128,7 @@ This file contains all ``DeepRibo`` ORF predictions.
 predictions_deepribo.gff
 ************************
 
-.. note:: These files are only available when activating DeepRibo predictions in the ``config.yaml``. (see :ref:`workflow-configuration <source/workflow-configuration:Workflow configuration`>)
+.. note:: These files are only available when activating DeepRibo predictions in the ``config.yaml``. (see :ref:`workflow-configuration <source/workflow-configuration:Default workflow`>)
 
 An annotation file in ``.gff3`` format containing all predictions of *DeepRibo* for visualization in a genome browser.
 
