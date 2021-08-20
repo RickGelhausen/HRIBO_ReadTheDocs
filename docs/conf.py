@@ -24,9 +24,9 @@ copyright = '2020, Rick Gelhausen'
 author = 'Rick Gelhausen'
 
 # The short X.Y version
-version = '1.4'
+version = '1.5'
 # The full version, including alpha/beta/rc tags
-release = '1.4.4'
+release = '1.5.1'
 
 
 # -- General configuration ---------------------------------------------------
