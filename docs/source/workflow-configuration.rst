@@ -42,7 +42,7 @@ A possible ``sample.tsv`` would look as follows:
 | RNA       |  B        | 2         | fastq/RNA-B-2.fastq.gz  |
 +-----------+-----------+-----------+-------------------------+
 
-.. note:: By default only reparation predictions are used. The reason for this is that DeepRibo is not available on conda as of now and therfore requires additional tweaks to run it. The process is explained :ref:`below <workflow-configuration:Activating deepribo>`.
+.. note:: By default only reparation predictions are used. The reason for this is that DeepRibo is not available on conda as of now and therfore requires additional tweaks to run it. The process is explained :ref:`below <source/workflow-configuration:Activating deepribo>`.
 
 No differential expression
 ==========================
@@ -81,7 +81,7 @@ Activating DeepRibo predictions will give you a different file with ORF predicti
 By experience, the top DeepRibo results tend to be better than those of reparation.
 For archea, where reparation performs very poorly, DeepRibo is the preferred option.
 
-.. note:: In order to use DeepRibo, the tool ``singularity`` is required. Please refer to the :ref:`overview <overview:Tools>` for details on the installation.
+.. note:: In order to use DeepRibo, the tool ``singularity`` is required. Please refer to the :ref:`overview <source/overview:Tools>` for details on the installation.
 
 Once you have installed ``singularity`` turn on DeepRibo in the ``config.yaml``:
 

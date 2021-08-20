@@ -71,7 +71,7 @@ An annotation file in ``.gff3`` format containing all predictions of ``reparatio
 predictions_deepribo.xlsx
 *************************
 
-.. note:: These files are only available when activating DeepRibo predictions in the ``config.yaml``. (see :ref:`workflow-configuration <workflow-configuration:workflow-configuration`>)
+.. note:: These files are only available when activating DeepRibo predictions in the ``config.yaml``. (see :ref:`workflow-configuration <source/workflow-configuration:workflow-configuration`>)
 
 This file contains all ``DeepRibo`` ORF predictions.
 
@@ -128,7 +128,7 @@ This file contains all ``DeepRibo`` ORF predictions.
 predictions_deepribo.gff
 ************************
 
-.. note:: These files are only available when activating DeepRibo predictions in the ``config.yaml``. (see :ref:`workflow-configuration <workflow-configuration:workflow-configuration`>)
+.. note:: These files are only available when activating DeepRibo predictions in the ``config.yaml``. (see :ref:`workflow-configuration <source/workflow-configuration:Workflow configuration`>)
 
 An annotation file in ``.gff3`` format containing all predictions of *DeepRibo* for visualization in a genome browser.
 
@@ -384,7 +384,7 @@ darker color)
 Metagene Profiling Analysis
 ===========================
 
-Please refer to the :ref:`metagene profiling <metagene-profiling:Metagene profiling>` page for further details.
+Please refer to the :ref:`metagene profiling <source/metagene-profiling:Metagene profiling>` page for further details.
 
 <accession>_Z.Y_profiling.xlsx/tsv
 **********************************
@@ -416,7 +416,7 @@ overview.xlsx
 *************
 
 An overview table containing all information gathered from the prediction tools and differential expression analysis.
-The contents of this table change depending on which :ref:`options <workflow-configuration:Workflow configuration>` are set.
+The contents of this table change depending on which :ref:`options <source/workflow-configuration:Workflow configuration>` are set.
 The overview table for the default workflow will contain annotation. reparation, deepribo and differential expression output.
 
 +-------------------------------------------+-----------------------------------------------------------------------------+

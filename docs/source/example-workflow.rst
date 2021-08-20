@@ -7,8 +7,8 @@ Example workflow
 The retrieval of input files and running the workflow locally and on a server cluster via a queuing system is demonstrated using an example with data available from `NCBI  <https://www.ncbi.nlm.nih.gov/>`_.
 This dataset is available under the accession number ``PRJNA379630``.
 
-.. note:: In this tutorial, we will show the basic functionalities of our workflow, for information about additional options please refer to: :ref:`workflow-configuration <workflow-configuration:Default workflow>`.
-.. note:: Ensure that you have ``miniconda3`` installed and a ``snakemake environment`` set-up. Please refer to the :ref:`overview <overview:Tools>` for details on the installation.
+.. note:: In this tutorial, we will show the basic functionalities of our workflow, for information about additional options please refer to: :ref:`workflow-configuration <source/workflow-configuration:Default workflow>`.
+.. note:: Ensure that you have ``miniconda3`` installed and a ``snakemake environment`` set-up. Please refer to the :ref:`overview <source/overview:Tools>` for details on the installation.
 
 Setup
 =====
@@ -258,7 +258,7 @@ In order to do this, we provided a script in the scripts folder of HRIBO called 
 
 Running this will create a folder where all the results are collected from the workflows final output, it will additionally create compressed file in ``.zip`` format.
 
-.. note:: A detailed explanation of the result files can be found in the :ref:`result section <analysis-results:ORF Predictions>`.
+.. note:: A detailed explanation of the result files can be found in the :ref:`result section <source/analysis-results:ORF Predictions>`.
 
 .. note:: The final result of this example workflow, can be found `here <ftp://biftp.informatik.uni-freiburg.de/pub/HRIBO/example_report_HRIBO1.5.1_28-07-21.zip>`_ .
 .. warning:: As many browsers stopped the support for viewing ftp files, you might have to use a ftp viewer instead.
