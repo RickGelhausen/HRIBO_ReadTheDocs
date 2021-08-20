@@ -14,9 +14,9 @@ In order to explain what customizations are possible, we will first have a look 
 
 Default:
 
-* Single-end fastq files
-* Differential expression analysis: on
-* DeepRibo predictions: off
++ Single-end fastq files
++ Differential expression analysis: on
++ DeepRibo predictions: off
 
 For the default workflow, we expect the ``.fastq`` files to be in single-end format.
 Additionally, we activated differential expression by default. Differential expression requires multiple conditions and RIBO and RNA samples.
@@ -177,7 +177,7 @@ In order to use paired-end data, simply replace the ``Snakefile`` with the ``Sna
 This will now require a special ``samples_pairedend.tsv``, which is also available in the HRIBO templates folder.
 
 +-----------+-----------+-----------+----------------------------+----------------------------+
-|   method  | condition | replicate | fastqFile1                 | fastqFile2                 |
+|   method  | condition | replicate | fastqFile                  | fastqFile2                 |
 +===========+===========+===========+============================+============================+
 | RIBO      |  A        | 1         | fastq/RIBO-A-1_R1.fastq.gz | fastq/RIBO-A-1_R2.fastq.gz |
 +-----------+-----------+-----------+----------------------------+----------------------------+
