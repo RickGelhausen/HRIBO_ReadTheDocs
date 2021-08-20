@@ -1,5 +1,10 @@
 -*-change-log-*-
 
+1.5.1 Rick Gelhausen <gelhausr@informatik.uni-freiburg.de> 20. August 2021
+        * restructured repository
+        * added an extra page for metagene profiling
+        * updated to HRIBO 1.5.1
+
 1.4.4 Rick Gelhausen <gelhausr@informatik.uni-freiburg.de> 18. September 2020
         * added runtime and updated to HRIBO 1.4.4 
 
