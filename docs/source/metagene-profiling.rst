@@ -139,5 +139,5 @@ This shows a case with a strong peak at around -15nt, while there are multiple s
 These kinds of peaks can have multiple reasons. Reasons we observed so far were:
 
 * tRNA or rRNA that was not filtered out correctly
-* singular genes that have a large number of attributed (due to a biological reason or a faulty sequencing)
+* singular genes that have a large number of reads attributed to them (due to a biological reason or a faulty sequencing)
 
