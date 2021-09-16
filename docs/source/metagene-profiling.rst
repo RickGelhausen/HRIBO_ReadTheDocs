@@ -4,7 +4,7 @@
 Metagene profiling
 ##################
 
-.. note:: Be aware that we are still actively working on our metagene profiling scripts. The main functionally is available, but the plotting scripts may be subject to further changes. Result tabels in ``.tsv`` and ``.xlsx`` format are provided if you prefer using your own plotting scripts.
+.. note:: Be aware that we are still actively working on our metagene profiling scripts. The main functionality is available, but the plotting scripts may be subject to further changes. Result tables in ``.tsv`` and ``.xlsx`` format are provided if you prefer using your own plotting scripts.
 
 In this section, we describe the metagene profiling data provided by ``HRIBO``.
 
