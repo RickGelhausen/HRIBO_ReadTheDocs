@@ -24,8 +24,8 @@ We then download the latest version of HRIBO into the newly created project fold
 
 .. code-block:: bash
 
-   wget https://github.com/RickGelhausen/HRIBO/archive/1.5.1.tar.gz
-   tar -xzf 1.5.1.tar.gz; mv HRIBO-1.5.1 HRIBO; rm 1.5.1.tar.gz;
+   wget https://github.com/RickGelhausen/HRIBO/archive/1.6.0.tar.gz
+   tar -xzf 1.6.0.tar.gz; mv HRIBO-1.6.0 HRIBO; rm 1.6.0.tar.gz;
 
 Retrieve and prepare input files
 ================================
@@ -146,8 +146,9 @@ This file contains the following variables:
 * **adapter:** Specify the adapter sequence to be used. In our case this would be *AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC*
 * **samples:** The location of the sample sheet created in the previous step.
 * **alternativestartcodons:** Specify a comma separated list of alternative start codons.
-* **differentialexpression:** Specify whether you want to activate differential expresssion analysis. ("yes/no")
-* **deepribo:** Specify whether you want to activate deepribo ORF prediction. ("yes/no")
+* **differentialexpression:** Specify whether you want to activate differential expresssion analysis. ("on/off")
+* **contrasts:** Specify a comma seperated list of condition contrasts for differential expression analysis (e.g. "A-B,A-C,B-C"). If no contrast are given and differentialexpression is set to on, the contrasts will automatically be infered by sorted condition names.
+* **deepribo:** Specify whether you want to activate deepribo ORF prediction. ("on/off")
 
 In our example, this will lead to the following ``config.yaml`` file:
 
@@ -158,6 +159,8 @@ In our example, this will lead to the following ``config.yaml`` file:
     alternativestartcodons: "GTG,TTG"
     # Differential expression: on / off
     differentialexpression: "off"
+    # comma-seperated list of condition contrasts
+    contrasts: ""
     # Deepribo predictions: on / off
     deepribo: "off"
 
@@ -254,13 +257,13 @@ In order to do this, we provided a script in the scripts folder of HRIBO called 
 
 .. code-block:: bash
 
-    bash HRIBO/scripts/makereport.sh <reportname>
+    bash HRIBO/scripts/makereport.sh <reportname_prefix>
 
-Running this will create a folder where all the results are collected from the workflows final output, it will additionally create compressed file in ``.zip`` format.
+Running this command will create a folder where all the results are collected from the workflows final output, it will additionally create compressed file in ``.zip`` format.
 
 .. note:: A detailed explanation of the result files can be found in the :ref:`result section <source/analysis-results:ORF Predictions>`.
 
-.. note:: The final result of this example workflow, can be found `here <ftp://biftp.informatik.uni-freiburg.de/pub/HRIBO/example_report_HRIBO1.5.1_28-07-21.zip>`_ .
+.. note:: The final result of this example workflow, can be found `here <ftp://biftp.informatik.uni-freiburg.de/pub/HRIBO/example_report_HRIBO1.6.0_22-09-23.zip>`_ .
 .. warning:: As many browsers stopped the support for viewing ftp files, you might have to use a ftp viewer instead.
 
 Runtime

@@ -65,7 +65,7 @@ This file contains all ``reparation`` ORF predictions.
 predictions_reparation.gff
 **************************
 
-An annotation file in ``.gff3`` format containing all predictions of ``reparation`` for visualization in a genome browser.
+An annotation file in ``.gff`` format containing all predictions of ``reparation`` for visualization in a genome browser.
 
 
 predictions_deepribo.xlsx

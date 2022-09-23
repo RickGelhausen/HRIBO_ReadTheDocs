@@ -4,7 +4,7 @@
 Extended workflow
 #################
 
-.. warning:: This tutorial shows a full run of the workflow with all options activated. For testing, we ran this example on a TORQUE cluster system and locally on a large cloud instance. The data is likely too large for running locally on an average laptop.
+.. warning:: This tutorial shows a full run of the workflow with all options activated. For testing, we ran this example locally on a large cloud instance. The data is likely too large for running locally on an average laptop.
 
 We show a run of the full workflow, including deepribo predictions and differential expression analysis, on data available from `NCBI  <https://www.ncbi.nlm.nih.gov/>`_.
 For this purpose, we use a ``salmonella enterica`` dataset available under the accession number ``PRJNA421559`` :cite:`salmonellaenterica`.
@@ -25,8 +25,8 @@ We then download the latest version of HRIBO into the newly created project fold
 
 .. code-block:: bash
 
-   wget https://github.com/RickGelhausen/HRIBO/archive/1.5.1.tar.gz
-   tar -xzf 1.5.1.tar.gz; mv HRIBO-1.5.1 HRIBO; rm 1.5.1.tar.gz;
+   wget https://github.com/RickGelhausen/HRIBO/archive/1.6.0.tar.gz
+   tar -xzf 1.6.0.tar.gz; mv HRIBO-1.6.0 HRIBO; rm 1.6.0.tar.gz;
 
 Retrieve and prepare input files
 ================================
@@ -167,8 +167,9 @@ This file contains the following variables:
 * **adapter:** Specify the adapter sequence to be used. In our case this would be *CTGTAGGCACCATCAAT*
 * **samples:** The location of the sample sheet created in the previous step.
 * **alternativestartcodons:** Specify a comma separated list of alternative start codons.
-* **differentialexpression:** Specify whether you want to activate differential expresssion analysis. ("yes/no")
-* **deepribo:** Specify whether you want to activate deepribo ORF prediction. ("yes/no")
+* **differentialexpression:** Specify whether you want to activate differential expresssion analysis. ("on/off")
+* **contrasts:** Specify a comma seperated list of condition contrasts for differential expression analysis (e.g. "A-B,A-C,B-C"). If no contrast are given and differentialexpression is set to on, the contrasts will automatically be infered by sorted condition names.
+* **deepribo:** Specify whether you want to activate deepribo ORF prediction. ("on/off")
 
 In our example, this will lead to the following ``config.yaml`` file:
 
@@ -179,6 +180,8 @@ In our example, this will lead to the following ``config.yaml`` file:
     alternativestartcodons: "GTG,TTG"
     # Differential expression: on / off
     differentialexpression: "on"
+    # comma-seperated list of condition contrasts
+    contrasts: ""
     # Deepribo predictions: on / off
     deepribo: "on"
 
@@ -284,7 +287,7 @@ The ``<reportname>`` will be extended by ``report_HRIBOX.X.X_dd-mm-yy``.
 
 .. note:: A detailed explanation of the result files can be found in the :ref:`result section <source/analysis-results:ORF Predictions>`.
 
-.. note:: The final result of this example workflow, can be found `here <ftp://biftp.informatik.uni-freiburg.de/pub/HRIBO/extended_report_HRIBO1.5.1_28-07-21.zip>`_ .
+.. note:: The final result of this example workflow, can be found `here <ftp://biftp.informatik.uni-freiburg.de/pub/HRIBO/extended_report_HRIBO1.6.0_22-09-22.zip>`_ .
 .. warning:: As many browsers stopped the support for viewing ftp files, you might have to use a ftp viewer instead.
 
 Runtime

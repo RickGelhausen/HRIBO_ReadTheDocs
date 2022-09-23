@@ -9,14 +9,6 @@ HRIBO is a workflow for the analysis of prokaryotic Ribo-Seq data. HRIBO is avai
 
 .. note:: For a detailed step by step tutorial on how to use this workflow on a sample dataset, please refer to our :ref:`example-workflow <source/example-workflow:Example workflow>`.
 
-Program flowchart
-=================
-
-The following flowchart describes the processing steps of the workflow and how they are connected:
-
-.. image:: images/workflow.png
-    :scale: 60%
-    :align: center
 
 Requirements
 ============
@@ -38,7 +30,7 @@ After downloading the ``miniconda3`` version suiting your linux system, execute 
 snakemake
 *********
 
-.. note:: HRIBO requires ``snakemake (version>=5.5.1)``
+.. note:: HRIBO requires ``snakemake (version>=6.4.1)``
 
 The newest version of ``snakemake`` as well as the ``squashfs-tools`` required for ``singularity`` can be downloaded via conda using the following command:
 
@@ -87,8 +79,8 @@ Now, download and unpack the latest version of ``HRIBO`` by entering the followi
 
 .. code-block:: bash
 
-    wget https://github.com/RickGelhausen/HRIBO/archive/1.5.1.tar.gz
-    tar -xzf 1.5.1.tar.gz; mv HRIBO-1.5.1 HRIBO; rm 1.5.1.tar.gz;
+    wget https://github.com/RickGelhausen/HRIBO/archive/1.6.0.tar.gz
+    tar -xzf 1.6.0.tar.gz; mv HRIBO-1.6.0 HRIBO; rm 1.6.0.tar.gz;
 
 ``HRIBO`` is now in a subdirectory of your project directory.
 
@@ -157,8 +149,8 @@ Copy the templates of the sample sheet and the configuration file into the ``HRI
 
 Customize the ``config.yaml`` using your preferred editor. It contains the following variables:
 
-•	**adapter:** specify the adapter sequence to be used.
-•	**samples:** the location of the samples sheet created in the previous step.
+• **adapter:** specify the adapter sequence to be used.
+• **samples:** the location of the samples sheet created in the previous step.
 • **alternativestartcodons:** specify a comma separated list of alternative start codons.
 • **differentialexpression:** specify whether you want to activate differential expresssion analysis. ("yes/no")
 • **deepribo:** specify whether you want to activate deepribo ORF prediction. ("yes/no")
@@ -285,11 +277,11 @@ The tools used in our workflow are listed below, with links to their respective 
 +-------------------------------------------------------------------------+-------------+---------------------------------------------------------------------+
 | Tool                                                                    | Version     | Special parameters used                                             |
 +=========================================================================+=============+=====================================================================+
-| `cutadapt <https://cutadapt.readthedocs.io/en/stable/>`_                | 2.1         | Adapter removal and quality trimming                                |
+| `cutadapt <https://cutadapt.readthedocs.io/en/stable/>`_                | 4.1         | Adapter removal and quality trimming                                |
 +-------------------------------------------------------------------------+-------------+---------------------------------------------------------------------+
 | `fastQC <https://www.bioinformatics.babraham.ac.uk/projects/fastqc/>`_  | 0.11.9      | Quality control                                                     |
 +-------------------------------------------------------------------------+-------------+---------------------------------------------------------------------+
-| `multiQC <https://multiqc.info/>`_                                      | 1.8         | Quality control report                                              |
+| `multiQC <https://multiqc.info/>`_                                      | 1.13        | Quality control report                                              |
 +-------------------------------------------------------------------------+-------------+---------------------------------------------------------------------+
 | `segemehl <https://www.bioinf.uni-leipzig.de/Software/segemehl/>`_      | 0.3.4       | Mapping of reads                                                    |
 +-------------------------------------------------------------------------+-------------+---------------------------------------------------------------------+
@@ -297,7 +289,7 @@ The tools used in our workflow are listed below, with links to their respective 
 +-------------------------------------------------------------------------+-------------+---------------------------------------------------------------------+
 | `cufflinks <http://cole-trapnell-lab.github.io/cufflinks/>`_            | 2.2.1       | Used to convert gff to gtf                                          |
 +-------------------------------------------------------------------------+-------------+---------------------------------------------------------------------+
-| `bedtools <https://bedtools.readthedocs.io/en/latest/>`_                | 2.27.1      | Collection of useful processing tools (e.g. read counting etc...)   |
+| `bedtools <https://bedtools.readthedocs.io/en/latest/>`_                | 2.30.0      | Collection of useful processing tools (e.g. read counting etc...)   |
 +-------------------------------------------------------------------------+-------------+---------------------------------------------------------------------+
 | `reparation_blast <https://github.com/RickGelhausen/REPARATION_blast>`_ | 1.0.9       | Prediction of novel Open Reading frames                             |
 +-------------------------------------------------------------------------+-------------+---------------------------------------------------------------------+
