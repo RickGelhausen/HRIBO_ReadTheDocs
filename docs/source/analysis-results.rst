@@ -331,27 +331,22 @@ These are all available with the following normalization methods:
 Differential Expression
 =======================
 
-Files related to the differential expression analysis.
+Files related to the differential expression analysis. All output tables contain multiple pre-filtered sheets using padj cutoff (0.05) and showing up or downregulated genes.
+
+deltate/<contrast>_sorted.xlsx
+******************************
+
+Table containing all differential expression results from *deltate*.
 
 riborex/<contrast>_sorted.xlsx
 ******************************
 
 Table containing all differential expression results from *riborex*.
 
-riborex/<contrast>_significant.xlsx
-***********************************
-
-Table containing significant differential expression results from *riborex* (pvalue < 0.05).
-
 xtail/<contrast>_sorted.xlsx
 ****************************
 
 Table containing all differential expression results from *xtail*.
-
-xtail/<contrast>_significant.xlsx
-*********************************
-
-Table containing significant differential expression results from *xtail* (pvalue < 0.05).
 
 xtail/r_<contrast>.pdf
 **********************
@@ -381,23 +376,90 @@ darker color)
 * **green:** for genes changing homodirectionally at both level.
 * **yellow:** for genes changing antidirectionally at two levels.
 
+output tables
+*************
+
+All output tables were transfered into excel format for easier handling. Additional information was added.
+
++---------------------+-----------------------------------------------------------------------------------------+
+| Column name         | Description                                                                             |
++=====================+=========================================================================================+
+| Genome              | The genome accession identifier.                                                        |
++---------------------+-----------------------------------------------------------------------------------------+
+| Start               | The start position of the analysed feature.                                             |
++---------------------+-----------------------------------------------------------------------------------------+
+| Stop                | The stop position of the analysed feature.                                              |
++---------------------+-----------------------------------------------------------------------------------------+
+| Strand              | The strand orientation of the analysed feature. (+/-)                                   |
++---------------------+-----------------------------------------------------------------------------------------+
+| Locus_tag           | The locus tag of the analysed feature. (if available)                                   |
++---------------------+-----------------------------------------------------------------------------------------+
+| Old_locus_tag       | The old locus tag of a gene (if available in the annotation)                            |
++---------------------+-----------------------------------------------------------------------------------------+
+| Identifier          | Unique identifier <Genome>:<start>-<stop>:<strand>                                      |
++---------------------+-----------------------------------------------------------------------------------------+
+| Name                | The name of the annotated feature. (if available)                                       |
++---------------------+-----------------------------------------------------------------------------------------+
+| RIBO_baseMean       | The avarage of normalized count values, divided by size factors for all (RIBO) samples. |
++---------------------+-----------------------------------------------------------------------------------------+
+| RIBO_log2FoldChange | The log2 fold change between the conditions of the different RIBO samples               |
++---------------------+-----------------------------------------------------------------------------------------+
+| RIBO_lfcSE          | The standard error value of the log2FC for the RIBO sample.                             |
++---------------------+-----------------------------------------------------------------------------------------+
+| RIBO_pvalue         | The unadjusted pvalue for the RIBO sample.                                              |
++---------------------+-----------------------------------------------------------------------------------------+
+| RIBO_padj           | The adjusted pvalue (adjusted for multiple testing) for the RIBO sample.                |
++---------------------+-----------------------------------------------------------------------------------------+
+| RNA_baseMean        | The avarage of normalized count values, divided by size factors for all (RNA) samples.  |
++---------------------+-----------------------------------------------------------------------------------------+
+| RNA_log2FoldChange  | The log2 fold change between the conditions of the different RNA samples                |
++---------------------+-----------------------------------------------------------------------------------------+
+| RNA_lfcSE           | The standard error value of the log2FC for the RNA sample.                              |
++---------------------+-----------------------------------------------------------------------------------------+
+| RNA_pvalue          | The unadjusted pvalue for the RNA sample.                                               |
++---------------------+-----------------------------------------------------------------------------------------+
+| RNA_padj            | The adjusted pvalue (adjusted for multiple testing) for the RNA sample.                 |
++---------------------+-----------------------------------------------------------------------------------------+
+| TE_baseMean         | The avarage of normalized count values, divided by size factors for all (TE) samples.   |
++---------------------+-----------------------------------------------------------------------------------------+
+| TE_log2FoldChange   | The log2 fold change between the conditions of the different TE samples                 |
++---------------------+-----------------------------------------------------------------------------------------+
+| TE_lfcSE            | The standard error value of the log2FC for the TE sample.                               |
++---------------------+-----------------------------------------------------------------------------------------+
+| TE_pvalue           | The unadjusted pvalue for the TE sample.                                                |
++---------------------+-----------------------------------------------------------------------------------------+
+| TE_padj             | The adjusted pvalue (adjusted for multiple testing) for the TE sample.                  |
++---------------------+-----------------------------------------------------------------------------------------+
+| Length              | The length of the analysed feature.                                                     |
++---------------------+-----------------------------------------------------------------------------------------+
+| Codon_count         | The number of codons in the analysed feature.                                           |
++---------------------+-----------------------------------------------------------------------------------------+
+| Start_codon         | The start codon of the analysed feature.                                                |
++---------------------+-----------------------------------------------------------------------------------------+
+| Stop_codon          | The stop codon of the analysed feature.                                                 |
++---------------------+-----------------------------------------------------------------------------------------+
+| 15nt_upstream       | The 15nt upstream of the start codon.                                                   |
++---------------------+-----------------------------------------------------------------------------------------+
+| Nucleotide_seq      | The nucleotide sequence of the analysed feature.                                        |
++---------------------+-----------------------------------------------------------------------------------------+
+| Aminoacid_seq       | The amino acid sequence of the analysed feature.                                        |
++---------------------+-----------------------------------------------------------------------------------------+
+
+.. note:: RIBO and RNA columns are only available for deltaTE.
+
+Each table has several sheets:
+
+* **all:** contains all entries
+* **up:** contains all entries with a log2FC > 1 that are considered significant (padj < 0.05).
+* **down** contains all entries with a log2FC < -1 that are considered significant (padj < 0.05).
+
+.. note:: There are slight difference between the output tables of the different tools.
+
+
 Metagene Profiling Analysis
 ===========================
 
 Please refer to the :ref:`metagene profiling <source/metagene-profiling:Metagene profiling>` page for further details.
-
-<accession>_Z.Y_profiling.xlsx/tsv
-**********************************
-
-The table shows for a range of specific read lengths, how many reads on average over all start codons
-in the genome have been mapped per nucleotide. The nucleotides range from 100 nucleotides upstream
-of the start codon to 399 nucleotides downstream. The read counts are either raw or normalized by average read count per nucleotide, for the range around the start codon. Moreover different single nucleotide mapping variants are considered,
-where only the 5', 3' or centered region of the read is counted.
-
-
-<accession>_Z.Y_profiling.pdf
-*****************************
-
 
 Additional output
 =================

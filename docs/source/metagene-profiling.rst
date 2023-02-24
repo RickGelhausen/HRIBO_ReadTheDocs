@@ -11,12 +11,12 @@ In this section, we describe the metagene profiling data provided by ``HRIBO``.
 What is metagene profiling?
 ###########################
 
-Metagene profiling analyses the distribution of mapped reads around annotated start codons (for RIBOseq, RNAseq, TIS data ) or annotated stop codons (for TTS data).
+Metagene profiling analyses the distribution of mapped reads around annotated start codons and stop codons.
 
 For Ribo-seq it is expected that the ribosome protects a specific range of
 read lengths, often typical for the investigated group of organisms, from digestion
 by nuclease. These reads should show a typical peak around the start codon which corresponds
-to the high frequency that ribosomes are bound there. 
+to the high frequency that ribosomes are bound there.
 
 We output and plot the metagene profiling for
 each individual fragment length as a quality control for the Ribo-seq protocol. If the distribution
@@ -26,26 +26,27 @@ for all read lengths is untypical, arresting the ribosomes failed.
 Metagene output
 ###############
 
-Depending on the data, we provide either TIS or TTS profiling (or both). 
-For TIS profiling, which is used for RIBOseq, RNAseq and TISseq, the distribution of mapped reads around annotated start codons is analysed.
-For TTS profiling, which is used for TTSseq, the distribution of mapped reads around annotated stop codons is analysed.
+We provide the possibility to analyse the metagene profiling for different coverage mapping methods.
+For each sample, both the start and stop codon profiling will be performed and plotted.
 
-Furthermore, we provide a normalized (norm) and unnormalized (raw) version for each sample analysed.
+Furthermore, we provide normalized (cpm, window) and unnormalized (raw) version for each sample analysed.
 The normalized version takes into account the total value for each position, as well as the current window length.
 
 The metagene profiling is done for each sample and each coverage mapping method.
 
 * **global:** full read is mapped
-* **centered:** region around the center is mapped 
+* **centered:** region around the center is mapped
 * **threeprime:** region around the three prime end is mapped
 * **fiveprime:** region around the five prime end is mapped
 
-For each of these sample/mapping combinations, result tables in ``.xlsx`` and ``.tsv`` format are provided, as well as a plot.
-Moreover, all files are split into forward, reverse and combined, to show the behaviour around start codons on each strand.
+For each of these sample/mapping combinations, result tables in excel ``.xlsx`` format are provided, as well as an interactive plot or several static plots.
 
+.. note:: New filtering methods were added. For details check the :ref:`options <source/workflow-configuration:Workflow configuration>` section.
 
 Example output
 ##############
+
+.. note:: This section contains old output figures, but these are still valid as the overall method did not change.
 
 In the following, we show a few example figure of how the results can look like.
 
@@ -57,7 +58,7 @@ This example shows a very sharp peak around +17nt. (mapping: threeprime)
 +-------+-------+-------+-------+-------+-------+-------------+
 | 30    | 31    | 32    | 33    | 34    | sum   | coordinates |
 +=======+=======+=======+=======+=======+=======+=============+
-| ...   | ...   | ...   | ...   | ...   | ...   | ...         | 
+| ...   | ...   | ...   | ...   | ...   | ...   | ...         |
 +-------+-------+-------+-------+-------+-------+-------------+
 | 1321  | 1242  | 1269  | 773   | 92    | 4697  | 11          |
 +-------+-------+-------+-------+-------+-------+-------------+
@@ -71,13 +72,13 @@ This example shows a very sharp peak around +17nt. (mapping: threeprime)
 +-------+-------+-------+-------+-------+-------+-------------+
 | 17797 | 27399 | 28398 | 13322 | 1245  | 88161 | 16          |
 +-------+-------+-------+-------+-------+-------+-------------+
-| 7686  | 22687 | 62042 | 25575 | 5427  | 123417| 17          | 
+| 7686  | 22687 | 62042 | 25575 | 5427  | 123417| 17          |
 +-------+-------+-------+-------+-------+-------+-------------+
 | 1272  | 5200  | 11156 | 11202 | 1382  | 30212 | 18          |
 +-------+-------+-------+-------+-------+-------+-------------+
 | 1584  | 3520  | 10027 | 22530 | 5325  | 42986 | 19          |
 +-------+-------+-------+-------+-------+-------+-------------+
-| 792   | 2166  | 2636  | 5044  | 1969  | 12607 | 20          | 
+| 792   | 2166  | 2636  | 5044  | 1969  | 12607 | 20          |
 +-------+-------+-------+-------+-------+-------+-------------+
 | 176   | 568   | 1082  | 931   | 307   | 3064  | 21          |
 +-------+-------+-------+-------+-------+-------+-------------+
@@ -99,7 +100,7 @@ In this example the peak is less sharp, but it is still clearly distinguishable 
 +-------+-------+-------+-------+-------+-------+-------------+
 | 26    | 27    | 28    | 29    | 30    | sum   | coordinates |
 +=======+=======+=======+=======+=======+=======+=============+
-| ...   | ...   | ...   | ...   | ...   | ...   | ...         | 
+| ...   | ...   | ...   | ...   | ...   | ...   | ...         |
 +-------+-------+-------+-------+-------+-------+-------------+
 | 294   | 308   | 198   | 297   | 321   | 1418  | 9           |
 +-------+-------+-------+-------+-------+-------+-------------+
@@ -107,13 +108,13 @@ In this example the peak is less sharp, but it is still clearly distinguishable 
 +-------+-------+-------+-------+-------+-------+-------------+
 | 217   | 236   | 248   | 164   | 162   | 1027  | 11          |
 +-------+-------+-------+-------+-------+-------+-------------+
-| 2545  | 804   | 976   | 1379  | 548   | 6252  | 12          | 
+| 2545  | 804   | 976   | 1379  | 548   | 6252  | 12          |
 +-------+-------+-------+-------+-------+-------+-------------+
 | 8593  | 10334 | 5286  | 4359  | 5519  | 34091 | 13          |
 +-------+-------+-------+-------+-------+-------+-------------+
 | 6120  | 7662  | 3238  | 2403  | 3590  | 23013 | 14          |
 +-------+-------+-------+-------+-------+-------+-------------+
-| 3416  | 4134  | 3807  | 2633  | 1643  | 15633 | 15          | 
+| 3416  | 4134  | 3807  | 2633  | 1643  | 15633 | 15          |
 +-------+-------+-------+-------+-------+-------+-------------+
 | 1311  | 4097  | 5079  | 5528  | 3020  | 19035 | 16          |
 +-------+-------+-------+-------+-------+-------+-------------+

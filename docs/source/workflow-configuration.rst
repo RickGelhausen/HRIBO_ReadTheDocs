@@ -4,173 +4,196 @@
 Workflow configuration
 ######################
 
-This workflow allows different customization to be able to handle different types of input data.
+HRIBO allows different customization to be able to handle different types of input data and customize the analysis.
 On this page we explain the different options that can be set to easily customize the workflow.
+
 
 Default workflow
 ================
 
-In order to explain what customizations are possible, we will first have a look at the default workflow.
+We provide a default ``config.yaml`` with generally well-defined default values in the template folder of the HRIBO GitHub repository.
 
-Default:
 
-+ Single-end fastq files
-+ Differential expression analysis: on
-+ DeepRibo predictions: off
+Biology Settings
+================
 
-For the default workflow, we expect the ``.fastq`` files to be in single-end format.
-Additionally, we activated differential expression by default. Differential expression requires multiple conditions and RIBO and RNA samples.
-A possible ``sample.tsv`` would look as follows:
+This section contains general settings for the workflow.
 
-+-----------+-----------+-----------+-------------------------+
-|   method  | condition | replicate | fastqFile               |
-+===========+===========+===========+=========================+
-| RIBO      |  A        | 1         | fastq/RIBO-A-1.fastq.gz |
-+-----------+-----------+-----------+-------------------------+
-| RIBO      |  A        | 2         | fastq/RIBO-A-2.fastq.gz |
-+-----------+-----------+-----------+-------------------------+
-| RIBO      |  B        | 1         | fastq/RIBO-B-1.fastq.gz |
-+-----------+-----------+-----------+-------------------------+
-| RIBO      |  B        | 2         | fastq/RIBO-B-2.fastq.gz |
-+-----------+-----------+-----------+-------------------------+
-| RNA       |  A        | 1         | fastq/RNA-A-1.fastq.gz  |
-+-----------+-----------+-----------+-------------------------+
-| RNA       |  A        | 2         | fastq/RNA-A-2.fastq.gz  |
-+-----------+-----------+-----------+-------------------------+
-| RNA       |  B        | 1         | fastq/RNA-B-1.fastq.gz  |
-+-----------+-----------+-----------+-------------------------+
-| RNA       |  B        | 2         | fastq/RNA-B-2.fastq.gz  |
-+-----------+-----------+-----------+-------------------------+
-
-.. note:: By default only reparation predictions are used. The reason for this is that DeepRibo is not available on conda as of now and therfore requires additional tweaks to run it. The process is explained :ref:`below <source/workflow-configuration:Activating deepribo>`.
-
-No differential expression
-==========================
-
-If you do not have multiple conditions and differential expression is activated, you will receive an error message.
-To deactivate differential expression, you have to edit the ``config.yaml`` file.
+adapter sequence
+****************
 
 .. code-block:: bash
 
     adapter: ""
+
+The adapter sequence that will be removed using ``cutadapt``. It is important to add it if you know that your data was not trimmed before.
+
+genome file
+***********
+
+.. code-block:: bash
+
+    genome: "genome.fa"
+
+The path to the genome file in fasta format. Only fasta format is supported. Make sure that the genome file has the same identifiers as the reference annotation file.
+
+annotation file
+***************
+
+.. code-block:: bash
+
+    annotation: "annotation.gff"
+
+The path to the annotation file in gff format. Only gff format is supported. Make sure that the annotation file has the same identifiers as the reference genome file.
+
+sample sheet
+************
+
+.. code-block:: bash
+
     samples: "HRIBO/samples.tsv"
-    alternativestartcodons: "GTG,TTG"
-    # Differential expression: on / off
-    differentialexpression: "off"
-    # Deepribo predictions: on / off
-    deepribo: "off"
 
-This will allow you the use of a sample.tsv like:
+The path to the sample sheet (example provided in the templates folder). The sample sheet describes the relation between the different samples used for the experiment.
 
-+-----------+-----------+-----------+-------------------------+
-|   method  | condition | replicate | fastqFile               |
-+===========+===========+===========+=========================+
-| RIBO      |  A        | 1         | fastq/RIBO-A-1.fastq.gz |
-+-----------+-----------+-----------+-------------------------+
-| RIBO      |  A        | 2         | fastq/RIBO-A-2.fastq.gz |
-+-----------+-----------+-----------+-------------------------+
-| RNA       |  A        | 1         | fastq/RNA-A-1.fastq.gz  |
-+-----------+-----------+-----------+-------------------------+
-| RNA       |  A        | 2         | fastq/RNA-A-2.fastq.gz  |
-+-----------+-----------+-----------+-------------------------+
+alternative start codons
+************************
 
-Activating DeepRibo
-===================
+.. code-block:: bash
+
+    alternativestartcodons: ["GTG","TTG"]
+
+A list of alternative start codons that will be used to predict ORFs. The default is ``["GTG","TTG"]``.
+
+
+Differential Expression Settings
+================================
+
+differentialexpression
+**********************
+
+.. code-block:: bash
+
+    differentialexpression: "on"
+
+This option allows you to turn on or off differential expression analysis. If you do not have multiple conditions defined in the sample sheet and differential expression is activated, you will receive an error message.
+Options are "on / off".
+
+features
+********
+
+.. code-block:: bash
+
+    features: ["CDS", "sRNA"]
+
+This option allows you to specify which features should be used for differential expression analysis. Any feature that appears in your reference annotation is allowed.
+We suggest using CDS and sRNA features.
+
+contrasts
+*********
+
+.. code-block:: bash
+
+    contrasts: ["treated1-untreated1", "treated2-untreated2"]
+
+This option allows you to specify which contrasts should be used for differential expression analysis.
+The order will affect the directionality of the log2FC values in the output files.
+
+adjusted pvalue cutoff
+**********************
+
+.. code-block:: bash
+
+    padjCutoff: 0.05
+
+This option allows you to specify the adjusted pvalue cutoff for differential expression analysis. The default is 0.05.
+All results will be present in the output, this will is soley used to add additional pre-filtered list in the output excel tables.
+
+log2 fold change cutoff
+***********************
+
+.. code-block:: bash
+
+    log2fcCutoff: 1.0
+
+This option allows you to specify the log2 fold change cutoff for differential expression analysis. The default is 1.0.
+All results will be present in the output, this will is soley used to add additional pre-filtered list in the output excel tables.
+Only positive values are allowed. Respective negative values to determine down-regulation will be generated automatically by multiplying by -1.
+
+ORF predictions
+===============
+
+.. code-block:: bash
+
+    deepribo: "on"
 
 Activating DeepRibo predictions will give you a different file with ORF predictions.
 By experience, the top DeepRibo results tend to be better than those of reparation.
 For archea, where reparation performs very poorly, DeepRibo is the preferred option.
 
-.. note:: In order to use DeepRibo, the tool ``singularity`` is required. Please refer to the :ref:`overview <source/overview:Tools>` for details on the installation.
-
-Once you have installed ``singularity`` turn on DeepRibo in the ``config.yaml``:
-
-.. code-block:: bash
-
-    adapter: ""
-    samples: "HRIBO/samples.tsv"
-    alternativestartcodons: "GTG,TTG"
-    # Differential expression: on / off
-    differentialexpression: "on"
-    # Deepribo predictions: on / off
-    deepribo: "on"
-
-When calling snakemake, you will now require additional commandline arguments:
-
-• **--use-singularity:** specify that snakemake can now download and use docker container via singularity.
-• **--singularity-args " -c "**: specify the ``--contain`` option to ensure that only the docker containers file system will be used.
-
 .. warning:: DeepRibo cannot cope with genomes containing special ``IUPAC symbols``, ensure that your genome file contains only ``A``, ``G``, ``C``, ``T``, ``N`` symbols.
-If you run deepribo locally
-***************************
 
-When running the workflow with DeepRibo locally it might be advised to additionally use the ``--greediness 0`` option, if you do not have a lot of cores available locally.
-This will cause the workflow to submit fewer jobs at the same time. This especially important for DeepRibo as we observed that a single DeepRibo job can finish in less than an hour if it does not have to fight for cores with another DeepRibo job. Otherwise, it can run for several hours at a time.
 
-.. code-block:: bash
-
-    snakemake --use-conda --use-singularity --singularity-args " -c " -s HRIBO/Snakefile --configfile HRIBO/config.yaml --directory ${PWD} -j 10 --latency-wait 60
-
-If you run deepribo on a cluster system
-***************************************
-
-When running the workflow with DeepRibo on a cluster system. You have to add the above commandline arguments to your submission script.
+Read statistics Settings
+========================
 
 .. code-block:: bash
 
-    #!/bin/bash
-    #PBS -N <ProjectName>
-    #PBS -S /bin/bash
-    #PBS -q "long"
-    #PBS -d <PATH/ProjectFolder>
-    #PBS -l nodes=1:ppn=1
-    #PBS -o <PATH/ProjectFolder>
-    #PBS -j oe
-    cd <PATH/ProjectFolder>
-    source activate HRIBO
-    snakemake --latency-wait 600 --use-conda --use-singularity --singularity-args " -c " -s HRIBO/Snakefile --configfile HRIBO/config.yaml --directory ${PWD} -j 20 --cluster-config HRIBO/templates/torque-cluster.yaml --cluster "qsub -N {cluster.jobname} -S /bin/bash -q {cluster.qname} -d <PATH/ProjectFolder> -l {cluster.resources} -o {cluster.logoutputdir} -j oe"
+    readLengths: "10-80"
+
+This option allows you to specify the read lengths that should be used for read statistics analysis. The default is ``10-80``.
+We allow combinations of intervals and single values, e.g. ``10-40,55,70``.
 
 
-.. note:: If you cannot install ``singularity`` on your cluster, check whether there are modules available for you cluster system.
+Metagene Profiling Settings
+===========================
 
-You can then create an additional submission script that will tell snakemake to activate the module before running jobs.
-An example of this would look as follows:
+There exist multiple options to customize the metagene profiling analysis.
 
-``jobscript.sh``
+Positions outside of the ORF
+****************************
 
 .. code-block:: bash
 
-    #!/bin/bash
-    module load devel/singularity/3.4.2
-    # properties = {properties}
-    {exec_job}
+    positionsOutsideORF: 50
 
-Then add the jobscript to the snakemake call:
+This option allows you to specify the number of positions outside of the ORF that should be considered for metagene profiling analysis. The default is ``50``.
+
+Positions inside of the ORF
+**************************
 
 .. code-block:: bash
 
-    #!/bin/bash
-    #PBS -N <ProjectName>
-    #PBS -S /bin/bash
-    #PBS -q "long"
-    #PBS -d <PATH/ProjectFolder>
-    #PBS -l nodes=1:ppn=1
-    #PBS -o <PATH/ProjectFolder>
-    #PBS -j oe
-    cd <PATH/ProjectFolder>
-    source activate HRIBO
-    snakemake --latency-wait 600 --use-conda --use-singularity --singularity-args " -c " --jobscript jobscript.sh -s HRIBO/Snakefile --configfile HRIBO/config.yaml --directory ${PWD} -j 20 --cluster-config HRIBO/templates/torque-cluster.yaml --cluster "qsub -N {cluster.jobname} -S /bin/bash -q {cluster.qname} -d <PATH/ProjectFolder> -l {cluster.resources} -o {cluster.logoutputdir} -j oe"
+    positionsInsideORF: 150
 
-This will specify to snakemake that it will execute ``module load devel/singularity/3.4.2`` when submitting each job.
+This option allows you to specify the number of positions inside of the ORF that should be considered for metagene profiling analysis. The default is ``150``.
+Genes that are shorter than the specified number of positions inside of the ORF will be ignored.
 
-.. warning:: This is a specific example for our TORQUE cluster system. The specific way of loading modules, as well as the available modules, can differ on each system.
+Filtering Methods
+*****************
 
+.. code-block:: bash
+
+    filteringMethods: ["overlap", "length", "rpkm"]
+
+This option allows you to specify which filtering methods should be used for metagene profiling analysis. The default is ``["overlap", "length", "rpkm"]``.
+
+These methods are used to filter out genes that would cause artifacts in the metagene profiling analysis.
+
+* The ``overlap`` method filters out genes that overlap with other genes.
+* The ``length`` method filters out genes that are shorter than the threshold.
+* The ``rpkm`` method filters out genes below the rpkm threshold.
+
+Neighboring Genes
+*****************
+
+.. code-block:: bash
+
+    neighboringGenes: 1
 
 Paired-end support
 ==================
 
-We allow paired-end data in our workflow.
-Unfortunately, many of the downstream tools, like the prediction tools, cannot use paired-end data.
+Until full paired-end support is added, we allow paired-end data by merging it into single-end data.
 Therefore, we use the tool ``flash2`` to convert paired-end data to single-end data.
 
 In order to use paired-end data, simply replace the ``Snakefile`` with the ``Snakefile_pairedend``.
@@ -195,3 +218,4 @@ This will now require a special ``samples_pairedend.tsv``, which is also availab
 +-----------+-----------+-----------+----------------------------+----------------------------+
 | RNA       |  B        | 2         | fastq/RNA-B-2_R1.fastq.gz  | fastq/RNA-A-1_R2.fastq.gz  |
 +-----------+-----------+-----------+----------------------------+----------------------------+
+
