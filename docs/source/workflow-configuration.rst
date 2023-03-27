@@ -183,12 +183,107 @@ These methods are used to filter out genes that would cause artifacts in the met
 * The ``length`` method filters out genes that are shorter than the threshold.
 * The ``rpkm`` method filters out genes below the rpkm threshold.
 
-Neighboring Genes
-*****************
+Neighboring Genes Distance
+**************************
 
 .. code-block:: bash
 
-    neighboringGenes: 1
+    neighboringGenesDistance: 50
+
+This option allows you to specify the distance to neighboring genes that will be considered to filter out overlapping genes.
+The default is ``50``. This means that genes that are closer than 50nt to another gene will be filtered out.
+
+RPKM Threshold
+**************
+
+.. code-block:: bash
+
+    rpkmThreshold: 10.0
+
+This option allows you to specify the RPKM threshold that will be used to filter out genes below the threshold.
+The default is ``10.0``.
+
+Length Cutoff
+*************
+
+.. code-block:: bash
+
+    lengthCutoff: 50
+
+This option allows you to specify the length cutoff that will be used to filter out genes below the threshold.
+Be aware that genes that are smaller than the positionsInsideORF will be filtered out anyway.
+
+Mapping Methods
+***************
+
+.. code-block:: bash
+
+    mappingMethods: ["fiveprime", "threeprime", "centered", "global"]
+
+This option allows you to specify which mapping methods should be used for metagene profiling analysis. The default is ``["fiveprime", "threeprime"]``.
+Multiple mappings can be used and result in multiple output files/folders.
+
+* The ``fiveprime`` method will use the 5' end of the reads to count the number of reads per position.
+* The ``threeprime`` method will use the 3' end of the reads to count the number of reads per position.
+* The ``centered`` method will use the center nucleotides of each read to count the number of reads per position.
+* The ``global`` method will use the entire read to count the number of reads per position.
+
+Read Lengths:
+*************
+
+.. code-block:: bash
+
+    readLengths: "25-34"
+
+This option allows you to specify the read lengths that should be used for metagene profiling analysis. The default is ``25-34``.
+We allow combinations of intervals and single values, e.g. ``25-34,40,50``.
+
+Normalization Methods
+*********************
+
+.. code-block:: bash
+
+    normalizationMethods: ["raw", "cpm"]
+
+This option allows you to specify which normalization methods should be used for metagene profiling analysis. The default is ``["raw", "cpm"]``.
+
+Output Formats
+**************
+
+.. code-block:: bash
+
+    outputFormats: ["svg", "pdf", "png", "jpg", "interactive"]
+
+This option allows you to specify which output formats should be used for metagene profiling analysis. The default is ``["svg", "interactive"]``.
+The interactive option will generate an interactive html file that can be used to explore the metagene profiling results.
+
+PlotlyJS
+********
+
+This option is only used when the ``interactive`` output format is selected.
+
+.. code-block:: bash
+
+    includePlotlyJS: "integrated"
+
+This option allows you to specify how the plotly.js library should be included in the interactive html file. The default is ``integrated``.
+
+* The ``integrated`` option will include the plotly.js library in the html file. The file will be larger, but can be used offline. (+3.7mb/file)
+* The ``online`` option will include a link to the plotly.js library in the html file.
+* The ``local`` option will include a link to a local plotly.js library in the html file. This option requires the plotly.js library to be available in the same folder as the html file.
+
+Colors
+******
+
+.. code-block:: bash
+
+    colorList: []
+
+This option allows you to specify a list of colors that should be used for the metagene profiling analysis. The default is ``[]``.
+Per default a list of colorblind-friendly colors will be used.
+If you want to change the colors, make sure that the number of colors matches the number of samples.
+We also suggest to use hex colors, e.g. ``#ff0000``.
+
 
 Paired-end support
 ==================
