@@ -5,7 +5,9 @@ HRIBO
 Introduction
 ============
 
-HRIBO is a workflow for the analysis of prokaryotic Ribo-Seq data. HRIBO is available on `github <https://github.com/RickGelhausen/HRIBO>`_. It includes among others, prediction of novel open reading frames (**ORFs**), metagene profiling, quality control and differential expression analysis. The workflow is based on the workflow management system **snakemake** and handles installation of all dependencies via `bioconda <https://bioconda.github.io/>`_ :cite:`GRU:KOE:2018` and `docker <https://www.docker.com/>`_, as well as all processings steps. The source code of HRIBO is open source and available under the License **GNU General Public License 3**. Installation and basic usage is described below.
+HRIBO is a workflow for the analysis of prokaryotic Ribo-Seq data. HRIBO is available on `github <https://github.com/RickGelhausen/HRIBO>`_. It includes among others, prediction of novel open reading frames (**ORFs**), metagene profiling, quality control and differential expression analysis.
+The workflow is based on the workflow management system **snakemake** and handles installation of all dependencies via `bioconda <https://bioconda.github.io/>`_ :cite:`GRU:KOE:2018` and `docker <https://www.docker.com/>`_, as well as all processings steps.
+The source code of HRIBO is open source and available under the License **GNU General Public License 3**. Installation and basic usage is described below.
 
 .. note:: For a detailed step by step tutorial on how to use this workflow on a sample dataset, please refer to our :ref:`example-workflow <source/example-workflow:Example workflow>`.
 
@@ -14,6 +16,8 @@ Requirements
 ============
 
 In the following, we describe all the required files and tools needed to run our workflow.
+
+.. warning:: HRIBO was tested on a linux system. We cannot guarantee that the workflow will run on other systems.
 
 Tools
 =====
@@ -26,41 +30,6 @@ As this workflow is based on the workflow management system  `snakemake <https:/
 We strongly recommend installing `miniconda3 <https://conda.io/miniconda.html>`_ with ``python3.7``.
 
 After downloading the ``miniconda3`` version suiting your linux system, execute the downloaded bash file and follow the instructions given.
-
-snakemake
-*********
-
-.. note:: HRIBO requires ``snakemake (version>=6.4.1)``
-
-The newest version of ``snakemake`` as well as the ``squashfs-tools`` required for ``singularity`` can be downloaded via conda using the following command:
-
-.. code-block:: bash
-
-    conda create -c conda-forge -c bioconda -n snakemake snakemake squashfs-tools
-
-This creates a new conda environment called ``snakemake`` and installs ``snakemake`` into the environment. The environment can be activated using:
-
-.. code-block:: bash
-
-    conda activate snakemake
-
-and deactivated using:
-
-.. code-block:: bash
-
-    conda deactivate
-
-singularity
-***********
-
-.. warning:: This dependency is only required if you intend to use the prediction tool ``deepribo``. The rest of the workflow does not require ``singularity``. ``deepribo`` is deactivated by default. For more details on activating ``deepribo``, please refer to :ref:`Activating DeepRibo <source/workflow-configuration:Activating DeepRibo>`.
-
-In order to support `docker container <https://www.docker.com/>`_, snakemake requires `singularity <https://sylabs.io/docs/>`_.
-This is used to retrieve tools that are not available on conda as of now.
-
-An in-depth installation tutorial for singularity can be found on the `singularity webpage <https://sylabs.io/guides/3.0/user-guide/installation.html>`_.
-
-.. note:: we strongly suggest to install the newest version of singularity. We tested our worklow on ``singularity v3.4.2``.
 
 HRIBO
 *****
@@ -79,10 +48,36 @@ Now, download and unpack the latest version of ``HRIBO`` by entering the followi
 
 .. code-block:: bash
 
-    wget https://github.com/RickGelhausen/HRIBO/archive/1.6.0.tar.gz
-    tar -xzf 1.6.0.tar.gz; mv HRIBO-1.6.0 HRIBO; rm 1.6.0.tar.gz;
+    wget https://github.com/RickGelhausen/HRIBO/archive/1.7.0.tar.gz
+    tar -xzf 1.7.0.tar.gz; mv HRIBO-1.7.0 HRIBO; rm 1.7.0.tar.gz;
 
 ``HRIBO`` is now in a subdirectory of your project directory.
+
+snakemake
+*********
+
+.. note:: HRIBO was tested using ``snakemake (version>=7.24.2)``
+
+In order to support `docker container <https://www.docker.com/>`_, snakemake requires `singularity <https://sylabs.io/docs/>`_.
+HRIBO requires ``snakemake`` and ``singularity`` to be installed on your system.
+
+We suggest installing it using ``conda``. To this end we provide an ``environment.yaml`` file in the ``HRIBO`` directory.
+
+.. code-block:: bash
+
+    conda create --file HRIBO/environment.yaml
+
+This creates a new conda environment called ``snakemake`` and installs ``snakemake`` and ``singularity`` into the environment. The environment can be activated using:
+
+.. code-block:: bash
+
+    conda activate hribo_env
+
+and deactivated using:
+
+.. code-block:: bash
+
+    conda deactivate
 
 
 Input files
@@ -147,13 +142,9 @@ Copy the templates of the sample sheet and the configuration file into the ``HRI
     cp HRIBO/templates/samples.tsv HRIBO/
     cp HRIBO/templates/config.yaml HRIBO/
 
-Customize the ``config.yaml`` using your preferred editor. It contains the following variables:
+Customize the ``config.yaml`` using your preferred editor.
 
-• **adapter:** specify the adapter sequence to be used.
-• **samples:** the location of the samples sheet created in the previous step.
-• **alternativestartcodons:** specify a comma separated list of alternative start codons.
-• **differentialexpression:** specify whether you want to activate differential expresssion analysis. ("yes/no")
-• **deepribo:** specify whether you want to activate deepribo ORF prediction. ("yes/no")
+.. note:: For a detailed overview of the available options please refer to our :ref:`workflow-configuration<source/workflow-configuration:Workflow configuration>`
 
 Edit the sample sheet corresponding to your project. It contains the following variables:
 
@@ -191,11 +182,7 @@ As seen in the ``samples.tsv`` template:
 cluster.yaml
 ************
 
-In the ``HRIBO`` folder, we provide two ``<cluster>.yaml`` files needed by snakemake in order to run on a cluster system:
-
-• **sge.yaml** - for grid based queuing systems
-• **torque.yaml** - for torque based queuing systems
-
+.. warning:: As we are currently unable to test HRIBO on cluster systems, the support for cluster systems is experimental. As HRIBO is based on snakemake, cluster support is still possible and we added an example SLURM profile. Please check out the snakemake documentation for more detail `snakemake <https://snakemake.readthedocs.io/en/stable/executing/cluster.html>`_
 
 Output files
 ============
@@ -304,12 +291,11 @@ Report
 ======
 
 In order to aggregate the final results into a single folder structure and receive a date-tagged ``.zip`` file, you can use the ``makereport.sh`` script.
+The current date will be used as a tag for the report folder.
 
 .. code-block:: bash
 
     bash HRIBO/scripts/makereport.sh <reportname>
-
-.. note:: Examples of how this output can look are available `here <ftp://biftp.informatik.uni-freiburg.de/pub/HRIBO/examplereport_HRIBO1.3.2_14-02-20.zip>`_ .
 
 Example-workflow
 ================

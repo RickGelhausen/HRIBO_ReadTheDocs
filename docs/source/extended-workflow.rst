@@ -25,8 +25,8 @@ We then download the latest version of HRIBO into the newly created project fold
 
 .. code-block:: bash
 
-   wget https://github.com/RickGelhausen/HRIBO/archive/1.6.0.tar.gz
-   tar -xzf 1.6.0.tar.gz; mv HRIBO-1.6.0 HRIBO; rm 1.6.0.tar.gz;
+   wget https://github.com/RickGelhausen/HRIBO/archive/1.7.0.tar.gz
+   tar -xzf 1.7.0.tar.gz; mv HRIBO-1.7.0 HRIBO; rm 1.7.0.tar.gz;
 
 Retrieve and prepare input files
 ================================
@@ -162,28 +162,17 @@ Next, we are going to set up the ``config.yaml``.
 
     cp HRIBO/templates/config.yaml HRIBO/
 
-This file contains the following variables:
+The config file can be used to easily change the parameters of ``HRIBO``.
 
-* **adapter:** Specify the adapter sequence to be used. In our case this would be *CTGTAGGCACCATCAAT*
-* **samples:** The location of the sample sheet created in the previous step.
-* **alternativestartcodons:** Specify a comma separated list of alternative start codons.
-* **differentialexpression:** Specify whether you want to activate differential expresssion analysis. ("on/off")
-* **contrasts:** Specify a comma seperated list of condition contrasts for differential expression analysis (e.g. "A-B,A-C,B-C"). If no contrast are given and differentialexpression is set to on, the contrasts will automatically be infered by sorted condition names.
-* **deepribo:** Specify whether you want to activate deepribo ORF prediction. ("on/off")
+.. note:: For a detailed overview of the available options please refer to our :ref:`workflow-configuration<source/workflow-configuration:Workflow configuration>`
 
-In our example, this will lead to the following ``config.yaml`` file:
+In our small example, we will adjust the adapter sequence which will lead to the following changes in the ``config.yaml`` file:
 
 .. code-block:: bash
+    biologySettings:
+        # Adapter sequence used
+        adapter: "AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC"
 
-    adapter: "CTGTAGGCACCATCAAT"
-    samples: "HRIBO/samples.tsv"
-    alternativestartcodons: "GTG,TTG"
-    # Differential expression: on / off
-    differentialexpression: "on"
-    # comma-seperated list of condition contrasts
-    contrasts: ""
-    # Deepribo predictions: on / off
-    deepribo: "on"
 
 Running the workflow
 ====================
