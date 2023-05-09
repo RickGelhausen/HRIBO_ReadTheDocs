@@ -1,2 +1,4 @@
 sphinxcontrib-bibtex
 docutils==0.16
+sphinx>=5.3.0,<6.0
+urllib3<2.0
