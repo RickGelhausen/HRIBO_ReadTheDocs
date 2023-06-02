@@ -169,6 +169,7 @@ The config file can be used to easily change the parameters of ``HRIBO``.
 In our small example, we will adjust the adapter sequence which will lead to the following changes in the ``config.yaml`` file:
 
 .. code-block:: bash
+
     biologySettings:
         # Adapter sequence used
         adapter: "AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC"
