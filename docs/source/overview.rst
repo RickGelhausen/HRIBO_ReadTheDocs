@@ -22,21 +22,34 @@ In the following, we describe all the required files and tools needed to run our
 Tools
 =====
 
-miniconda3
-**********
+miniconda3 or miniforge3
+************************
 
 As this workflow is based on the workflow management system  `snakemake <https://snakemake.readthedocs.io/en/stable/>`_ :cite:`KOE:RAH:2018Snakemake`, **Snakemake** will download all necessary dependencies via `conda <https://conda.io/projects/conda/en/latest/user-guide/install/index.html>`_.
 
-We strongly recommend installing `miniconda3 <https://conda.io/miniconda.html>`_ with ``python3.7``.
+We recommend installing the latest version of `miniforge3 <https://github.com/conda-forge/miniforge>`_ or `miniconda3 <https://conda.io/miniconda.html>`_.
 
-After downloading the ``miniconda3`` version suiting your linux system, execute the downloaded bash file and follow the instructions given.
+After downloading the ``miniforge3`` or ``miniconda3`` version suiting your linux system, execute the downloaded bash file and follow the instructions given.
+
+In addtion, we strongly recommend to install mamba. Mamba is a faster alternative to conda and can be installed using the following command:
+
+.. code-block:: bash
+
+    wget https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-x86_64.sh
+    bash Miniforge3-Linux-x86_64.sh
+    conda install mamba -n base -c conda-forge
+
+Follow the instructions given by the installer.
+
+.. note:: Any installation of conda or mamba will be suitable for the workflow.
+
 
 HRIBO
 *****
 
 Using the workflow requires ``HRIBO``. The latest version is available on our GitHub page.
 
-In order to run the workflow, we suggest that you download the ``HRIBO`` into your project directory.
+In order to run the workflow, we suggest that you download ``HRIBO`` into your project directory.
 The following command creates an example directory and changes into it:
 
 .. code-block:: bash
@@ -48,15 +61,15 @@ Now, download and unpack the latest version of ``HRIBO`` by entering the followi
 
 .. code-block:: bash
 
-    wget https://github.com/RickGelhausen/HRIBO/archive/1.7.0.tar.gz
-    tar -xzf 1.7.0.tar.gz; mv HRIBO-1.7.0 HRIBO; rm 1.7.0.tar.gz;
+    wget https://github.com/RickGelhausen/HRIBO/archive/1.8.0.tar.gz
+    tar -xzf 1.8.0.tar.gz; mv HRIBO-1.8.0 HRIBO; rm 1.8.0.tar.gz;
 
 ``HRIBO`` is now in a subdirectory of your project directory.
 
 snakemake
 *********
 
-.. note:: HRIBO was tested using ``snakemake (version>=7.24.2)``
+.. note:: HRIBO was tested using ``snakemake (version>=8.10.7)``
 
 In order to support `docker container <https://www.docker.com/>`_, snakemake requires `singularity <https://sylabs.io/docs/>`_.
 HRIBO requires ``snakemake`` and ``singularity`` to be installed on your system.
@@ -65,7 +78,7 @@ We suggest installing it using ``conda``. To this end we provide an ``environmen
 
 .. code-block:: bash
 
-    conda create --file HRIBO/environment.yaml
+    conda env create --file HRIBO/environment.yaml
 
 This creates a new conda environment called ``snakemake`` and installs ``snakemake`` and ``singularity`` into the environment. The environment can be activated using:
 
@@ -153,29 +166,29 @@ Edit the sample sheet corresponding to your project. It contains the following v
 • **replicate:** ID used to distinguish between the different replicates (e.g. 1,2, ...)
 • **inputFile:** indicates the according fastq file for a given sample.
 
-.. note:: If you have paired end data, please ensure that you use the ``samples_pairedend.tsv`` file.
+.. note:: If you have paired end data, simply add one mate into ``fastqFile`` and one mate into ``fastqFile2``. Be sure to fill in the adatpers for the paired end data in the ``config.yaml`` file.
 
 As seen in the ``samples.tsv`` template:
 
-+-----------+-----------+-----------+-------------------------+
-|   method  | condition | replicate | fastqFile               |
-+===========+===========+===========+=========================+
-| RIBO      |  A        | 1         | fastq/RIBO-A-1.fastq.gz |
-+-----------+-----------+-----------+-------------------------+
-| RIBO      |  A        | 2         | fastq/RIBO-A-2.fastq.gz |
-+-----------+-----------+-----------+-------------------------+
-| RIBO      |  B        | 1         | fastq/RIBO-B-1.fastq.gz |
-+-----------+-----------+-----------+-------------------------+
-| RIBO      |  B        | 2         | fastq/RIBO-B-2.fastq.gz |
-+-----------+-----------+-----------+-------------------------+
-| RNA       |  A        | 1         | fastq/RNA-A-1.fastq.gz  |
-+-----------+-----------+-----------+-------------------------+
-| RNA       |  A        | 2         | fastq/RNA-A-2.fastq.gz  |
-+-----------+-----------+-----------+-------------------------+
-| RNA       |  B        | 1         | fastq/RNA-B-1.fastq.gz  |
-+-----------+-----------+-----------+-------------------------+
-| RNA       |  B        | 2         | fastq/RNA-B-2.fastq.gz  |
-+-----------+-----------+-----------+-------------------------+
++-----------+-----------+-----------+-------------------------+-------------------------+
+|   method  | condition | replicate | fastqFile               | fastqFile2              |
++===========+===========+===========+=========================+=========================+
+| RIBO      |  A        | 1         | fastq/RIBO-A-1.fastq.gz |                         |
++-----------+-----------+-----------+-------------------------+-------------------------+
+| RIBO      |  A        | 2         | fastq/RIBO-A-2.fastq.gz |                         |
++-----------+-----------+-----------+-------------------------+-------------------------+
+| RIBO      |  B        | 1         | fastq/RIBO-B-1.fastq.gz |                         |
++-----------+-----------+-----------+-------------------------+-------------------------+
+| RIBO      |  B        | 2         | fastq/RIBO-B-2.fastq.gz |                         |
++-----------+-----------+-----------+-------------------------+-------------------------+
+| RNA       |  A        | 1         | fastq/RNA-A-1.fastq.gz  |                         |
++-----------+-----------+-----------+-------------------------+-------------------------+
+| RNA       |  A        | 2         | fastq/RNA-A-2.fastq.gz  |                         |
++-----------+-----------+-----------+-------------------------+-------------------------+
+| RNA       |  B        | 1         | fastq/RNA-B-1.fastq.gz  |                         |
++-----------+-----------+-----------+-------------------------+-------------------------+
+| RNA       |  B        | 2         | fastq/RNA-B-2.fastq.gz  |                         |
++-----------+-----------+-----------+-------------------------+-------------------------+
 
 .. note:: This is just an example, please refer to our :ref:`example-workflow <source/example-workflow:Example workflow>` for another example.
 

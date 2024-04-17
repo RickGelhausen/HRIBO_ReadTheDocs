@@ -8,7 +8,7 @@ The retrieval of input files and running the workflow locally and on a server cl
 This dataset is available under the accession number ``PRJNA379630``.
 
 .. note:: In this tutorial, we will show the basic functionalities of our workflow, for information about additional options please refer to: :ref:`workflow-configuration <source/workflow-configuration:Default workflow>`.
-.. note:: Ensure that you have ``miniconda3`` installed and a ``snakemake environment`` set-up. Please refer to the :ref:`overview <source/overview:Tools>` for details on the installation.
+.. note:: Ensure that you have ``miniconda3`` or ``miniforge3`` installed and a ``snakemake environment`` set-up. Please refer to the :ref:`overview <source/overview:Tools>` for details on the installation.
 
 Setup
 =====
@@ -24,8 +24,8 @@ We then download the latest version of HRIBO into the newly created project fold
 
 .. code-block:: bash
 
-   wget https://github.com/RickGelhausen/HRIBO/archive/1.7.0.tar.gz
-   tar -xzf 1.7.0.tar.gz; mv HRIBO-1.7.0 HRIBO; rm 1.7.0.tar.gz;
+   wget https://github.com/RickGelhausen/HRIBO/archive/1.8.0.tar.gz
+   tar -xzf 1.8.0.tar.gz; mv HRIBO-1.8.0 HRIBO; rm 1.8.0.tar.gz;
 
 Retrieve and prepare input files
 ================================
@@ -101,38 +101,38 @@ Finally, we will prepare the configuration file (``config.yaml``) and the sample
 
 The sample file looks as follows:
 
-+-----------+-----------+-----------+-------------------------+
-|   method  | condition | replicate | fastqFile               |
-+===========+===========+===========+=========================+
-| RIBO      |  A        | 1         | fastq/RIBO-A-1.fastq.gz |
-+-----------+-----------+-----------+-------------------------+
-| RIBO      |  A        | 2         | fastq/RIBO-A-2.fastq.gz |
-+-----------+-----------+-----------+-------------------------+
-| RIBO      |  B        | 1         | fastq/RIBO-B-1.fastq.gz |
-+-----------+-----------+-----------+-------------------------+
-| RIBO      |  B        | 2         | fastq/RIBO-B-2.fastq.gz |
-+-----------+-----------+-----------+-------------------------+
-| RNA       |  A        | 1         | fastq/RNA-A-1.fastq.gz  |
-+-----------+-----------+-----------+-------------------------+
-| RNA       |  A        | 2         | fastq/RNA-A-2.fastq.gz  |
-+-----------+-----------+-----------+-------------------------+
-| RNA       |  B        | 1         | fastq/RNA-B-1.fastq.gz  |
-+-----------+-----------+-----------+-------------------------+
-| RNA       |  B        | 2         | fastq/RNA-B-2.fastq.gz  |
-+-----------+-----------+-----------+-------------------------+
++-----------+-----------+-----------+-------------------------+-------------------------+
+|   method  | condition | replicate | fastqFile               | fastqFile2              |
++===========+===========+===========+=========================+=========================+
+| RIBO      |  A        | 1         | fastq/RIBO-A-1.fastq.gz |                         |
++-----------+-----------+-----------+-------------------------+-------------------------+
+| RIBO      |  A        | 2         | fastq/RIBO-A-2.fastq.gz |                         |
++-----------+-----------+-----------+-------------------------+-------------------------+
+| RIBO      |  B        | 1         | fastq/RIBO-B-1.fastq.gz |                         |
++-----------+-----------+-----------+-------------------------+-------------------------+
+| RIBO      |  B        | 2         | fastq/RIBO-B-2.fastq.gz |                         |
++-----------+-----------+-----------+-------------------------+-------------------------+
+| RNA       |  A        | 1         | fastq/RNA-A-1.fastq.gz  |                         |
++-----------+-----------+-----------+-------------------------+-------------------------+
+| RNA       |  A        | 2         | fastq/RNA-A-2.fastq.gz  |                         |
++-----------+-----------+-----------+-------------------------+-------------------------+
+| RNA       |  B        | 1         | fastq/RNA-B-1.fastq.gz  |                         |
++-----------+-----------+-----------+-------------------------+-------------------------+
+| RNA       |  B        | 2         | fastq/RNA-B-2.fastq.gz  |                         |
++-----------+-----------+-----------+-------------------------+-------------------------+
 
 .. note:: When using your own data, use any editor (vi(m), gedit, nano, atom, ...) to customize the sample sheet.
 .. warning:: **Please ensure not to replace any tabulator symbols with spaces while changing this file.**
 
 We will rewrite this file to fit the previously downloaded *.fastq.gz* files.
 
-+-----------+-----------+-----------+--------------------------------+
-|   method  | condition | replicate | fastqFile                      |
-+===========+===========+===========+================================+
-| RIBO      |  GLY      | 1         | fastq/RIBO-PAO1-gly-1.fastq.gz |
-+-----------+-----------+-----------+--------------------------------+
-| RNA       |  GLY      | 1         | fastq/RNA-PAO1-gly-1.fastq.gz  |
-+-----------+-----------+-----------+--------------------------------+
++-----------+-----------+-----------+--------------------------------+--------------------------------+
+|   method  | condition | replicate | fastqFile                      | fastqFile2                     |
++===========+===========+===========+================================+================================+
+| RIBO      |  GLY      | 1         | fastq/RIBO-PAO1-gly-1.fastq.gz |                                |
++-----------+-----------+-----------+--------------------------------+--------------------------------+
+| RNA       |  GLY      | 1         | fastq/RNA-PAO1-gly-1.fastq.gz  |                                |
++-----------+-----------+-----------+--------------------------------+--------------------------------+
 
 
 Next, we are going to set up the ``config.yaml``.
@@ -151,7 +151,7 @@ In our small example, we will adjust the adapter sequence and to reduce the runt
 
     biologySettings:
         # Adapter sequence used
-        adapter: "AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC"
+        adapterS3: "AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC"
 
     predictionSettings:
         # Deepribo predictions: on / off
@@ -201,7 +201,7 @@ Navigate to the project folder on your cluster system. Start the workflow from t
 
 .. code-block:: bash
 
-    snakemake --use-conda -s HRIBO/Snakefile --configfile HRIBO/config.yaml --directory ${PWD} -j 20 --cluster-config HRIBO/sge.yaml
+    snakemake --use-conda -s HRIBO/Snakefile --configfile HRIBO/config.yaml --directory ${PWD} -j 5 --cluster-config HRIBO/sge.yaml
 
 .. note:: Ensure that you use an appropriate ``<cluster>.yaml`` for your cluster system. We provide one for ``SGE`` and ``TORQUE`` based systems.
 

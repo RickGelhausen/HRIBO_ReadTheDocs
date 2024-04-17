@@ -22,11 +22,24 @@ This section contains general settings for the workflow.
 adapter sequence
 ****************
 
+The adapter section is split into single end and paired end adapters. If you have single-end data, you only need to specify the single-end adatpers.
+
 .. code-block:: bash
 
-    adapter: ""
+    adapterS3: "" #3prime
+    adapterS5: "" #5prime
 
-The adapter sequence that will be removed using ``cutadapt``. It is important to add it if you know that your data was not trimmed before.
+If you have mixed or paired-end data, you need to specify the appropriate paired-end adapters.
+
+.. code-block:: bash
+
+    adapterP3R1: "" #3prime mate1
+    adapterP5R1: "" #5prime mate1
+
+    adapterP3R2: "" #3prime mate2
+    adapterP5R2: "" #5prime mate2
+
+The adapter sequences will be removed using ``cutadapt``. It is important to add them if you know that your data was not trimmed before.
 
 genome file
 ***********
@@ -284,15 +297,27 @@ Per default a list of colorblind-friendly colors will be used.
 If you want to change the colors, make sure that the number of colors matches the number of samples.
 We also suggest to use hex colors, e.g. ``#ff0000``.
 
+workflow
+********
+
+.. code-block:: bash
+
+    workflow: "full"
+
+This option allows you to specify which workflow should be used:
+
+* The ``full`` workflow will the full ``HRIBO`` workflow.
+* The ``preprocessing`` workflow will only run the preprocessing steps up to the generation of the ``.bam`` files.
 
 Paired-end support
 ==================
 
-Until full paired-end support is added, we allow paired-end data by merging it into single-end data.
-Therefore, we use the tool ``flash2`` to convert paired-end data to single-end data.
+Paired-end files can now be specified in the ``samples.tsv`` file.
+It is possible to mix paired-end and single-end data in the same analysis.
 
-In order to use paired-end data, simply replace the ``Snakefile`` with the ``Snakefile_pairedend``.
-This will now require a special ``samples_pairedend.tsv``, which is also available in the HRIBO templates folder.
+As most downstream tools do not support the alignment flags for paired-end data, the workflow will transform the paired-end data to single-end data after the trimming step.
+
+This is an example ``sample.tsv`` file, which is also available in the HRIBO templates folder.
 
 +-----------+-----------+-----------+----------------------------+----------------------------+
 |   method  | condition | replicate | fastqFile                  | fastqFile2                 |
