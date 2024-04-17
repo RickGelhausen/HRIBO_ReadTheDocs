@@ -20,13 +20,15 @@
 # -- Project information -----------------------------------------------------
 
 project = 'HRIBO'
-copyright = '2020, Rick Gelhausen'
+copyright = '2024, Rick Gelhausen'
 author = 'Rick Gelhausen'
 
 # The short X.Y version
-version = '1.7'
+version = '1.8'
 # The full version, including alpha/beta/rc tags
-release = '1.7.0'
+release = '1.8.0'
+
+
 
 
 # -- General configuration ---------------------------------------------------
@@ -39,11 +41,13 @@ release = '1.7.0'
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
+    'sphinx_rtd_theme',
     'sphinx.ext.autodoc',
     'sphinxcontrib.bibtex',
     'sphinx.ext.autosectionlabel',
 ]
 bibtex_bibfiles = ["source/references.bib"]
+html_theme = "sphinx_rtd_theme"
 
 # Prefix section labels with file name (resolve ambiguity)
 autosectionlabel_prefix_document = True
