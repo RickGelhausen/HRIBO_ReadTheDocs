@@ -180,13 +180,12 @@ Navigate to the project folder containing your annotation and genome files, as w
 
 .. code-block:: bash
 
-    snakemake --use-conda -s HRIBO/Snakefile --configfile HRIBO/config.yaml --directory ${PWD} -j 10 --latency-wait 60
+    snakemake --use-conda -s HRIBO/Snakefile --directory ${PWD} -j 10 --latency-wait 60
 
 This will start the workflow locally.
 
 *	``--use-conda``: instruct snakemake to download tool dependencies from conda.
 *	``-s``: specifies the Snakefile to be used.
-*	``--configfile``: specifies the config file to be used.
 *	``--directory``: specifies your current path.
 *	``-j``: specifies the maximum number of cores snakemake is allowed to use.
 *	``--latency-wait``: specifies how long (in seconds) snakemake will wait for filesystem latencies until declaring a file to be missing.
@@ -201,7 +200,7 @@ Navigate to the project folder on your cluster system. Start the workflow from t
 
 .. code-block:: bash
 
-    snakemake --use-conda -s HRIBO/Snakefile --configfile HRIBO/config.yaml --directory ${PWD} -j 5 --cluster-config HRIBO/sge.yaml
+    snakemake --use-conda -s HRIBO/Snakefile --directory ${PWD} -j 5 --cluster-config HRIBO/sge.yaml
 
 .. note:: Ensure that you use an appropriate ``<cluster>.yaml`` for your cluster system. We provide one for ``SGE`` and ``TORQUE`` based systems.
 
@@ -233,7 +232,7 @@ We proceeded by writing the queuing script:
     #PBS -j oe
     cd <PATH/ProjectFolder>
     source activate HRIBO
-    snakemake --latency-wait 600 --use-conda -s HRIBO/Snakefile --configfile HRIBO/config.yaml --directory ${PWD} -j 20 --cluster-config HRIBO/torque.yaml --cluster "qsub -N {cluster.jobname} -S /bin/bash -q {cluster.qname} -d <PATH/ProjectFolder> -l {cluster.resources} -o {cluster.logoutputdir} -j oe"
+    snakemake --latency-wait 600 --use-conda -s HRIBO/Snakefile --directory ${PWD} -j 20 --cluster-config HRIBO/torque.yaml --cluster "qsub -N {cluster.jobname} -S /bin/bash -q {cluster.qname} -d <PATH/ProjectFolder> -l {cluster.resources} -o {cluster.logoutputdir} -j oe"
 
 We then simply submitted this job to the cluster:
 
